@@ -113,6 +113,38 @@
     .footer-links { display: flex; gap: 20px; font-size: 13px; }
     .footer-links a { color: var(--text-muted); text-decoration: none; }
     .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      main {
+        padding: 32px 0 48px;
+      }
+      h1 {
+        font-size: 30px;
+        margin-bottom: 24px;
+      }
+      h2 {
+        font-size: 20px;
+        margin-top: 28px;
+      }
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+      .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
   </style>
 </head>
 <body>

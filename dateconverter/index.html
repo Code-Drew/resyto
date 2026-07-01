@@ -638,12 +638,23 @@
   }
 
   @media (max-width: 560px) {
+    body > div:first-of-type {
+      flex-direction: column !important;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+    .mode-toggle {
+      flex-direction: column;
+      gap: 10px;
+    }
     .use-case-grid { grid-template-columns: 1fr; }
     .input-row { grid-template-columns: 1fr; }
     .patro-band { padding: 22px 20px 18px; }
     .patro-body { padding: 22px 20px; }
-    .result-card { flex-direction: column; align-items: flex-start; }
+    .result-card { flex-direction: column; align-items: center; text-align: center; }
     .result-arrow { display: none; }
+    .copy-row { justify-content: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
