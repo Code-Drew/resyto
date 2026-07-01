@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQTGX68HN1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LQTGX68HN1');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us & Contact - Resyto</title>
+  <meta name="description" content="Learn about Resyto, our suite of privacy-first browser utilities. Find contact details and technical specifications of our tools.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#090D16">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://resyto.com/about.html">
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07080F;
+      --bg-surface: #0E101A;
+      --border: rgba(255, 255, 255, 0.05);
+      --primary: #E06A55; /* Warm Clay */
+      --text: #F1F3FA;
+      --text-muted: #8E9AB0;
+      --text-dim: #5C677D;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 15%, rgba(88, 101, 242, 0.04) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(7, 9, 19, 0.8);
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; text-decoration: none; color: var(--text); }
+    .brand-logo { width: 28px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, var(--primary) 0%, #FF5B26 100%); display: flex; align-items: center; justify-content: center; }
+    .brand-logo svg { width: 15px; height: 15px; color: #FFF; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14.5px; font-weight: 600; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Content */
+    main { padding: 56px 0 80px; }
+    h1 { font-size: 38px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 32px; }
+    h2 { font-size: 22px; font-weight: 700; margin-top: 36px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    p { margin-bottom: 18px; color: var(--text-muted); }
+    ul { margin-bottom: 24px; padding-left: 20px; color: var(--text-muted); }
+    li { margin-bottom: 8px; }
+
+    .highlight-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+    .highlight-box h3 { margin-bottom: 8px; font-size: 18px; }
+    .highlight-box p { margin-bottom: 0; }
+
+    /* Contact Details */
+    .contact-details {
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.05) 0%, rgba(255, 91, 38, 0.05) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 40px;
+    }
+    .contact-details h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .contact-item { font-family: var(--font-mono); font-size: 15px; margin-bottom: 8px; color: var(--text); }
+    .contact-item span { color: var(--text-muted); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 32px 0; background-color: #05060c; margin-top: auto; }
+    .footer-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-copy { font-size: 12.5px; color: var(--text-dim); }
+    .footer-links { display: flex; gap: 20px; font-size: 13px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 15px; height: 15px;">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#FFF"/>
+            <path d="M2 17L12 22L22 17" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>Resyto</span>
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="/">Home</a>
+        <a href="/dateconverter/">Date Converter</a>
+        <a href="/imagecompressor/">Image Compressor</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>About Resyto</h1>
+
+    <p>Welcome to <strong>Resyto</strong>, a dedicated collection of privacy-first browser tools and utilities. We build applications designed to make daily tasks simpler, faster, and completely secure.</p>
+
+    <h2>Our Mission</h2>
+    <p>Many modern online utility tools force users to upload their documents, personal data, or images to external servers for processing. This process introduces severe privacy risks, slows down operations due to upload/download latency, and consumes unnecessary mobile bandwidth.</p>
+    <p>At Resyto, we believe web applications should respect user sovereignty. Our core mission is to develop web utilities that execute <strong>100% client-side</strong>. That means all computations are handled by your computer's browser engine. No files are uploaded to our servers, and no personal logs are kept. Once the page is loaded, the tools can even run entirely offline.</p>
+
+    <h2>Our Tools</h2>
+    
+    <div class="highlight-box">
+      <h3>📅 Nepali Date Converter</h3>
+      <p>A fast, accurate date translation engine to convert calendars between Bikram Sambat (BS) and Gregorian (AD) formats. Unlike simple estimation tools, Resyto's Date Converter uses a verified standard lookup table of month lengths covering BS years 1970 to 2090. It dynamically translates weekdays, displays formatted output in English and Devanagari script, and provides instant copy commands.</p>
+    </div>
+
+    <div class="highlight-box">
+      <h3>🖼️ Free Image Compressor</h3>
+      <p>An advanced image optimization tool designed to shrink JPG, PNG, and WebP photos to exact specifications. Users can compress images down to a specified target file size (e.g. under 100 KB or 1 MB for email and registration forms) or use an adjustable quality dial. The tool runs locally using HTML5 canvas codecs, ensuring your photos never leave your device.</p>
+    </div>
+
+    <h2>Technology Stack</h2>
+    <p>Resyto tools are built using standard web languages (vanilla HTML5, CSS3, and JavaScript) to ensure compatibility across all devices, including desktop systems, tablets, and smartphones. By leveraging advanced APIs like the browser Canvas API, UTC timestamps, and asynchronous callbacks, we achieve professional desktop-grade performance directly inside standard web browser containers.</p>
+
+    <div class="contact-details">
+      <h3>Contact Information</h3>
+      <p>Have questions, feature suggestions, or bug reports? We'd love to hear from you. Get in touch with the author directly:</p>
+      <div class="contact-item"><span>Email:</span> sagarpaudel210@gmail.com</div>
+      <div class="contact-item"><span>Location:</span> Nepal</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
+      <div class="footer-links" aria-label="Footer Navigation">
+        <a href="/">Home</a>
+        <a href="/dateconverter/">Date Converter</a>
+        <a href="/imagecompressor/">Image Compressor</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

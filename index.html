@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQTGX68HN1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LQTGX68HN1');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resyto — Privacy-First Web Utilities</title>
+  <meta name="description" content="A curated suite of free, private, and client-side web tools. Features our Nepali Date Converter (BS ⇄ AD) and Free Image Compressor. Zero uploads, 100% browser-based.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07080F">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://resyto.com/">
+  
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://resyto.com/">
+  <meta property="og:title" content="Resyto — Privacy-First Web Utilities">
+  <meta property="og:description" content="Smarter web tools running 100% locally in your browser. Nepali Date Converter, Image Compressor, and more. Fast, secure, and offline-ready.">
+  <meta property="og:image" content="https://resyto.com/og-image.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07080F;
+      --bg-surface: #0E101A;
+      --bg-surface-raised: #151829;
+      --border: rgba(255, 255, 255, 0.05);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      
+      --primary: #FF5B26; /* Tomato Orange */
+      --primary-glow: rgba(255, 91, 38, 0.15);
+      --green: #4AB299; /* Mint Teal */
+      --green-glow: rgba(74, 178, 153, 0.15);
+      
+      --text: #F1F3FA;
+      --text-muted: #8E9AB0;
+      --text-dim: #5C677D;
+      
+      --shadow: rgba(0, 0, 0, 0.6);
+      --font-title: 'Outfit', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Glows */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 12% 8%, rgba(255, 91, 38, 0.10) 0%, transparent 40%),
+        radial-gradient(circle at 88% 92%, rgba(255, 91, 38, 0.06) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    /* Navbar */
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(7, 8, 15, 0.7);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--green) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.2);
+    }
+
+    .brand-logo svg {
+      width: 16px;
+      height: 16px;
+      color: #FFF;
+    }
+
+    .brand-name {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 56px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      background-color: rgba(255, 91, 38, 0.08);
+      border: 1px solid rgba(255, 91, 38, 0.15);
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: var(--font-title);
+      font-size: clamp(38px, 6vw, 60px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span.gradient {
+      background: linear-gradient(135deg, #FFF 40%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p.subtitle {
+      font-size: clamp(16px, 2.2vw, 19px);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 800px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .bento-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 36px -12px var(--shadow);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+    }
+
+    /* Card background glows on hover */
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, var(--glow-color) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .date-card { --glow-color: rgba(74, 178, 153, 0.08); }
+    .compress-card { --glow-color: rgba(255, 91, 38, 0.08); }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* High fidelity CSS Visualizations */
+    .card-visual {
+      height: 180px;
+      background-color: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Date Calendar mockup */
+    .mock-calendar {
+      display: flex;
+      background-color: #171924;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      width: 240px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .mock-cal-side {
+      width: 70px;
+      background-color: var(--green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #07080F;
+      font-weight: 800;
+      font-family: var(--font-title);
+    }
+    .mock-cal-side .val { font-size: 28px; line-height: 1; }
+    .mock-cal-side .lbl { font-size: 11px; text-transform: uppercase; margin-top: 2px; }
+
+    .mock-cal-body {
+      flex-grow: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mock-cal-body .date-item { font-size: 13px; font-weight: 600; color: var(--text); }
+    .mock-cal-body .date-deva { font-size: 12px; color: var(--green); margin-top: 2px; }
+
+    /* Compress Mockup slider */
+    .mock-compress {
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mock-comp-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mock-comp-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background-color: rgba(255, 91, 38, 0.1);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 91, 38, 0.2);
+    }
+
+    .mock-comp-file {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .mock-comp-file span { color: var(--text); font-weight: 600; }
+
+    .mock-comp-bar {
+      height: 8px;
+      border-radius: 99px;
+      background-color: rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+    .mock-comp-fill {
+      height: 100%;
+      width: 75%;
+      background: linear-gradient(90deg, var(--primary) 0%, #FFA88A 100%);
+      border-radius: 99px;
+      position: relative;
+    }
+    .mock-comp-handle {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(50%, -50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #FFF;
+      border: 4px solid var(--primary);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    /* Card Details */
+    .card-title {
+      font-family: var(--font-title);
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .card-badges {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .badge-item {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+    }
+
+    .card-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .date-card .card-button {
+      background-color: var(--green);
+      color: #07080F;
+    }
+    .date-card .card-button:hover {
+      background-color: #5ED9BD;
+      box-shadow: 0 6px 20px -6px rgba(74, 178, 153, 0.4);
+    }
+
+    .compress-card .card-button {
+      background-color: var(--primary);
+      color: #07080F;
+    }
+    .compress-card .card-button:hover {
+      background-color: #FF7547;
+      box-shadow: 0 6px 20px -6px rgba(255, 91, 38, 0.4);
+    }
+
+    /* Benefits Section */
+    .benefits-wrapper {
+      background-color: rgba(255, 255, 255, 0.01);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 0;
+      margin-bottom: 80px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    .benefit-col h3 {
+      font-family: var(--font-title);
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .benefit-col h3 svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+
+    .benefit-col p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Trust & Security */
+    .security-box {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px;
+      background: radial-gradient(circle at 50% 0%, rgba(74, 178, 153, 0.03) 0%, transparent 80%);
+    }
+
+    .security-box h2 {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .security-box p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      background-color: #04050a;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+    .footer-brand p {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-size: 13.5px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="brand">
+        <div class="brand-logo" aria-hidden="true" style="width: 30px; height: 30px; border-radius: 9px; background: var(--primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
+            <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="brand-name">Resyto</span>
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="/dateconverter/">Converter</a>
+        <a href="/imagecompressor/">Compressor</a>
+        <a href="/about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">100% Client-Side Applications</div>
+      <h1><span class="gradient">Fast, Private Web Utilities.</span></h1>
+      <p class="subtitle">Run heavy utilities directly in your browser. No file uploads, no cloud databases, and zero tracking.</p>
+    </section>
+
+    <!-- Bento Grid -->
+    <section class="bento-grid">
+      
+      <!-- Date Converter Card -->
+      <article class="bento-card date-card">
+        <div class="card-content">
+          <div class="card-visual">
+            <div class="mock-calendar">
+              <div class="mock-cal-side">
+                <div class="val">17</div>
+                <div class="lbl">Asar</div>
+              </div>
+              <div class="mock-cal-body">
+                <div class="date-item">Convert ⇄ 2026-07-01</div>
+                <div class="date-deva">१७ असार २०८३, बुधबार</div>
+              </div>
+            </div>
+          </div>
+          <h2 class="card-title">Nepali Date Converter</h2>
+          <p class="card-desc">Translate dates between Bikram Sambat (BS) and Gregorian (AD) calendars instantly. Relies on verified offline lookup metrics for complete calendar accuracy.</p>
+          <div class="card-badges">
+            <span class="badge-item">BS ⇄ AD</span>
+            <span class="badge-item">Devanagari</span>
+            <span class="badge-item">Offline Ready</span>
+          </div>
+          <a href="/dateconverter/" class="card-button" id="launch-dateconverter">Launch Date Converter</a>
+        </div>
+      </article>
+
+      <!-- Image Compressor Card -->
+      <article class="bento-card compress-card">
+        <div class="card-content">
+          <div class="card-visual">
+            <div class="mock-compress">
+              <div class="mock-comp-stats">
+                <div class="mock-comp-file">Original: <span>5.4 MB</span></div>
+                <div class="mock-comp-pill">-96%</div>
+              </div>
+              <div class="mock-comp-bar">
+                <div class="mock-comp-fill">
+                  <div class="mock-comp-handle"></div>
+                </div>
+              </div>
+              <div class="mock-comp-stats">
+                <div class="mock-comp-file" style="font-size: 11px;">Compressed Target: <span>220 KB</span></div>
+              </div>
+            </div>
+          </div>
+          <h2 class="card-title">Free Image Compressor</h2>
+          <p class="card-desc">Shrink JPEG, PNG, and WebP images. Set target file sizes in KB or MB, or compress using the slider interface. Images never leave your local workspace.</p>
+          <div class="card-badges">
+            <span class="badge-item">JPG / PNG / WEBP</span>
+            <span class="badge-item">Target KB/MB</span>
+            <span class="badge-item">Local Canvas API</span>
+          </div>
+          <a href="/imagecompressor/" class="card-button" id="launch-imagecompressor">Launch Image Compressor</a>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Value Propositions -->
+  <section class="benefits-wrapper">
+    <div class="container benefits-grid">
+      
+      <div class="benefit-col">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Privacy Safeguard
+        </h3>
+        <p>Because calculations execute within your local browser threads, operations remain completely invisible to our servers. Your assets stay securely inside your machine.</p>
+      </div>
+
+      <div class="benefit-col">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          No Loading Latency
+        </h3>
+        <p>Skip upload queues. Web operations process instantly using your client system's hardware performance capabilities.</p>
+      </div>
+
+      <div class="benefit-col">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+          Zero Subscriptions
+        </h3>
+        <p>No email credentials required, no watermarks, and no monthly fees. Straightforward, professional web utilities designed to work immediately.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Security Details -->
+  <section class="container">
+    <div class="security-box">
+      <h2>Modern Browser Sandbox</h2>
+      <p>Resyto is engineered entirely around native HTML5 standards. Using browser memory runtimes, JavaScript lookup engines, and canvas compression pipelines, we deliver desktop-grade file utilities without the overhead of cloud hosting, ensuring a permanently fast and secure platform.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <h3>Resyto</h3>
+        <p>Curated suite of privacy-first browser utilities.</p>
+      </div>
+      <div class="footer-links" aria-label="Footer Navigation">
+        <a href="/about.html">About & Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/dateconverter/">Date Converter</a>
+        <a href="/imagecompressor/">Image Compressor</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
