@@ -580,22 +580,33 @@
 
   @media (max-width:600px){
     .nav {
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-      text-align: center;
+      display: none !important;
     }
-    .nav-links {
-      gap: 16px;
+    .hero {
+      padding: 24px 0 12px;
+    }
+    .eyebrow {
+      display: none;
+    }
+    .hero h1 {
+      font-size: 26px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .hero p.sub {
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .trust-row {
+      display: none;
     }
     .control-pane, .preview-pane{padding:18px;}
     .weighin .side .wval{font-size:21px;}
-    .hero{padding:40px 0 16px;}
     .scale-section {
-      padding: 20px 0 0;
+      padding: 12px 0 0;
     }
     .section {
-      padding: 40px 0;
+      padding: 32px 0;
     }
     footer {
       flex-direction: column;
