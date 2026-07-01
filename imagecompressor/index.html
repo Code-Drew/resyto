@@ -580,13 +580,19 @@
 
   @media (max-width:600px){
     .nav {
+      display: flex !important;
+      padding: 16px 0 0;
+    }
+    .nav-links {
       display: none !important;
     }
     .hero {
       padding: 24px 0 12px;
     }
     .eyebrow {
-      display: none;
+      display: block !important;
+      font-size: 10px;
+      margin-bottom: 8px;
     }
     .hero h1 {
       font-size: 26px;
@@ -594,11 +600,15 @@
       margin-bottom: 10px;
     }
     .hero p.sub {
-      font-size: 13.5px;
-      line-height: 1.5;
+      display: none !important;
     }
     .trust-row {
-      display: none;
+      display: flex !important;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
+      font-size: 11px;
+      flex-wrap: wrap;
     }
     .control-pane, .preview-pane{padding:18px;}
     .weighin .side .wval{font-size:21px;}
