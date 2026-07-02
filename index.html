@@ -721,10 +721,31 @@
       }
       
       .benefits-wrapper {
-        padding: 32px 0;
+        padding: 24px 0;
+        overflow: hidden;
+      }
+      .benefits-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding: 8px 16px 20px;
+        margin: 0 -16px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .benefits-grid::-webkit-scrollbar {
+        display: none;
       }
       .benefit-col {
+        flex: 0 0 85%;
+        max-width: 320px;
+        scroll-snap-align: start;
+        padding: 20px;
+        border-radius: 16px;
         gap: 8px;
+        box-shadow: 0 8px 24px -8px rgba(0,0,0,0.4);
       }
       .benefit-col h3 {
         font-size: 17px;
