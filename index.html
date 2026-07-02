@@ -504,6 +504,35 @@
       }
     }
 
+    .benefit-col {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-col::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--green) 100%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .benefit-col:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow: 0 12px 30px -10px rgba(0,0,0,0.5);
+    }
+
+    .benefit-col:hover::before {
+      opacity: 1;
+    }
+
     .benefit-col h3 {
       font-family: var(--font-title);
       font-size: 19px;
@@ -536,6 +565,12 @@
       max-width: 800px;
       margin: 0 auto 80px;
       background: radial-gradient(circle at 50% 0%, rgba(74, 178, 153, 0.03) 0%, transparent 80%);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .security-box:hover {
+      border-color: rgba(74, 178, 153, 0.2);
+      box-shadow: 0 16px 40px -15px rgba(0,0,0,0.6);
     }
 
     .security-box h2 {
@@ -876,6 +911,13 @@
   <!-- Security Details -->
   <section class="container">
     <div class="security-box">
+      <div class="security-icon" aria-hidden="true" style="margin-bottom: 20px; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(74, 178, 153, 0.08); border: 1px solid rgba(74, 178, 153, 0.2); color: var(--green); box-shadow: 0 0 20px rgba(74, 178, 153, 0.08);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M12 8v4"/>
+          <path d="M12 16h.01"/>
+        </svg>
+      </div>
       <h2>Modern Browser Sandbox</h2>
       <p>Resyto is engineered entirely around native HTML5 standards. Using browser memory runtimes, JavaScript lookup engines, and canvas compression pipelines, we deliver desktop-grade file utilities without the overhead of cloud hosting, ensuring a permanently fast and secure platform.</p>
     </div>
