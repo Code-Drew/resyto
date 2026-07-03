@@ -565,6 +565,20 @@
   .faq-item.open .faq-a{max-height:240px;}
   .faq-a p{padding:0 4px 20px;font-size:14.5px;color:var(--paper-dim);max-width:640px;}
 
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .device-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
   /* ===== FOOTER ===== */
   footer {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -692,6 +706,14 @@
     }
     .footer-copy {
       margin-top: 4px;
+    }
+    .format-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .device-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 </style>
@@ -988,7 +1010,7 @@
       <h2>JPG vs PNG vs WebP: Which Format Compresses Best?</h2>
     </div>
     <div style="max-width: 900px; margin: 0 auto;">
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px;">
+      <div class="format-grid">
         <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; text-align: center;">
           <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--orange);">JPG</h3>
           <p style="font-size: 13px; color: var(--paper-dim); margin-bottom: 10px;"><strong style="color: var(--paper);">Best for:</strong> Photographs, complex images</p>
@@ -1021,7 +1043,7 @@
       <h2>Compress Images on Any Device</h2>
       <p>Resyto Compress works on desktop, tablet, and mobile—no app download needed.</p>
     </div>
-    <div style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+    <div class="device-grid">
       <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px;">
         <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: var(--orange);">iPhone & iPad</h3>
         <p style="font-size: 14px; color: var(--paper-dim);">Open our tool in Safari or any browser. Use Files or Photos to select images. Works offline—compression happens entirely on your device.</p>
