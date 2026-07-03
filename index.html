@@ -641,6 +641,10 @@
       color: var(--text-dim);
     }
 
+    .carousel-dots {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 0 16px;
@@ -761,6 +765,26 @@
       .benefit-col p {
         font-size: 13px;
         line-height: 1.5;
+      }
+      
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+      }
+      .carousel-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--border-hover);
+        transition: all 0.25s ease;
+      }
+      .carousel-dot.active {
+        background-color: var(--primary);
+        width: 18px;
+        border-radius: 3px;
       }
       
       .security-box {
@@ -935,6 +959,11 @@
       </div>
 
     </div>
+    <div class="carousel-dots" aria-hidden="true">
+      <span class="carousel-dot active"></span>
+      <span class="carousel-dot"></span>
+      <span class="carousel-dot"></span>
+    </div>
   </section>
 
   <!-- Security Details -->
@@ -959,14 +988,29 @@
         <p>Curated suite of privacy-first browser utilities.</p>
       </div>
       <div class="footer-links" aria-label="Footer Navigation">
-        <a href="/about.html">About & Contact</a>
-        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/">Home</a>
         <a href="/dateconverter/">Date Converter</a>
         <a href="/imagecompressor/">Image Compressor</a>
+        <a href="/about.html">About & Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
       </div>
       <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
     </div>
   </footer>
 
+  <script>
+    const grid = document.querySelector('.benefits-grid');
+    const dots = document.querySelectorAll('.carousel-dot');
+    if (grid && dots.length > 0) {
+      grid.addEventListener('scroll', () => {
+        const scrollLeft = grid.scrollLeft;
+        const cardWidth = grid.querySelector('.benefit-col').clientWidth + 16;
+        const activeIndex = Math.round(scrollLeft / cardWidth);
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === activeIndex);
+        });
+      });
+    }
+  </script>
 </body>
 </html>

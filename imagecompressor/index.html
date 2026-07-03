@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Image Compressor - Compress Photos Online | Resyto Compress</title>
-<meta name="description" content="Free online image compressor to shrink JPG, PNG & WebP files instantly. Compress to exact KB/MB, no uploads, 100% private. Try our fast, easy image compression tool now.">
+<meta name="description" content="Free online image compressor to shrink JPG, PNG & WebP files. Compress to exact KB/MB locally in your browser. 100% private with no server uploads.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 <meta name="theme-color" content="#15161A">
@@ -12,6 +12,7 @@
 <meta name="author" content="Resyto">
 <meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="https://resyto.com/imagecompressor/">
+<link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -565,15 +566,56 @@
   .faq-a p{padding:0 4px 20px;font-size:14.5px;color:var(--paper-dim);max-width:640px;}
 
   /* ===== FOOTER ===== */
-  footer{
-    border-top:1px solid var(--line);padding:36px 0 48px;
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
-    font-size:13px;color:var(--paper-dim);
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0;
+    background-color: #04050a;
+    margin-top: 64px;
+    width: 100%;
   }
-  footer .brand{font-size:15px;}
-  footer .foot-links{display:flex;gap:20px;}
-  footer .foot-links a{text-decoration:none;}
-  footer .foot-links a:hover{color:var(--paper);}
+  .footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .footer-brand h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: var(--paper);
+    text-align: left;
+  }
+  .footer-brand p {
+    font-size: 12px;
+    color: var(--paper-dim);
+    margin: 0;
+    text-align: left;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    font-size: 13.5px;
+  }
+  .footer-links a {
+    color: var(--paper-dim);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .footer-links a:hover {
+    color: var(--paper);
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--paper-dim);
+  }
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
@@ -620,14 +662,21 @@
       padding: 32px 0;
     }
     footer {
+      padding: 32px 0;
+    }
+    .footer-inner {
       flex-direction: column;
       text-align: center;
-      gap: 16px;
+      gap: 20px;
+      padding: 0 16px;
     }
-    footer .foot-links {
+    .footer-links {
       justify-content: center;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px 20px;
+    }
+    .footer-copy {
+      margin-top: 8px;
     }
   }
 </style>
@@ -990,20 +1039,19 @@ gtag('config', 'G-LQTGX68HN1');
   </main>
 
   <footer>
-    <div style="flex: 1;">
-      <div class="brand" style="font-size: 15px; margin-bottom: 8px;">Resyto Compress</div>
-      <p style="font-size: 12px; color: var(--paper-dim); margin: 0;">Free, fast, private image compression for everyone.</p>
-    </div>
-    <div class="foot-links">
-      <a href="/">Resyto Tools</a>
-      <a href="/about.html">About & Contact</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="#how">How it works</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div style="text-align: right; font-size: 12px; color: var(--paper-dim);">
-      <p style="margin: 0; margin-bottom: 4px;">Made by Sagar Poudel</p>
-      <p style="margin: 0;">&copy; 2026 Resyto</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Resyto</h3>
+        <p>Curated suite of privacy-first browser utilities.</p>
+      </div>
+      <div class="footer-links" aria-label="Footer Navigation">
+        <a href="/">Home</a>
+        <a href="/dateconverter/">Date Converter</a>
+        <a href="/imagecompressor/">Image Compressor</a>
+        <a href="/about.html">About & Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
     </div>
   </footer>
 </div>
