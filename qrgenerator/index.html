@@ -561,30 +561,30 @@
     }
 
 
-    /* QR Code Color column: acts as a unified bordered card */
+    /* QR Code Color column: unified bordered card */
     .qr-color-column {
       display: flex;
       flex-direction: column;
       border: 1px solid var(--border);
       border-radius: 8px;
-      overflow: hidden;
+      /* No overflow:hidden — it clips the floating label (position:absolute; top:-8px) */
     }
-    /* Remove double border from picker inside the column card */
+    /* Picker inside: no own border, only a divider at the bottom; rounded top corners */
     .qr-color-column .color-picker-input-box {
       border: none;
       border-bottom: 1px solid var(--border);
-      border-radius: 0;
+      border-radius: 8px 8px 0 0;
     }
-    /* Style select to blend seamlessly into the column card */
+    /* Select inside: no own border; rounded bottom corners to match outer card */
     .qr-color-column select.form-control {
       border: none;
-      border-radius: 0;
+      border-radius: 0 0 7px 7px;
       margin: 0 !important;
       background: transparent;
       font-size: 13px;
       padding: 10px 14px;
     }
-    /* Background Color column: same flex structure, own border handled by its picker-input-box */
+    /* Background Color column: own flex structure */
     .bg-color-column {
       display: flex;
       flex-direction: column;
