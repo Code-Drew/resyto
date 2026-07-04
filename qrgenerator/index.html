@@ -6,6 +6,7 @@
   <title>Free Custom QR Code Generator with Logo — Privacy-First | Resyto</title>
   <meta name="description" content="Generate custom QR codes with linear/radial gradients, shapes, and center logos. Free, permanent, zero-tracking. Includes live contrast checker and design presets.">
   <meta name="robots" content="index, follow">
+  <meta name="author" content="Resyto">
   <meta name="theme-color" content="#07080F">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://resyto.com/qrgenerator/">
@@ -1442,9 +1443,10 @@
             
             <!-- Tab Content: URL -->
             <div class="tab-pane active" id="pane-url" role="tabpanel" aria-labelledby="tab-url">
-              <div class="form-group">
+              <div class="form-group" id="url-form-group">
                 <label for="input-url">Your URL</label>
                 <input type="url" id="input-url" class="form-control" placeholder="https://resyto.com">
+                <span id="url-empty-hint" style="display:none;font-size:12px;color:var(--text-muted);margin-top:6px">Using placeholder URL — enter a URL above to encode your own link.</span>
               </div>
             </div>
 
@@ -2150,6 +2152,15 @@
         b.classList.remove('active');
       });
     });
+
+    // URL empty-state hint — show when field is blank
+    const urlInput = document.getElementById('input-url');
+    const urlHint  = document.getElementById('url-empty-hint');
+    const syncUrlHint = () => {
+      if (urlHint) urlHint.style.display = urlInput.value.trim() === '' ? 'block' : 'none';
+    };
+    urlInput.addEventListener('input', syncUrlHint);
+    syncUrlHint(); // check on load
 
     // Initialize default preset state (Sleek Dark)
     applyPreset('monochrome', document.getElementById('preset-monochrome'));
