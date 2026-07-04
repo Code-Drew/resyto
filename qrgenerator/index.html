@@ -456,6 +456,27 @@
       width: 100%;
     }
 
+    /* Two-column row for color boxes — both always equal width */
+    .color-pickers-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    /* Row for the Solid/Gradient selector below the color boxes */
+    .color-type-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .color-type-row .form-control {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+
     .color-picker-input-box {
       position: relative;
       border: 1px solid var(--border);
@@ -1468,132 +1489,105 @@
               <input type="color" id="color-dots-2" value="#4AB299" style="display: none;">
               <input type="color" id="color-bg" value="#FFFFFF" style="display: none;">
 
-              <!-- QR Code Color -->
-              <div class="customizer-item">
-                <div class="color-row">
-                  <div class="custom-color-picker-container" id="picker-container-dots-1">
-                    
-                    <!-- Styled Trigger Box -->
-                    <div class="color-picker-input-box" id="box-dots-1" onclick="toggleColorPickerDropdown('dots-1', event)">
-                      <span class="color-picker-input-label">QR Code Color</span>
-                      <input type="text" class="color-picker-input-value" id="label-dots-1-hex" value="#0E101A" onchange="onHexInputChange('dots-1')" onclick="event.stopPropagation()">
-                      <span class="color-picker-input-swatch" id="fill-dots-1" style="background-color: #0E101A;"></span>
+              <!-- Row 1: QR Code Color + Background Color (consistent full-width boxes) -->
+              <div class="color-pickers-row">
+
+                <!-- QR Code Color -->
+                <div class="custom-color-picker-container" id="picker-container-dots-1">
+                  <div class="color-picker-input-box" id="box-dots-1" onclick="toggleColorPickerDropdown('dots-1', event)">
+                    <span class="color-picker-input-label">QR Code Color</span>
+                    <input type="text" class="color-picker-input-value" id="label-dots-1-hex" value="#0E101A" onchange="onHexInputChange('dots-1')" onclick="event.stopPropagation()">
+                    <span class="color-picker-input-swatch" id="fill-dots-1" style="background-color: #0E101A;"></span>
+                  </div>
+                  <!-- Dropdown Panel -->
+                  <div class="color-picker-dropdown" id="dropdown-dots-1">
+                    <div class="color-picker-sv-square" id="sv-square-dots-1" onmousedown="startDragSV('dots-1', event)" ontouchstart="startDragSV('dots-1', event)">
+                      <div class="sv-saturation"></div>
+                      <div class="sv-value"></div>
+                      <div class="sv-handle" id="sv-handle-dots-1"></div>
                     </div>
-
-                    <!-- Dropdown Panel -->
-                    <div class="color-picker-dropdown" id="dropdown-dots-1">
-                      
-                      <!-- SV Square -->
-                      <div class="color-picker-sv-square" id="sv-square-dots-1" onmousedown="startDragSV('dots-1', event)" ontouchstart="startDragSV('dots-1', event)">
-                        <div class="sv-saturation"></div>
-                        <div class="sv-value"></div>
-                        <div class="sv-handle" id="sv-handle-dots-1"></div>
-                      </div>
-
-                      <!-- Hue Slider -->
-                      <div class="picker-slider-group">
-                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-dots-1" oninput="onHueSliderInput('dots-1', this.value)">
-                      </div>
-
-                      <!-- Recently Selected -->
-                      <div class="recent-colors-section">
-                        <div class="recent-colors-title">RECENTLY SELECTED</div>
-                        <div class="recent-colors-grid" id="recent-dots-1"></div>
-                      </div>
-
+                    <div class="picker-slider-group">
+                      <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-dots-1" oninput="onHueSliderInput('dots-1', this.value)">
+                    </div>
+                    <div class="recent-colors-section">
+                      <div class="recent-colors-title">RECENTLY SELECTED</div>
+                      <div class="recent-colors-grid" id="recent-dots-1"></div>
                     </div>
                   </div>
-
-                  <!-- Color type selector (Solid/Gradient) -->
-                  <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px; max-width: 110px;">
-                    <option value="single">Solid</option>
-                    <option value="gradient">Gradient</option>
-                  </select>
                 </div>
+
+                <!-- Background Color -->
+                <div class="custom-color-picker-container" id="picker-container-bg">
+                  <div class="color-picker-input-box" id="box-bg" onclick="toggleColorPickerDropdown('bg', event)">
+                    <span class="color-picker-input-label">Background Color</span>
+                    <input type="text" class="color-picker-input-value" id="label-bg-hex" value="#FFFFFF" onchange="onHexInputChange('bg')" onclick="event.stopPropagation()">
+                    <span class="color-picker-input-swatch" id="fill-bg" style="background-color: #FFFFFF;"></span>
+                  </div>
+                  <!-- Dropdown Panel -->
+                  <div class="color-picker-dropdown" id="dropdown-bg">
+                    <div class="color-picker-sv-square" id="sv-square-bg" onmousedown="startDragSV('bg', event)" ontouchstart="startDragSV('bg', event)">
+                      <div class="sv-saturation"></div>
+                      <div class="sv-value"></div>
+                      <div class="sv-handle" id="sv-handle-bg"></div>
+                    </div>
+                    <div class="picker-slider-group">
+                      <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-bg" oninput="onHueSliderInput('bg', this.value)">
+                    </div>
+                    <div class="recent-colors-section">
+                      <div class="recent-colors-title">RECENTLY SELECTED</div>
+                      <div class="recent-colors-grid" id="recent-bg"></div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
-              <!-- Gradient End Color -->
-              <div class="customizer-item" id="gradient-color-box" style="display: none;">
-                <div class="color-row">
-                  <div class="custom-color-picker-container" id="picker-container-dots-2">
-                    
-                    <!-- Styled Trigger Box -->
-                    <div class="color-picker-input-box" id="box-dots-2" onclick="toggleColorPickerDropdown('dots-2', event)">
-                      <span class="color-picker-input-label">Gradient End</span>
-                      <input type="text" class="color-picker-input-value" id="label-dots-2-hex" value="#4AB299" onchange="onHexInputChange('dots-2')" onclick="event.stopPropagation()">
-                      <span class="color-picker-input-swatch" id="fill-dots-2" style="background-color: #4AB299;"></span>
+              <!-- Row 2: Color Type selector -->
+              <div class="color-type-row">
+                <select id="select-color-type" class="form-control">
+                  <option value="single">Solid Color</option>
+                  <option value="gradient">Gradient Fill</option>
+                </select>
+              </div>
+
+              <!-- Row 3: Gradient End Color (only shown when gradient selected) -->
+              <div class="color-pickers-row" id="gradient-color-box" style="display: none;">
+
+                <!-- Gradient End Color -->
+                <div class="custom-color-picker-container" id="picker-container-dots-2">
+                  <div class="color-picker-input-box" id="box-dots-2" onclick="toggleColorPickerDropdown('dots-2', event)">
+                    <span class="color-picker-input-label">Gradient End Color</span>
+                    <input type="text" class="color-picker-input-value" id="label-dots-2-hex" value="#4AB299" onchange="onHexInputChange('dots-2')" onclick="event.stopPropagation()">
+                    <span class="color-picker-input-swatch" id="fill-dots-2" style="background-color: #4AB299;"></span>
+                  </div>
+                  <!-- Dropdown Panel -->
+                  <div class="color-picker-dropdown" id="dropdown-dots-2">
+                    <div class="color-picker-sv-square" id="sv-square-dots-2" onmousedown="startDragSV('dots-2', event)" ontouchstart="startDragSV('dots-2', event)">
+                      <div class="sv-saturation"></div>
+                      <div class="sv-value"></div>
+                      <div class="sv-handle" id="sv-handle-dots-2"></div>
                     </div>
-
-                    <!-- Dropdown Panel -->
-                    <div class="color-picker-dropdown" id="dropdown-dots-2">
-                      
-                      <!-- SV Square -->
-                      <div class="color-picker-sv-square" id="sv-square-dots-2" onmousedown="startDragSV('dots-2', event)" ontouchstart="startDragSV('dots-2', event)">
-                        <div class="sv-saturation"></div>
-                        <div class="sv-value"></div>
-                        <div class="sv-handle" id="sv-handle-dots-2"></div>
-                      </div>
-
-                      <!-- Hue Slider -->
-                      <div class="picker-slider-group">
-                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-dots-2" oninput="onHueSliderInput('dots-2', this.value)">
-                      </div>
-
-                      <!-- Recently Selected -->
-                      <div class="recent-colors-section">
-                        <div class="recent-colors-title">RECENTLY SELECTED</div>
-                        <div class="recent-colors-grid" id="recent-dots-2"></div>
-                      </div>
-
+                    <div class="picker-slider-group">
+                      <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-dots-2" oninput="onHueSliderInput('dots-2', this.value)">
+                    </div>
+                    <div class="recent-colors-section">
+                      <div class="recent-colors-title">RECENTLY SELECTED</div>
+                      <div class="recent-colors-grid" id="recent-dots-2"></div>
                     </div>
                   </div>
+                </div>
 
-                  <!-- Gradient Direction Selector -->
-                  <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px; max-width: 110px;">
+                <!-- Gradient Direction -->
+                <div style="display: flex; align-items: center;">
+                  <select id="select-gradient-dir" class="form-control">
                     <option value="linear">Linear</option>
                     <option value="radial">Radial</option>
                   </select>
                 </div>
+
               </div>
-
-              <!-- Background Color -->
-              <div class="customizer-item">
-                <div class="color-row">
-                  <div class="custom-color-picker-container" id="picker-container-bg">
-                    
-                    <!-- Styled Trigger Box -->
-                    <div class="color-picker-input-box" id="box-bg" onclick="toggleColorPickerDropdown('bg', event)">
-                      <span class="color-picker-input-label">Background Color</span>
-                      <input type="text" class="color-picker-input-value" id="label-bg-hex" value="#FFFFFF" onchange="onHexInputChange('bg')" onclick="event.stopPropagation()">
-                      <span class="color-picker-input-swatch" id="fill-bg" style="background-color: #FFFFFF;"></span>
-                    </div>
-
-                    <!-- Dropdown Panel -->
-                    <div class="color-picker-dropdown" id="dropdown-bg">
-                      
-                      <!-- SV Square -->
-                      <div class="color-picker-sv-square" id="sv-square-bg" onmousedown="startDragSV('bg', event)" ontouchstart="startDragSV('bg', event)">
-                        <div class="sv-saturation"></div>
-                        <div class="sv-value"></div>
-                        <div class="sv-handle" id="sv-handle-bg"></div>
-                      </div>
-
-                      <!-- Hue Slider -->
-                      <div class="picker-slider-group">
-                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-bg" oninput="onHueSliderInput('bg', this.value)">
-                      </div>
-
-                      <!-- Recently Selected -->
-                      <div class="recent-colors-section">
-                        <div class="recent-colors-title">RECENTLY SELECTED</div>
-                        <div class="recent-colors-grid" id="recent-bg"></div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+       
+        </div>
 
           </div>
         </div>
