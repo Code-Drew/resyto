@@ -450,108 +450,76 @@
       align-items: center;
     }
 
-    /* Custom Color Picker Popover Styles */
+    /* Custom Figma-Style Popover Color Picker */
     .custom-color-picker-container {
       position: relative;
       display: inline-block;
-    }
-
-    .color-swatch-trigger {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.02);
-      padding: 3.5px;
-      cursor: pointer;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.2s;
-    }
-
-    .color-swatch-trigger:hover {
-      border-color: var(--primary);
-    }
-
-    .color-swatch-fill {
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      display: block;
-    }
-
-    /* Preset design tags (STANDOUT FEATURE!) */
-    .presets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .preset-card-btn {
-      background-color: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       width: 100%;
     }
 
-    .preset-card-btn:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
-    }
-
-    .preset-card-btn.active {
-      background-color: rgba(255, 255, 255, 0.06);
-      border-color: var(--primary);
-      box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
-    }
-
-    .preset-color-strip {
-      height: 40px;
-      width: 100%;
+    .color-picker-input-box {
       position: relative;
-    }
-
-    .preset-info {
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .preset-name {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--text);
-    }
-
-    .preset-tag {
-      font-size: 9.5px;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .color-hex-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--text-muted);
-      background-color: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
-      padding: 6px 10px;
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.01);
+      cursor: pointer;
+      min-height: 48px;
+      box-sizing: border-box;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .color-picker-input-box:hover {
+      border-color: var(--border-hover);
+    }
+
+    .color-picker-input-box.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .color-picker-input-label {
+      position: absolute;
+      top: -8px;
+      left: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background-color: #0e101a; /* matches accordion body dark background */
+      padding: 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.2s ease;
+      pointer-events: none;
+    }
+
+    .color-picker-input-box.active .color-picker-input-label {
+      color: var(--primary);
+    }
+
+    .color-picker-input-value {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text);
+      background: none;
+      border: none;
+      outline: none;
+      width: 100px;
+      cursor: text;
+    }
+
+    .color-picker-input-swatch {
+      width: 24px;
+      height: 24px;
       border-radius: 6px;
-      min-width: 80px;
-      text-align: center;
-    }    /* Custom Color Picker Dropdown Popover Styles */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-sizing: border-box;
+    }
+
     .color-picker-dropdown {
       position: absolute;
       top: calc(100% + 8px);
@@ -560,45 +528,54 @@
       background-color: #0b0c15;
       border: 1px solid var(--border);
       border-radius: 12px;
-      width: 240px;
+      width: 260px;
       padding: 14px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       display: none;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      box-sizing: border-box;
     }
 
-    .dropdown-palette-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 6px;
+    /* Saturation-Value Square */
+    .color-picker-sv-square {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      border-radius: 8px;
+      cursor: crosshair;
+      overflow: hidden;
+      background-color: #ff0000;
     }
 
-    .dropdown-palette-cell {
-      aspect-ratio: 1;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-      transition: transform 0.1s;
+    .sv-saturation {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #ffffff, transparent);
     }
 
-    .dropdown-palette-cell:hover {
-      transform: scale(1.15);
-      border-color: #FFFFFF;
+    .sv-value {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #000000, transparent);
+    }
+
+    .sv-handle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+      transform: translate(-6px, -6px);
+      pointer-events: none;
+      box-sizing: border-box;
     }
 
     .picker-slider-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-    }
-
-    .picker-slider-label {
-      font-size: 10px;
-      color: var(--text-muted);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      width: 100%;
     }
 
     .hue-range-slider {
@@ -613,58 +590,47 @@
 
     .hue-range-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: #FFFFFF;
       border: 2px solid #000000;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
       cursor: pointer;
     }
 
-    .lightness-range-slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 10px;
-      border-radius: 5px;
-      outline: none;
-      background: linear-gradient(to right, #000000, #ff5b26, #ffffff);
-      cursor: pointer;
-    }
-
-    .lightness-range-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      border: 2px solid #000000;
-      cursor: pointer;
-    }
-
-    .hex-input-wrapper {
+    /* Recently Selected Section */
+    .recent-colors-section {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 8px;
-      background-color: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 6px 10px;
     }
 
-    .hex-input-prefix {
-      font-size: 12px;
+    .recent-colors-title {
+      font-size: 10px;
       color: var(--text-muted);
-      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .hex-input-field {
-      background: none;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      width: 100%;
+    .recent-colors-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .recent-color-cell {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .recent-color-cell:hover {
+      transform: scale(1.15);
+      border-color: #FFFFFF;
     }
 
     /* Logo file upload section styling */
@@ -1445,92 +1411,129 @@
               <input type="color" id="color-dots-2" value="#4AB299" style="display: none;">
               <input type="color" id="color-bg" value="#FFFFFF" style="display: none;">
 
+              <!-- QR Code Color -->
               <div class="customizer-item">
-                <label>Foreground Color</label>
                 <div class="color-row">
                   <div class="custom-color-picker-container" id="picker-container-dots-1">
-                    <button type="button" class="color-swatch-trigger" onclick="toggleColorPickerDropdown('dots-1', event)" aria-label="Foreground Color Picker">
-                      <span class="color-swatch-fill" id="fill-dots-1" style="background-color: #0E101A;"></span>
-                    </button>
+                    
+                    <!-- Styled Trigger Box -->
+                    <div class="color-picker-input-box" id="box-dots-1" onclick="toggleColorPickerDropdown('dots-1', event)">
+                      <span class="color-picker-input-label">QR Code Color</span>
+                      <input type="text" class="color-picker-input-value" id="label-dots-1-hex" value="#0E101A" onchange="onHexInputChange('dots-1')" onclick="event.stopPropagation()">
+                      <span class="color-picker-input-swatch" id="fill-dots-1" style="background-color: #0E101A;"></span>
+                    </div>
+
+                    <!-- Dropdown Panel -->
                     <div class="color-picker-dropdown" id="dropdown-dots-1">
-                      <div class="dropdown-palette-grid" id="grid-dots-1"></div>
+                      
+                      <!-- SV Square -->
+                      <div class="color-picker-sv-square" id="sv-square-dots-1" onmousedown="startDragSV('dots-1', event)" ontouchstart="startDragSV('dots-1', event)">
+                        <div class="sv-saturation"></div>
+                        <div class="sv-value"></div>
+                        <div class="sv-handle" id="sv-handle-dots-1"></div>
+                      </div>
+
+                      <!-- Hue Slider -->
                       <div class="picker-slider-group">
-                        <span class="picker-slider-label">Hue</span>
-                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="slider-hue-dots-1" oninput="onSliderChange('dots-1')">
+                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-dots-1" oninput="onHueSliderInput('dots-1', this.value)">
                       </div>
-                      <div class="picker-slider-group">
-                        <span class="picker-slider-label">Lightness</span>
-                        <input type="range" min="0" max="100" value="10" class="lightness-range-slider" id="slider-lightness-dots-1" oninput="onSliderChange('dots-1')">
+
+                      <!-- Recently Selected -->
+                      <div class="recent-colors-section">
+                        <div class="recent-colors-title">RECENTLY SELECTED</div>
+                        <div class="recent-colors-grid" id="recent-dots-1"></div>
                       </div>
-                      <div class="hex-input-wrapper">
-                        <span class="hex-input-prefix">HEX</span>
-                        <input type="text" class="hex-input-field" id="input-hex-dots-1" value="#0E101A" onchange="onHexInputChange('dots-1')">
-                      </div>
+
                     </div>
                   </div>
-                  <span id="label-dots-1-hex" class="color-hex-label">#0E101A</span>
-                  <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px;">
-                    <option value="single">Solid Color</option>
-                    <option value="gradient">Gradient Fill</option>
+
+                  <!-- Color type selector (Solid/Gradient) -->
+                  <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px; max-width: 110px;">
+                    <option value="single">Solid</option>
+                    <option value="gradient">Gradient</option>
                   </select>
                 </div>
               </div>
 
+              <!-- Gradient End Color -->
               <div class="customizer-item" id="gradient-color-box" style="display: none;">
-                <label>Gradient End Color</label>
                 <div class="color-row">
                   <div class="custom-color-picker-container" id="picker-container-dots-2">
-                    <button type="button" class="color-swatch-trigger" onclick="toggleColorPickerDropdown('dots-2', event)" aria-label="Gradient End Color Picker">
-                      <span class="color-swatch-fill" id="fill-dots-2" style="background-color: #4AB299;"></span>
-                    </button>
+                    
+                    <!-- Styled Trigger Box -->
+                    <div class="color-picker-input-box" id="box-dots-2" onclick="toggleColorPickerDropdown('dots-2', event)">
+                      <span class="color-picker-input-label">Gradient End</span>
+                      <input type="text" class="color-picker-input-value" id="label-dots-2-hex" value="#4AB299" onchange="onHexInputChange('dots-2')" onclick="event.stopPropagation()">
+                      <span class="color-picker-input-swatch" id="fill-dots-2" style="background-color: #4AB299;"></span>
+                    </div>
+
+                    <!-- Dropdown Panel -->
                     <div class="color-picker-dropdown" id="dropdown-dots-2">
-                      <div class="dropdown-palette-grid" id="grid-dots-2"></div>
+                      
+                      <!-- SV Square -->
+                      <div class="color-picker-sv-square" id="sv-square-dots-2" onmousedown="startDragSV('dots-2', event)" ontouchstart="startDragSV('dots-2', event)">
+                        <div class="sv-saturation"></div>
+                        <div class="sv-value"></div>
+                        <div class="sv-handle" id="sv-handle-dots-2"></div>
+                      </div>
+
+                      <!-- Hue Slider -->
                       <div class="picker-slider-group">
-                        <span class="picker-slider-label">Hue</span>
-                        <input type="range" min="0" max="360" value="165" class="hue-range-slider" id="slider-hue-dots-2" oninput="onSliderChange('dots-2')">
+                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-dots-2" oninput="onHueSliderInput('dots-2', this.value)">
                       </div>
-                      <div class="picker-slider-group">
-                        <span class="picker-slider-label">Lightness</span>
-                        <input type="range" min="0" max="100" value="49" class="lightness-range-slider" id="slider-lightness-dots-2" oninput="onSliderChange('dots-2')">
+
+                      <!-- Recently Selected -->
+                      <div class="recent-colors-section">
+                        <div class="recent-colors-title">RECENTLY SELECTED</div>
+                        <div class="recent-colors-grid" id="recent-dots-2"></div>
                       </div>
-                      <div class="hex-input-wrapper">
-                        <span class="hex-input-prefix">HEX</span>
-                        <input type="text" class="hex-input-field" id="input-hex-dots-2" value="#4AB299" onchange="onHexInputChange('dots-2')">
-                      </div>
+
                     </div>
                   </div>
-                  <span id="label-dots-2-hex" class="color-hex-label">#4AB299</span>
-                  <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px;">
+
+                  <!-- Gradient Direction Selector -->
+                  <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px; max-width: 110px;">
                     <option value="linear">Linear</option>
                     <option value="radial">Radial</option>
                   </select>
                 </div>
               </div>
 
+              <!-- Background Color -->
               <div class="customizer-item">
-                <label>Background Color</label>
                 <div class="color-row">
                   <div class="custom-color-picker-container" id="picker-container-bg">
-                    <button type="button" class="color-swatch-trigger" onclick="toggleColorPickerDropdown('bg', event)" aria-label="Background Color Picker">
-                      <span class="color-swatch-fill" id="fill-bg" style="background-color: #FFFFFF;"></span>
-                    </button>
+                    
+                    <!-- Styled Trigger Box -->
+                    <div class="color-picker-input-box" id="box-bg" onclick="toggleColorPickerDropdown('bg', event)">
+                      <span class="color-picker-input-label">Background Color</span>
+                      <input type="text" class="color-picker-input-value" id="label-bg-hex" value="#FFFFFF" onchange="onHexInputChange('bg')" onclick="event.stopPropagation()">
+                      <span class="color-picker-input-swatch" id="fill-bg" style="background-color: #FFFFFF;"></span>
+                    </div>
+
+                    <!-- Dropdown Panel -->
                     <div class="color-picker-dropdown" id="dropdown-bg">
-                      <div class="dropdown-palette-grid" id="grid-bg"></div>
+                      
+                      <!-- SV Square -->
+                      <div class="color-picker-sv-square" id="sv-square-bg" onmousedown="startDragSV('bg', event)" ontouchstart="startDragSV('bg', event)">
+                        <div class="sv-saturation"></div>
+                        <div class="sv-value"></div>
+                        <div class="sv-handle" id="sv-handle-bg"></div>
+                      </div>
+
+                      <!-- Hue Slider -->
                       <div class="picker-slider-group">
-                        <span class="picker-slider-label">Hue</span>
-                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="slider-hue-bg" oninput="onSliderChange('bg')">
+                        <input type="range" min="0" max="360" value="0" class="hue-range-slider" id="hue-bg" oninput="onHueSliderInput('bg', this.value)">
                       </div>
-                      <div class="picker-slider-group">
-                        <span class="picker-slider-label">Lightness</span>
-                        <input type="range" min="0" max="100" value="100" class="lightness-range-slider" id="slider-lightness-bg" oninput="onSliderChange('bg')">
+
+                      <!-- Recently Selected -->
+                      <div class="recent-colors-section">
+                        <div class="recent-colors-title">RECENTLY SELECTED</div>
+                        <div class="recent-colors-grid" id="recent-bg"></div>
                       </div>
-                      <div class="hex-input-wrapper">
-                        <span class="hex-input-prefix">HEX</span>
-                        <input type="text" class="hex-input-field" id="input-hex-bg" value="#FFFFFF" onchange="onHexInputChange('bg')">
-                      </div>
+
                     </div>
                   </div>
-                  <span id="label-bg-hex" class="color-hex-label">#FFFFFF</span>
                 </div>
               </div>
             </div>
@@ -1848,6 +1851,9 @@
       document.querySelectorAll('.color-picker-dropdown').forEach(d => {
         d.style.display = 'none';
       });
+      document.querySelectorAll('.color-picker-input-box').forEach(b => {
+        b.classList.remove('active');
+      });
     });
 
     // Initialize default preset state (Sleek Dark)
@@ -2023,23 +2029,23 @@
     updateQrCode();
   }
 
-  // Curated premium colors grid
+  // Curated premium colors grid (standard colors for Recently Selected)
   const curatedPaletteColors = [
-    '#0E101A', '#FFFFFF', '#374151', '#EF4444', '#FF5B26', '#FBBF24',
-    '#057A55', '#4AB299', '#00F0FF', '#1C64F2', '#7E3AF2', '#FF007F',
-    '#F3F4F6', '#FDF2E9', '#F3E8FF', '#E6F4EA', '#EBF5FF', '#1E293B'
+    '#EF4444', '#FF5B26', '#FFFF00', '#00FF00', '#00F0FF', '#0000FF',
+    '#7E3AF2', '#000000', '#FFFFFF'
   ];
 
   // Render quick-select swatches inside custom picker
   function renderPaletteGrid(pickerId) {
-    const grid = document.getElementById(`grid-${pickerId}`);
+    const grid = document.getElementById(`recent-${pickerId}`);
     if (!grid) return;
     grid.innerHTML = '';
     curatedPaletteColors.forEach(color => {
       const cell = document.createElement('div');
-      cell.className = 'dropdown-palette-cell';
+      cell.className = 'recent-color-cell';
       cell.style.backgroundColor = color;
-      cell.onclick = () => selectPaletteColor(pickerId, color);
+      cell.title = color;
+      cell.onclick = () => selectRecentColor(pickerId, color);
       grid.appendChild(cell);
     });
   }
@@ -2055,10 +2061,19 @@
       }
     });
 
+    const box = document.getElementById(`box-${pickerId}`);
+    document.querySelectorAll('.color-picker-input-box').forEach(b => {
+      if (b.id !== `box-${pickerId}`) b.classList.remove('active');
+    });
+
     const dropdown = document.getElementById(`dropdown-${pickerId}`);
     if (dropdown) {
       const isVisible = dropdown.style.display === 'flex';
       dropdown.style.display = isVisible ? 'none' : 'flex';
+      if (box) {
+        if (isVisible) box.classList.remove('active');
+        else box.classList.add('active');
+      }
       
       // Update sliders position to match current color value
       if (!isVisible) {
@@ -2067,11 +2082,116 @@
     }
   }
 
-  // Select color from dropdown curated grid
-  function selectPaletteColor(pickerId, hex) {
-    document.getElementById(`fill-${pickerId}`).style.backgroundColor = hex;
-    document.getElementById(`label-${pickerId}-hex`).innerText = hex.toUpperCase();
+  // Drag on Saturation-Value Square logic
+  let activeDragPicker = null;
+
+  function startDragSV(pickerId, event) {
+    event.preventDefault();
+    activeDragPicker = pickerId;
+    dragSV(event);
     
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+    window.addEventListener('touchmove', handleGlobalTouchMove, { passive: false });
+    window.addEventListener('touchend', handleGlobalTouchEnd);
+  }
+
+  function handleGlobalMouseMove(event) {
+    if (activeDragPicker) dragSV(event);
+  }
+
+  function handleGlobalTouchMove(event) {
+    if (activeDragPicker) {
+      event.preventDefault();
+      dragSV(event.touches[0]);
+    }
+  }
+
+  function handleGlobalMouseUp() {
+    activeDragPicker = null;
+    window.removeEventListener('mousemove', handleGlobalMouseMove);
+    window.removeEventListener('mouseup', handleGlobalMouseUp);
+  }
+
+  function handleGlobalTouchEnd() {
+    activeDragPicker = null;
+    window.removeEventListener('touchmove', handleGlobalTouchMove);
+    window.removeEventListener('touchend', handleGlobalTouchEnd);
+  }
+
+  function dragSV(event) {
+    const pickerId = activeDragPicker;
+    if (!pickerId) return;
+
+    const square = document.getElementById(`sv-square-${pickerId}`);
+    if (!square) return;
+
+    const rect = square.getBoundingClientRect();
+    const clientX = event.clientX !== undefined ? event.clientX : event.touches[0].clientX;
+    const clientY = event.clientY !== undefined ? event.clientY : event.touches[0].clientY;
+
+    let x = clientX - rect.left;
+    let y = clientY - rect.top;
+
+    x = Math.max(0, Math.min(x, rect.width));
+    y = Math.max(0, Math.min(y, rect.height));
+
+    const s = x / rect.width;
+    const v = 1 - (y / rect.height);
+    const h = parseInt(document.getElementById(`hue-${pickerId}`).value);
+
+    const hex = hsvToHex(h, s, v);
+    updatePickerState(pickerId, hex, s, v);
+  }
+
+  // Hue Slider movement
+  function onHueSliderInput(pickerId, h) {
+    const square = document.getElementById(`sv-square-${pickerId}`);
+    if (square) {
+      square.style.backgroundColor = `hsl(${h}, 100%, 50%)`;
+    }
+    
+    const handle = document.getElementById(`sv-handle-${pickerId}`);
+    let s = 1, v = 1;
+    if (handle) {
+      s = parseFloat(handle.style.left) / 100;
+      v = 1 - (parseFloat(handle.style.top) / 100);
+      if (isNaN(s)) s = 1;
+      if (isNaN(v)) v = 1;
+    }
+    
+    const hex = hsvToHex(parseInt(h), s, v);
+    updatePickerState(pickerId, hex, s, v);
+  }
+
+  // Select color from "RECENTLY SELECTED"
+  function selectRecentColor(pickerId, hex) {
+    const hsv = hexToHsv(hex);
+    const hueSlider = document.getElementById(`hue-${pickerId}`);
+    if (hueSlider) hueSlider.value = hsv.h;
+    
+    const square = document.getElementById(`sv-square-${pickerId}`);
+    if (square) {
+      square.style.backgroundColor = `hsl(${hsv.h}, 100%, 50%)`;
+    }
+    
+    updatePickerState(pickerId, hex, hsv.s, hsv.v);
+  }
+
+  // Update states inside custom pickers
+  function updatePickerState(pickerId, hex, s, v) {
+    const swatch = document.getElementById(`fill-${pickerId}`);
+    if (swatch) swatch.style.backgroundColor = hex;
+    
+    const hexInput = document.getElementById(`label-${pickerId}-hex`);
+    if (hexInput) hexInput.value = hex.toUpperCase();
+    
+    const handle = document.getElementById(`sv-handle-${pickerId}`);
+    if (handle) {
+      handle.style.left = (s * 100) + '%';
+      handle.style.top = ((1 - v) * 100) + '%';
+    }
+
     const inputId = pickerId === 'dots-1' ? 'color-dots-1' : (pickerId === 'dots-2' ? 'color-dots-2' : 'color-bg');
     const input = document.getElementById(inputId);
     if (input) {
@@ -2079,94 +2199,60 @@
       input.dispatchEvent(new Event('input'));
       input.dispatchEvent(new Event('change'));
     }
-
-    document.getElementById(`input-hex-${pickerId}`).value = hex.toUpperCase();
-    syncSlidersFromHex(pickerId);
-    
-    document.getElementById(`dropdown-${pickerId}`).style.display = 'none';
   }
 
-  // Handle Hue/Lightness slider movements
-  function onSliderChange(pickerId) {
-    const h = document.getElementById(`slider-hue-${pickerId}`).value;
-    const l = document.getElementById(`slider-lightness-${pickerId}`).value;
-    const hex = hslToHex(parseInt(h), 100, parseInt(l));
-    
-    document.getElementById(`fill-${pickerId}`).style.backgroundColor = hex;
-    document.getElementById(`label-${pickerId}-hex`).innerText = hex.toUpperCase();
-    document.getElementById(`input-hex-${pickerId}`).value = hex.toUpperCase();
-    
-    const inputId = pickerId === 'dots-1' ? 'color-dots-1' : (pickerId === 'dots-2' ? 'color-dots-2' : 'color-bg');
-    const input = document.getElementById(inputId);
-    if (input) {
-      input.value = hex;
-      input.dispatchEvent(new Event('input'));
-      input.dispatchEvent(new Event('change'));
-    }
-    
-    updateLightnessSliderBackground(pickerId, h);
-  }
-
-  // Dynamic lightness background spectrum
-  function updateLightnessSliderBackground(pickerId, hue) {
-    const slider = document.getElementById(`slider-lightness-${pickerId}`);
-    if (slider) {
-      const midColor = hslToHex(parseInt(hue), 100, 50);
-      slider.style.background = `linear-gradient(to right, #000000 0%, ${midColor} 50%, #ffffff 100%)`;
-    }
-  }
-
-  // Handle custom HEX input changes
+  // Handle manual Hex text input change
   function onHexInputChange(pickerId) {
-    let hex = document.getElementById(`input-hex-${pickerId}`).value.trim();
+    let hex = document.getElementById(`label-${pickerId}-hex`).value.trim();
     if (!hex.startsWith('#')) hex = '#' + hex;
     
     if (/^#[0-9A-F]{6}$/i.test(hex)) {
-      document.getElementById(`fill-${pickerId}`).style.backgroundColor = hex;
-      document.getElementById(`label-${pickerId}-hex`).innerText = hex.toUpperCase();
-      
-      const inputId = pickerId === 'dots-1' ? 'color-dots-1' : (pickerId === 'dots-2' ? 'color-dots-2' : 'color-bg');
-      const input = document.getElementById(inputId);
-      if (input) {
-        input.value = hex;
-        input.dispatchEvent(new Event('input'));
-        input.dispatchEvent(new Event('change'));
-      }
-      syncSlidersFromHex(pickerId);
+      syncPickerFromHexValue(pickerId, hex);
     }
   }
 
-  // Sync sliders state from the current Hex code
+  function syncPickerFromHexValue(pickerId, hex) {
+    const hsv = hexToHsv(hex);
+    
+    const hueSlider = document.getElementById(`hue-${pickerId}`);
+    if (hueSlider) hueSlider.value = hsv.h;
+    
+    const square = document.getElementById(`sv-square-${pickerId}`);
+    if (square) {
+      square.style.backgroundColor = `hsl(${hsv.h}, 100%, 50%)`;
+    }
+    
+    updatePickerState(pickerId, hex, hsv.s, hsv.v);
+  }
+
+  // Sync sliders and handle states from current hidden hex values
   function syncSlidersFromHex(pickerId) {
     const inputId = pickerId === 'dots-1' ? 'color-dots-1' : (pickerId === 'dots-2' ? 'color-dots-2' : 'color-bg');
     const hex = document.getElementById(inputId).value;
-    const hsl = hexToHsl(hex);
-    
-    const hueSlider = document.getElementById(`slider-hue-${pickerId}`);
-    const lightnessSlider = document.getElementById(`slider-lightness-${pickerId}`);
-    const hexInput = document.getElementById(`input-hex-${pickerId}`);
-    
-    if (hueSlider) hueSlider.value = hsl.h;
-    if (lightnessSlider) {
-      lightnessSlider.value = hsl.l;
-      updateLightnessSliderBackground(pickerId, hsl.h);
+    syncPickerFromHexValue(pickerId, hex);
+  }
+
+  // HSV helper converters
+  function hsvToHex(h, s, v) {
+    let r, g, b;
+    const i = Math.floor(h / 60) % 6;
+    const f = h / 60 - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
+    switch (i) {
+      case 0: r = v; g = t; b = p; break;
+      case 1: r = q; g = v; b = p; break;
+      case 2: r = p; g = v; b = t; break;
+      case 3: r = p; g = q; b = v; break;
+      case 4: r = t; g = p; b = v; break;
+      case 5: r = v; g = p; b = q; break;
     }
-    if (hexInput) hexInput.value = hex.toUpperCase();
+    const toHex = x => Math.round(x * 255).toString(16).padStart(2, '0');
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   }
 
-  // HSL helper converters
-  function hslToHex(h, s, l) {
-    l /= 100;
-    const a = s * Math.min(l, 1 - l) / 100;
-    const f = n => {
-      const k = (n + h / 30) % 12;
-      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-      return Math.round(255 * color).toString(16).padStart(2, '0');
-    };
-    return `#${f(0)}${f(8)}${f(4)}`;
-  }
-
-  function hexToHsl(hex) {
+  function hexToHsv(hex) {
     let r = 0, g = 0, b = 0;
     if (hex.length === 4) {
       r = parseInt(hex[1] + hex[1], 16);
@@ -2179,11 +2265,10 @@
     }
     r /= 255; g /= 255; b /= 255;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h = 0, s = 0, l = (max + min) / 2;
-
+    let h = 0, s = 0, v = max;
+    const d = max - min;
+    s = max === 0 ? 0 : d / max;
     if (max !== min) {
-      const d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
       switch (max) {
         case r: h = (g - b) / d + (g < b ? 6 : 0); break;
         case g: h = (b - r) / d + 2; break;
@@ -2193,8 +2278,8 @@
     }
     return {
       h: Math.round(h * 360),
-      s: Math.round(s * 100),
-      l: Math.round(l * 100)
+      s: s,
+      v: v
     };
   }
 
