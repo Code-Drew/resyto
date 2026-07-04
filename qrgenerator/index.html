@@ -1329,20 +1329,31 @@
       margin-top: 8px;
     }
 
-    .footer-links {
+    .footer-links-container {
       display: flex;
-      gap: 24px;
-      font-size: 13.5px;
-      flex-wrap: wrap;
+      gap: 64px;
     }
-
-    .footer-links a {
-      color: rgba(241, 243, 250, 0.7);
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-title);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #F1F3FA;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 4px 0;
+    }
+    .footer-col a {
+      color: rgba(241, 243, 250, 0.6);
       text-decoration: none;
+      font-size: 13.5px;
       transition: color 0.15s ease;
     }
-
-    .footer-links a:hover {
+    .footer-col a:hover {
       color: #F1F3FA;
     }
 
@@ -1357,9 +1368,14 @@
         align-items: center;
         text-align: center;
       }
-      .footer-links {
+      .footer-links-container {
+        gap: 40px;
         justify-content: center;
-        gap: 12px 20px;
+        width: 100%;
+      }
+      .footer-col {
+        align-items: center;
+        text-align: center;
       }
       .footer-copy {
         margin-top: 4px;
@@ -2040,13 +2056,19 @@
       <p class="footer-tagline">Free, privacy-first browser tools. No uploads, no ads.</p>
       <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
     </div>
-    <nav class="footer-links" aria-label="Footer Navigation">
-      <a href="/">Home</a>
-      <a href="/dateconverter/">Date Converter</a>
-      <a href="/imagecompressor/">Image Compressor</a>
-      <a href="/qrgenerator/">QR Code Generator</a>
-      <a href="/about.html">About &amp; Contact</a>
-      <a href="/privacy.html">Privacy Policy</a>
+    <nav class="footer-links-container" aria-label="Footer Navigation">
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/dateconverter/">Date Converter</a>
+        <a href="/imagecompressor/">Image Compressor</a>
+        <a href="/qrgenerator/">QR Code Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resyto</h4>
+        <a href="/">Home</a>
+        <a href="/about.html">About &amp; Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
     </nav>
   </div>
 </footer>
