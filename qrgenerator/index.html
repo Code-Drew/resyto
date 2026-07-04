@@ -499,6 +499,12 @@
       box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
     }
 
+    .preset-card-btn.active {
+      background-color: rgba(255, 255, 255, 0.06);
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
+    }
+
     .preset-color-strip {
       height: 40px;
       width: 100%;
@@ -1270,39 +1276,39 @@
             <!-- STANDOUT FEATURE: Aesthetic Preset Selectors -->
             <label style="display:block; font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em;">Aesthetic Color Presets</label>
             <div class="presets-grid">
-              <button type="button" class="preset-card-btn" onclick="applyPreset('resyto')" aria-label="Resyto Neon Preset">
+              <button type="button" class="preset-card-btn active" id="preset-monochrome" onclick="applyPreset('monochrome', this)" aria-label="Sleek Dark Preset">
+                <div class="preset-color-strip" style="background: #0E101A; border-bottom: 1px solid var(--border);"></div>
+                <div class="preset-info">
+                  <span class="preset-name">Sleek Dark</span>
+                  <span class="preset-tag">Classic • Solid</span>
+                </div>
+              </button>
+              <button type="button" class="preset-card-btn" id="preset-resyto" onclick="applyPreset('resyto', this)" aria-label="Resyto Neon Preset">
                 <div class="preset-color-strip" style="background: linear-gradient(135deg, #FF5B26, #4AB299);"></div>
                 <div class="preset-info">
                   <span class="preset-name">Resyto Neon</span>
                   <span class="preset-tag">Rounded • Gradient</span>
                 </div>
               </button>
-              <button type="button" class="preset-card-btn" onclick="applyPreset('cyberpunk')" aria-label="Cyberpunk Preset">
+              <button type="button" class="preset-card-btn" id="preset-cyberpunk" onclick="applyPreset('cyberpunk', this)" aria-label="Cyberpunk Preset">
                 <div class="preset-color-strip" style="background: linear-gradient(135deg, #FF007F, #00F0FF);"></div>
                 <div class="preset-info">
                   <span class="preset-name">Cyberpunk</span>
                   <span class="preset-tag">Circles • Cyber Glow</span>
                 </div>
               </button>
-              <button type="button" class="preset-card-btn" onclick="applyPreset('forest')" aria-label="Forest Moss Preset">
+              <button type="button" class="preset-card-btn" id="preset-forest" onclick="applyPreset('forest', this)" aria-label="Forest Moss Preset">
                 <div class="preset-color-strip" style="background: linear-gradient(135deg, #11998e, #38ef7d);"></div>
                 <div class="preset-info">
                   <span class="preset-name">Forest Moss</span>
                   <span class="preset-tag">Classy • Organic</span>
                 </div>
               </button>
-              <button type="button" class="preset-card-btn" onclick="applyPreset('midnight')" aria-label="Midnight Glow Preset">
+              <button type="button" class="preset-card-btn" id="preset-midnight" onclick="applyPreset('midnight', this)" aria-label="Midnight Glow Preset">
                 <div class="preset-color-strip" style="background: linear-gradient(135deg, #8A2387, #E94057, #F27121);"></div>
                 <div class="preset-info">
                   <span class="preset-name">Midnight Glow</span>
                   <span class="preset-tag">Radial Gradient</span>
-                </div>
-              </button>
-              <button type="button" class="preset-card-btn" onclick="applyPreset('monochrome')" aria-label="Sleek Dark Preset">
-                <div class="preset-color-strip" style="background: #0E101A; border-bottom: 1px solid var(--border);"></div>
-                <div class="preset-info">
-                  <span class="preset-name">Sleek Dark</span>
-                  <span class="preset-tag">Classic • Solid</span>
                 </div>
               </button>
             </div>
@@ -1644,8 +1650,8 @@
       document.getElementById('logo-size-val').innerText = `${percent}%`;
     });
 
-    // Draw initial QR Code
-    updateQrCode();
+    // Initialize default preset state (Sleek Dark)
+    applyPreset('monochrome', document.getElementById('preset-monochrome'));
   });
 
   // Switch tabs
@@ -1712,7 +1718,13 @@
   }
 
   // 1-Click Aesthetic Presets (STANDOUT FEATURE!)
-  function applyPreset(presetName) {
+  function applyPreset(presetName, btnEl) {
+    // Update active visual button state
+    document.querySelectorAll('.preset-card-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnEl) {
+      btnEl.classList.add('active');
+    }
+
     const colorTypeEl = document.getElementById('select-color-type');
     const color1El = document.getElementById('color-dots-1');
     const color2El = document.getElementById('color-dots-2');
