@@ -560,8 +560,31 @@
       }
     }
 
-    /* Each color column has identical flex structure */
-    .qr-color-column,
+
+    /* QR Code Color column: acts as a unified bordered card */
+    .qr-color-column {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    /* Remove double border from picker inside the column card */
+    .qr-color-column .color-picker-input-box {
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+    }
+    /* Style select to blend seamlessly into the column card */
+    .qr-color-column select.form-control {
+      border: none;
+      border-radius: 0;
+      margin: 0 !important;
+      background: transparent;
+      font-size: 13px;
+      padding: 10px 14px;
+    }
+    /* Background Color column: same flex structure, own border handled by its picker-input-box */
     .bg-color-column {
       display: flex;
       flex-direction: column;
@@ -1678,16 +1701,10 @@
               <input type="color" id="color-dots-2" value="#4AB299" style="display: none;">
               <input type="color" id="color-bg" value="#FFFFFF" style="display: none;">
 
-              <!-- Solid/Gradient selector: sits ABOVE the two color pickers so it's clear it controls QR color type -->
-              <select id="select-color-type" class="form-control" style="margin-bottom: 10px; padding: 8px 10px; font-size: 13px;">
-                <option value="single">Solid Color</option>
-                <option value="gradient">Gradient Fill</option>
-              </select>
-
               <!-- Row 1: QR Code Color + Background Color -->
               <div class="color-pickers-row">
 
-                <!-- QR Code Color column -->
+                <!-- QR Code Color column: picker + type selector grouped in one card -->
                 <div class="qr-color-column">
                   <div class="custom-color-picker-container" id="picker-container-dots-1">
                     <div class="color-picker-input-box" id="box-dots-1" onclick="toggleColorPickerDropdown('dots-1', event)">
@@ -1711,6 +1728,11 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Solid/Gradient selector: grouped inside the QR Code Color card -->
+                  <select id="select-color-type" class="form-control">
+                    <option value="single">Solid Color</option>
+                    <option value="gradient">Gradient Fill</option>
+                  </select>
                 </div>
 
                 <!-- Background Color column: same structure as QR Code Color column -->
