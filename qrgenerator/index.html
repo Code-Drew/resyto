@@ -1953,6 +1953,7 @@
       };
     } else {
       dotsOptions.color = color1;
+      dotsOptions.gradient = null;
     }
 
     // Build corners options payload (map general choice to both square and dot elements)
@@ -1975,7 +1976,9 @@
       cornersDotOptions.gradient = cornerGrad;
     } else {
       cornersSquareOptions.color = color1;
+      cornersSquareOptions.gradient = null;
       cornersDotOptions.color = color1;
+      cornersDotOptions.gradient = null;
     }
 
     // Assembly options
