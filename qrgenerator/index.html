@@ -488,28 +488,6 @@
       border-radius: 6px;
     }
 
-    .quick-swatches {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .swatch-btn {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-      padding: 0;
-      transition: transform 0.15s ease, border-color 0.15s ease;
-    }
-
-    .swatch-btn:hover {
-      transform: scale(1.2);
-      border-color: var(--primary);
-    }
-
     /* Preset design tags (STANDOUT FEATURE!) */
     .presets-grid {
       display: grid;
@@ -579,6 +557,36 @@
       border-radius: 6px;
       min-width: 80px;
       text-align: center;
+    }
+
+    /* Quick Swatches Styling */
+    .quick-swatches {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .quick-swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .quick-swatch:hover {
+      transform: scale(1.2);
+      border-color: var(--primary);
+    }
+
+    .quick-swatch.active {
+      box-shadow: 0 0 0 2px var(--primary);
+      border-color: #FFFFFF;
     }
 
     /* Logo file upload section styling */
@@ -1365,13 +1373,15 @@
                     <option value="gradient">Gradient Fill</option>
                   </select>
                 </div>
-                <div class="quick-swatches">
-                  <button type="button" class="swatch-btn" style="background-color: #0E101A;" onclick="setCustomColor('dots-1', '#0E101A')" title="Sleek Slate"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #FF5B26;" onclick="setCustomColor('dots-1', '#FF5B26')" title="Resyto Tomato"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #4AB299;" onclick="setCustomColor('dots-1', '#4AB299')" title="Mint Teal"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #FF007F;" onclick="setCustomColor('dots-1', '#FF007F')" title="Neon Pink"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #00F0FF;" onclick="setCustomColor('dots-1', '#00F0FF')" title="Cyan Glow"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #000000;" onclick="setCustomColor('dots-1', '#000000')" title="Pure Black"></button>
+                <div class="quick-swatches" id="swatches-foreground">
+                  <button type="button" class="quick-swatch active" style="background-color: #0E101A;" onclick="setQuickColor('foreground', '#0E101A', this)" title="Sleek Slate"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #FF5B26;" onclick="setQuickColor('foreground', '#FF5B26', this)" title="Tomato Orange"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #4AB299;" onclick="setQuickColor('foreground', '#4AB299', this)" title="Mint Teal"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #0066FF;" onclick="setQuickColor('foreground', '#0066FF', this)" title="Electric Blue"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #7000FF;" onclick="setQuickColor('foreground', '#7000FF', this)" title="Royal Purple"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #FF007F;" onclick="setQuickColor('foreground', '#FF007F', this)" title="Neon Pink"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #00F0FF;" onclick="setQuickColor('foreground', '#00F0FF', this)" title="Cyber Cyan"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #000000;" onclick="setQuickColor('foreground', '#000000', this)" title="Solid Black"></button>
                 </div>
               </div>
 
@@ -1387,12 +1397,13 @@
                     <option value="radial">Radial</option>
                   </select>
                 </div>
-                <div class="quick-swatches">
-                  <button type="button" class="swatch-btn" style="background-color: #4AB299;" onclick="setCustomColor('dots-2', '#4AB299')" title="Mint Teal"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #FF5B26;" onclick="setCustomColor('dots-2', '#FF5B26')" title="Resyto Tomato"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #00F0FF;" onclick="setCustomColor('dots-2', '#00F0FF')" title="Cyan Glow"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #38ef7d;" onclick="setCustomColor('dots-2', '#38ef7d')" title="Green Moss"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #E94057;" onclick="setCustomColor('dots-2', '#E94057')" title="Sunset Rose"></button>
+                <div class="quick-swatches" id="swatches-gradient">
+                  <button type="button" class="quick-swatch active" style="background-color: #4AB299;" onclick="setQuickColor('gradient', '#4AB299', this)" title="Mint Teal"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #FF5B26;" onclick="setQuickColor('gradient', '#FF5B26', this)" title="Tomato Orange"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #00F0FF;" onclick="setQuickColor('gradient', '#00F0FF', this)" title="Cyber Cyan"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #FF007F;" onclick="setQuickColor('gradient', '#FF007F', this)" title="Neon Pink"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #F27121;" onclick="setQuickColor('gradient', '#F27121', this)" title="Orange Glow"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #E94057;" onclick="setQuickColor('gradient', '#E94057', this)" title="Sunset Red"></button>
                 </div>
               </div>
 
@@ -1404,12 +1415,12 @@
                   </div>
                   <span id="label-bg-hex" class="color-hex-label">#FFFFFF</span>
                 </div>
-                <div class="quick-swatches">
-                  <button type="button" class="swatch-btn" style="background-color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25);" onclick="setCustomColor('bg', '#FFFFFF')" title="Pure White"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #F8F9FA; border: 1px solid rgba(255,255,255,0.25);" onclick="setCustomColor('bg', '#F8F9FA')" title="Off-White"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #E1E4ED; border: 1px solid rgba(255,255,255,0.25);" onclick="setCustomColor('bg', '#E1E4ED')" title="Soft Silver"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #0E101A;" onclick="setCustomColor('bg', '#0E101A')" title="Slate Dark"></button>
-                  <button type="button" class="swatch-btn" style="background-color: #000000;" onclick="setCustomColor('bg', '#000000')" title="Pure Black"></button>
+                <div class="quick-swatches" id="swatches-background">
+                  <button type="button" class="quick-swatch active" style="background-color: #FFFFFF;" onclick="setQuickColor('background', '#FFFFFF', this)" title="White"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #0E101A;" onclick="setQuickColor('background', '#0E101A', this)" title="Sleek Slate"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #F7F5F0;" onclick="setQuickColor('background', '#F7F5F0', this)" title="Warm Cream"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #F0F4F8;" onclick="setQuickColor('background', '#F0F4F8', this)" title="Ice Blue"></button>
+                  <button type="button" class="quick-swatch" style="background-color: #E9EBF0;" onclick="setQuickColor('background', '#E9EBF0', this)" title="Light Muted Gray"></button>
                 </div>
               </div>
             </div>
@@ -1667,12 +1678,15 @@
     // Custom background hex labeling
     document.getElementById('color-bg').addEventListener('input', (e) => {
       document.getElementById('label-bg-hex').innerText = e.target.value.toUpperCase();
+      document.querySelectorAll('#swatches-background .quick-swatch').forEach(s => s.classList.remove('active'));
     });
     document.getElementById('color-dots-1').addEventListener('input', (e) => {
       document.getElementById('label-dots-1-hex').innerText = e.target.value.toUpperCase();
+      document.querySelectorAll('#swatches-foreground .quick-swatch').forEach(s => s.classList.remove('active'));
     });
     document.getElementById('color-dots-2').addEventListener('input', (e) => {
       document.getElementById('label-dots-2-hex').innerText = e.target.value.toUpperCase();
+      document.querySelectorAll('#swatches-gradient .quick-swatch').forEach(s => s.classList.remove('active'));
     });
 
     // Color Type toggle logic (Gradient vs Solid)
@@ -1845,23 +1859,32 @@
     updateQrCode();
   }
 
-  // Helper to set a specific color via quick swatch buttons
-  function setCustomColor(target, hex) {
-    if (target === 'dots-1') {
-      const el = document.getElementById('color-dots-1');
-      el.value = hex;
+  // Quick swatch color selector
+  function setQuickColor(type, hex, btn) {
+    if (type === 'foreground') {
+      const input = document.getElementById('color-dots-1');
+      input.value = hex;
       document.getElementById('label-dots-1-hex').innerText = hex.toUpperCase();
-    } else if (target === 'dots-2') {
-      const el = document.getElementById('color-dots-2');
-      el.value = hex;
+      
+      document.querySelectorAll('#swatches-foreground .quick-swatch').forEach(s => s.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    } 
+    else if (type === 'gradient') {
+      const input = document.getElementById('color-dots-2');
+      input.value = hex;
       document.getElementById('label-dots-2-hex').innerText = hex.toUpperCase();
-    } else if (target === 'bg') {
-      const el = document.getElementById('color-bg');
-      el.value = hex;
+      
+      document.querySelectorAll('#swatches-gradient .quick-swatch').forEach(s => s.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    } 
+    else if (type === 'background') {
+      const input = document.getElementById('color-bg');
+      input.value = hex;
       document.getElementById('label-bg-hex').innerText = hex.toUpperCase();
+      
+      document.querySelectorAll('#swatches-background .quick-swatch').forEach(s => s.classList.remove('active'));
+      if (btn) btn.classList.add('active');
     }
-    // De-activate presets if custom color selected
-    document.querySelectorAll('.preset-card-btn').forEach(btn => btn.classList.remove('active'));
     updateQrCode();
   }
 
