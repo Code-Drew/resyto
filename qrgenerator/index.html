@@ -488,6 +488,28 @@
       border-radius: 6px;
     }
 
+    .quick-swatches {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .swatch-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .swatch-btn:hover {
+      transform: scale(1.2);
+      border-color: var(--primary);
+    }
+
     /* Preset design tags (STANDOUT FEATURE!) */
     .presets-grid {
       display: grid;
@@ -1343,6 +1365,14 @@
                     <option value="gradient">Gradient Fill</option>
                   </select>
                 </div>
+                <div class="quick-swatches">
+                  <button type="button" class="swatch-btn" style="background-color: #0E101A;" onclick="setCustomColor('dots-1', '#0E101A')" title="Sleek Slate"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #FF5B26;" onclick="setCustomColor('dots-1', '#FF5B26')" title="Resyto Tomato"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #4AB299;" onclick="setCustomColor('dots-1', '#4AB299')" title="Mint Teal"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #FF007F;" onclick="setCustomColor('dots-1', '#FF007F')" title="Neon Pink"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #00F0FF;" onclick="setCustomColor('dots-1', '#00F0FF')" title="Cyan Glow"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #000000;" onclick="setCustomColor('dots-1', '#000000')" title="Pure Black"></button>
+                </div>
               </div>
 
               <div class="customizer-item" id="gradient-color-box" style="display: none;">
@@ -1357,6 +1387,13 @@
                     <option value="radial">Radial</option>
                   </select>
                 </div>
+                <div class="quick-swatches">
+                  <button type="button" class="swatch-btn" style="background-color: #4AB299;" onclick="setCustomColor('dots-2', '#4AB299')" title="Mint Teal"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #FF5B26;" onclick="setCustomColor('dots-2', '#FF5B26')" title="Resyto Tomato"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #00F0FF;" onclick="setCustomColor('dots-2', '#00F0FF')" title="Cyan Glow"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #38ef7d;" onclick="setCustomColor('dots-2', '#38ef7d')" title="Green Moss"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #E94057;" onclick="setCustomColor('dots-2', '#E94057')" title="Sunset Rose"></button>
+                </div>
               </div>
 
               <div class="customizer-item">
@@ -1366,6 +1403,13 @@
                     <input type="color" id="color-bg" value="#FFFFFF">
                   </div>
                   <span id="label-bg-hex" class="color-hex-label">#FFFFFF</span>
+                </div>
+                <div class="quick-swatches">
+                  <button type="button" class="swatch-btn" style="background-color: #FFFFFF; border: 1px solid rgba(255,255,255,0.25);" onclick="setCustomColor('bg', '#FFFFFF')" title="Pure White"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #F8F9FA; border: 1px solid rgba(255,255,255,0.25);" onclick="setCustomColor('bg', '#F8F9FA')" title="Off-White"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #E1E4ED; border: 1px solid rgba(255,255,255,0.25);" onclick="setCustomColor('bg', '#E1E4ED')" title="Soft Silver"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #0E101A;" onclick="setCustomColor('bg', '#0E101A')" title="Slate Dark"></button>
+                  <button type="button" class="swatch-btn" style="background-color: #000000;" onclick="setCustomColor('bg', '#000000')" title="Pure Black"></button>
                 </div>
               </div>
             </div>
@@ -1798,6 +1842,26 @@
     const box = document.getElementById('gradient-color-box');
     box.style.display = (colorTypeEl.value === 'gradient') ? 'flex' : 'none';
 
+    updateQrCode();
+  }
+
+  // Helper to set a specific color via quick swatch buttons
+  function setCustomColor(target, hex) {
+    if (target === 'dots-1') {
+      const el = document.getElementById('color-dots-1');
+      el.value = hex;
+      document.getElementById('label-dots-1-hex').innerText = hex.toUpperCase();
+    } else if (target === 'dots-2') {
+      const el = document.getElementById('color-dots-2');
+      el.value = hex;
+      document.getElementById('label-dots-2-hex').innerText = hex.toUpperCase();
+    } else if (target === 'bg') {
+      const el = document.getElementById('color-bg');
+      el.value = hex;
+      document.getElementById('label-bg-hex').innerText = hex.toUpperCase();
+    }
+    // De-activate presets if custom color selected
+    document.querySelectorAll('.preset-card-btn').forEach(btn => btn.classList.remove('active'));
     updateQrCode();
   }
 
