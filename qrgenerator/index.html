@@ -341,7 +341,7 @@
     }
 
     .accordion-card.open .accordion-body {
-      max-height: 1000px;
+      max-height: 3000px;
     }
 
     .accordion-inner {
@@ -521,16 +521,14 @@
     }
 
     .color-picker-dropdown {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      z-index: 1000;
+      position: fixed;
+      z-index: 99999;
       background-color: #0b0c15;
       border: 1px solid var(--border);
       border-radius: 12px;
       width: 260px;
       padding: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
       display: none;
       flex-direction: column;
       gap: 14px;
@@ -1956,13 +1954,21 @@
     const isOpen = card.classList.contains('open');
 
     if (isOpen) {
+      // Switch overflow back to hidden before collapsing
+      body.style.overflow = 'hidden';
       card.classList.remove('open');
       body.style.maxHeight = '0';
-      indicator.innerHTML = '&#9656;'; // Triangle pointing right
+      indicator.innerHTML = '&#9656;';
     } else {
       card.classList.add('open');
-      body.style.maxHeight = inner.scrollHeight + 48 + 'px'; // add buffer for padding
-      indicator.innerHTML = '&#9662;'; // Triangle pointing down
+      body.style.overflow = 'hidden'; // hide during animation
+      body.style.maxHeight = inner.scrollHeight + 48 + 'px';
+      indicator.innerHTML = '&#9662;';
+      // After animation finishes, allow overflow so dropdowns can escape
+      body.addEventListener('transitionend', function onEnd() {
+        body.style.overflow = 'visible';
+        body.removeEventListener('transitionend', onEnd);
+      });
     }
   }
 
@@ -2119,26 +2125,47 @@
         d.style.display = 'none';
       }
     });
-
-    const box = document.getElementById(`box-${pickerId}`);
     document.querySelectorAll('.color-picker-input-box').forEach(b => {
       if (b.id !== `box-${pickerId}`) b.classList.remove('active');
     });
 
+    const box = document.getElementById(`box-${pickerId}`);
     const dropdown = document.getElementById(`dropdown-${pickerId}`);
-    if (dropdown) {
-      const isVisible = dropdown.style.display === 'flex';
-      dropdown.style.display = isVisible ? 'none' : 'flex';
-      if (box) {
-        if (isVisible) box.classList.remove('active');
-        else box.classList.add('active');
-      }
-      
-      // Update sliders position to match current color value
-      if (!isVisible) {
-        syncSlidersFromHex(pickerId);
-      }
+    if (!dropdown) return;
+
+    const isVisible = dropdown.style.display === 'flex';
+
+    if (isVisible) {
+      dropdown.style.display = 'none';
+      if (box) box.classList.remove('active');
+      return;
     }
+
+    // Position dropdown using fixed coords from the trigger box
+    if (box) {
+      const rect = box.getBoundingClientRect();
+      const dropdownWidth = 260;
+      let left = rect.left;
+      let top = rect.bottom + 8;
+
+      // Keep within viewport horizontally
+      if (left + dropdownWidth > window.innerWidth - 8) {
+        left = window.innerWidth - dropdownWidth - 8;
+      }
+      // Keep within viewport vertically — open upward if no space below
+      if (top + 350 > window.innerHeight) {
+        top = rect.top - 350 - 8;
+      }
+
+      dropdown.style.left = left + 'px';
+      dropdown.style.top = top + 'px';
+      box.classList.add('active');
+    }
+
+    dropdown.style.display = 'flex';
+
+    // Sync sliders to current color
+    syncSlidersFromHex(pickerId);
   }
 
   // Drag on Saturation-Value Square logic
