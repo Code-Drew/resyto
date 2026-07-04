@@ -292,7 +292,6 @@
       overflow: hidden;
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
       transition: border-color 0.2s, box-shadow 0.2s;
-      backdrop-filter: blur(10px);
     }
 
     .accordion-card.open {
@@ -1900,8 +1899,14 @@
     renderPaletteGrid('dots-2');
     renderPaletteGrid('bg');
 
-    document.querySelectorAll('.color-picker-dropdown').forEach(d => {
-      d.addEventListener('click', (e) => e.stopPropagation());
+    // PORTAL: Move all dropdowns to <body> so position:fixed is relative to viewport,
+    // not a backdrop-filter/transform ancestor which would break fixed positioning.
+    ['dropdown-dots-1', 'dropdown-dots-2', 'dropdown-bg'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        document.body.appendChild(el);
+        el.addEventListener('click', (e) => e.stopPropagation());
+      }
     });
 
     window.addEventListener('click', () => {
