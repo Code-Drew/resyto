@@ -243,12 +243,18 @@
     /* Bento Grid */
     .bento-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       margin-bottom: 80px;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 950px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
       .bento-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -291,6 +297,7 @@
 
     .date-card { --glow-color: rgba(74, 178, 153, 0.08); }
     .compress-card { --glow-color: rgba(255, 91, 38, 0.08); }
+    .qr-card { --glow-color: rgba(255, 91, 38, 0.08); }
 
     .card-content {
       position: relative;
@@ -406,6 +413,60 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.4);
     }
 
+    /* Mock QR Code Visual */
+    .mock-qrcode {
+      width: 90px;
+      height: 90px;
+      background-color: #FFF;
+      border-radius: 10px;
+      position: relative;
+      padding: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    .mock-qr-corner {
+      width: 20px;
+      height: 20px;
+      border: 5px solid #0E101A;
+      background-color: #FFF;
+      position: absolute;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mock-qr-corner::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background-color: #0E101A;
+      display: block;
+    }
+    .top-left { top: 8px; left: 8px; }
+    .top-right { top: 8px; right: 8px; }
+    .bottom-left { bottom: 8px; left: 8px; }
+    .mock-qr-dots {
+      position: absolute;
+      inset: 8px;
+      background-image: 
+        radial-gradient(#0E101A 2px, transparent 2px),
+        radial-gradient(#0E101A 2px, transparent 2px);
+      background-size: 8px 8px;
+      background-position: 0 0, 4px 4px;
+      opacity: 0.85;
+      z-index: 1;
+    }
+    .mock-qr-logo {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background-color: var(--primary);
+      z-index: 2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
     /* Card Details */
     .card-title {
       font-family: var(--font-title);
@@ -464,11 +525,11 @@
       box-shadow: 0 6px 20px -6px rgba(74, 178, 153, 0.4);
     }
 
-    .compress-card .card-button {
+    .compress-card .card-button, .qr-card .card-button {
       background-color: var(--primary);
       color: #07080F;
     }
-    .compress-card .card-button:hover {
+    .compress-card .card-button:hover, .qr-card .card-button:hover {
       background-color: #FF7547;
       box-shadow: 0 6px 20px -6px rgba(255, 91, 38, 0.4);
     }
@@ -911,6 +972,29 @@
         </div>
       </article>
 
+      <!-- QR Code Generator Card -->
+      <article class="bento-card qr-card">
+        <div class="card-content">
+          <div class="card-visual">
+            <div class="mock-qrcode">
+              <div class="mock-qr-corner top-left"></div>
+              <div class="mock-qr-corner top-right"></div>
+              <div class="mock-qr-corner bottom-left"></div>
+              <div class="mock-qr-dots"></div>
+              <div class="mock-qr-logo"></div>
+            </div>
+          </div>
+          <h2 class="card-title">Custom QR Generator</h2>
+          <p class="card-desc">Generate customized, high-resolution QR codes. Change dot styles, background colors, design gradients, and upload your brand logo. Runs 100% locally in your browser.</p>
+          <div class="card-badges">
+            <span class="badge-item">URL / Wi-Fi / Contacts</span>
+            <span class="badge-item">Custom Gradients</span>
+            <span class="badge-item">SVG / PNG Export</span>
+          </div>
+          <a href="/qrgenerator/" class="card-button" id="launch-qrgenerator">Launch QR Generator</a>
+        </div>
+      </article>
+
     </section>
 
   </main>
@@ -985,6 +1069,7 @@
       <div class="footer-links" aria-label="Footer Navigation">
         <a href="/dateconverter/">Date Converter</a>
         <a href="/imagecompressor/">Image Compressor</a>
+        <a href="/qrgenerator/">QR Code Generator</a>
         <a href="/about.html">About & Contact</a>
         <a href="/privacy.html">Privacy Policy</a>
       </div>

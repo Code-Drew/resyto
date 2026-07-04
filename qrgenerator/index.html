@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Custom QR Code Generator — Privacy-First | Resyto</title>
+  <meta name="description" content="Generate custom QR codes for links, text, Wi-Fi, contacts, and payments. Customize colors, gradients, corner shapes, and add your logo. 100% local, zero uploads.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07080F">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://resyto.com/qrgenerator/">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Resyto QR Code Generator",
+    "url": "https://resyto.com/qrgenerator/",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Generate highly customized QR codes locally in your browser. Add custom colors, gradients, corner shapes, and brand logos. Zero server uploads."
+  }
+  </script>
+
+  <!-- Structured Data: BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://resyto.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "QR Code Generator",
+        "item": "https://resyto.com/qrgenerator/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- qr-code-styling Library from unpkg CDN -->
+  <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+  <style>
+    :root {
+      --bg: #07080F;
+      --bg-surface: #0E101A;
+      --bg-surface-raised: #151829;
+      --border: rgba(255, 255, 255, 0.05);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      
+      --primary: #FF5B26; /* Tomato Orange */
+      --primary-glow: rgba(255, 91, 38, 0.15);
+      --green: #4AB299; /* Mint Teal */
+      
+      --text: #F1F3FA;
+      --text-muted: #8E9AB0;
+      --text-dim: #5C677D;
+      
+      --font-title: 'Outfit', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 12% 8%, rgba(255, 91, 38, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 88% 92%, rgba(74, 178, 153, 0.05) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    /* Top Breadcrumb Nav */
+    .nav-breadcrumb {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .nav-breadcrumb a.back-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-breadcrumb a.nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-breadcrumb a.nav-link:hover {
+      color: var(--text);
+    }
+
+    /* Header Section */
+    header.hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    header.hero .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      background-color: rgba(255, 91, 38, 0.08);
+      border: 1px solid rgba(255, 91, 38, 0.15);
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+
+    header.hero h1 {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    header.hero p.sub {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Split Screen Dashboard */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+
+    @media (max-width: 850px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    /* Control Panel Card (Left Side) */
+    .panel-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    @media (max-width: 480px) {
+      .panel-card {
+        padding: 20px;
+      }
+    }
+
+    /* Custom Data Tabs */
+    .data-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .data-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Tab Content Boxes */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 14.5px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .form-control:focus {
+      border-color: rgba(255, 91, 38, 0.5);
+      box-shadow: 0 0 0 2px rgba(255, 91, 38, 0.15);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Section divider inside Sidebar */
+    .section-divider {
+      border-top: 1px dashed var(--border);
+      margin: 28px 0 24px;
+      padding-top: 24px;
+    }
+
+    .section-divider h3 {
+      font-family: var(--font-title);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* Design customization elements */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 580px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    .customizer-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .customizer-item label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Color picker controls wrapper */
+    .color-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .color-picker-wrapper {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .color-picker-wrapper input[type="color"] {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 60px;
+      height: 60px;
+      border: none;
+      cursor: pointer;
+      background: none;
+    }
+
+    /* Logo file upload section styling */
+    .logo-uploader {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .upload-btn {
+      border: 1px dashed var(--border);
+      color: var(--text-muted);
+      background-color: rgba(255, 255, 255, 0.02);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      display: block;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .upload-btn:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-hover);
+    }
+
+    .upload-btn-wrapper input[type="file"] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* Slider input styling */
+    .slider-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slider-wrapper input[type="range"] {
+      flex-grow: 1;
+      height: 6px;
+      border-radius: 3px;
+      background-color: var(--border-hover);
+      outline: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+
+    .slider-wrapper input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .slider-wrapper input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .slider-val {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      width: 32px;
+    }
+
+    /* Preview Panel Card (Right Side) */
+    .preview-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: fit-content;
+      position: sticky;
+      top: 96px;
+      box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    /* QR output container canvas holder */
+    .qr-container {
+      background-color: #FFFFFF;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .qr-container canvas, .qr-container svg {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    /* Download controls layout */
+    .download-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #07080F;
+    }
+
+    .btn-primary:hover {
+      background-color: #FF7547;
+      box-shadow: 0 6px 20px -6px rgba(255, 91, 38, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--border-hover);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+    }
+
+    /* FAQs Section */
+    .faq-section {
+      width: 100%;
+      max-width: 880px;
+      margin: 32px auto 80px;
+    }
+
+    .faq-section h2 {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .faq-item {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      padding: 20px 24px;
+      font-size: 15.5px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-q:hover {
+      background-color: rgba(255, 255, 255, 0.01);
+    }
+
+    .faq-q .chev {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-q .chev {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease-out;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+    }
+
+    .faq-a p {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Footer styling */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 48px 0;
+      background-color: #04050a;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+      padding: 0 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 18px;
+      margin: 0;
+      color: #F1F3FA;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-tagline {
+      font-size: 12.5px;
+      color: rgba(241, 243, 250, 0.55);
+      margin: 0;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(241, 243, 250, 0.35);
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-size: 13.5px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(241, 243, 250, 0.7);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: #F1F3FA;
+    }
+
+    @media (max-width: 600px) {
+      .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+      }
+      .footer-brand {
+        align-items: center;
+        text-align: center;
+      }
+      .footer-links {
+        justify-content: center;
+        gap: 12px 20px;
+      }
+      .footer-copy {
+        margin-top: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- Top Breadcrumb -->
+  <div class="nav-breadcrumb">
+    <a href="/" class="back-link">← Resyto</a>
+    <a href="/imagecompressor/" class="nav-link">Image Compressor</a>
+  </div>
+
+  <!-- Header -->
+  <header class="hero">
+    <div class="eyebrow">LOCAL & PRIVACY-FIRST</div>
+    <h1>Custom QR Code Generator</h1>
+    <p class="sub">Create fully customized QR codes with colors, gradients, shapes, and logos. Built locally in your browser—no tracking, no uploads.</p>
+  </header>
+
+  <!-- Interactive Dashboard -->
+  <div class="dashboard">
+    
+    <!-- Controls (Left Card) -->
+    <div class="panel-card">
+      
+      <!-- Type tabs -->
+      <div class="data-tabs" role="tablist" aria-label="QR Code Content Types">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="pane-url" id="tab-url" onclick="switchTab('url')">Link / Text</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-wifi" id="tab-wifi" onclick="switchTab('wifi')">Wi-Fi</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-vcard" id="tab-vcard" onclick="switchTab('vcard')">Contact (vCard)</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-upi" id="tab-upi" onclick="switchTab('upi')">UPI Payment</button>
+      </div>
+
+      <!-- Tab Content: URL/Text -->
+      <div class="tab-pane active" id="pane-url" role="tabpanel" aria-labelledby="tab-url">
+        <div class="form-group">
+          <label for="input-url">Website URL or Text</label>
+          <textarea id="input-url" class="form-control" placeholder="https://example.com or message details..."></textarea>
+        </div>
+      </div>
+
+      <!-- Tab Content: Wi-Fi -->
+      <div class="tab-pane" id="pane-wifi" role="tabpanel" aria-labelledby="tab-wifi">
+        <div class="form-group">
+          <label for="input-wifi-ssid">Network Name (SSID)</label>
+          <input type="text" id="input-wifi-ssid" class="form-control" placeholder="My Home Wi-Fi">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="input-wifi-pass">Password</label>
+            <input type="password" id="input-wifi-pass" class="form-control" placeholder="••••••••">
+          </div>
+          <div class="form-group">
+            <label for="input-wifi-type">Security Type</label>
+            <select id="input-wifi-type" class="form-control">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">Unsecured (No Password)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: vCard -->
+      <div class="tab-pane" id="pane-vcard" role="tabpanel" aria-labelledby="tab-vcard">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="input-card-fn">First Name</label>
+            <input type="text" id="input-card-fn" class="form-control" placeholder="Sagar">
+          </div>
+          <div class="form-group">
+            <label for="input-card-ln">Last Name</label>
+            <input type="text" id="input-card-ln" class="form-control" placeholder="Poudel">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="input-card-tel">Phone Number</label>
+            <input type="tel" id="input-card-tel" class="form-control" placeholder="+977 9800000000">
+          </div>
+          <div class="form-group">
+            <label for="input-card-email">Email Address</label>
+            <input type="email" id="input-card-email" class="form-control" placeholder="sagar@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="input-card-url">Website</label>
+          <input type="url" id="input-card-url" class="form-control" placeholder="https://resyto.com">
+        </div>
+      </div>
+
+      <!-- Tab Content: UPI Payment -->
+      <div class="tab-pane" id="pane-upi" role="tabpanel" aria-labelledby="tab-upi">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="input-upi-id">UPI ID / VPA</label>
+            <input type="text" id="input-upi-id" class="form-control" placeholder="payee@bank">
+          </div>
+          <div class="form-group">
+            <label for="input-upi-name">Payee Name</label>
+            <input type="text" id="input-upi-name" class="form-control" placeholder="Sagar Poudel">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="input-upi-amount">Amount (Optional)</label>
+            <input type="number" id="input-upi-amount" class="form-control" placeholder="e.g. 500">
+          </div>
+          <div class="form-group">
+            <label for="input-upi-note">Transaction Note (Optional)</label>
+            <input type="text" id="input-upi-note" class="form-control" placeholder="Resyto Payment">
+          </div>
+        </div>
+      </div>
+
+      <!-- Customization Divider Section -->
+      <div class="section-divider">
+        <h3>Styling Customizations</h3>
+        
+        <div class="options-grid">
+          
+          <!-- Colors Customize -->
+          <div class="customizer-item">
+            <label for="color-dots-1">Foreground Color</label>
+            <div class="color-row">
+              <div class="color-picker-wrapper">
+                <input type="color" id="color-dots-1" value="#FF5B26">
+              </div>
+              <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px;">
+                <option value="single">Solid Color</option>
+                <option value="gradient">Gradient Fill</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Secondary gradient color picker (conditional) -->
+          <div class="customizer-item" id="gradient-color-box" style="display: none;">
+            <label for="color-dots-2">Gradient End Color</label>
+            <div class="color-row">
+              <div class="color-picker-wrapper">
+                <input type="color" id="color-dots-2" value="#4AB299">
+              </div>
+              <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px;">
+                <option value="linear">Linear</option>
+                <option value="radial">Radial</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Background Color -->
+          <div class="customizer-item">
+            <label for="color-bg">Background Color</label>
+            <div class="color-row">
+              <div class="color-picker-wrapper">
+                <input type="color" id="color-bg" value="#FFFFFF">
+              </div>
+              <span id="label-bg-hex" style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">#FFFFFF</span>
+            </div>
+          </div>
+
+          <!-- Dot Style Shapes -->
+          <div class="customizer-item">
+            <label for="select-dot-type">Dot Shapes</label>
+            <select id="select-dot-type" class="form-control">
+              <option value="square">Square (Default)</option>
+              <option value="rounded">Rounded</option>
+              <option value="extra-rounded">Extra Rounded</option>
+              <option value="dots">Circles</option>
+              <option value="classy">Classy Cut</option>
+              <option value="classy-rounded">Classy Rounded</option>
+            </select>
+          </div>
+
+          <!-- Corner Squares style options -->
+          <div class="customizer-item">
+            <label for="select-corner-type">Corner Rings</label>
+            <select id="select-corner-type" class="form-control">
+              <option value="square">Square Ring</option>
+              <option value="dot">Circle Ring</option>
+              <option value="extra-rounded">Rounded Corners</option>
+            </select>
+          </div>
+
+          <!-- Logo upload area -->
+          <div class="customizer-item logo-uploader">
+            <label>Brand Logo (Center)</label>
+            <div class="upload-btn-wrapper">
+              <span class="upload-btn" id="upload-status-label">Upload Image (PNG/JPG)</span>
+              <input type="file" id="input-logo-file" accept="image/*">
+            </div>
+          </div>
+
+          <!-- Logo size slider -->
+          <div class="customizer-item" id="logo-slider-box" style="display: none;">
+            <label for="logo-size-range">Logo Scale</label>
+            <div class="slider-wrapper">
+              <input type="range" id="logo-size-range" min="0.05" max="0.35" step="0.01" value="0.18">
+              <span class="slider-val" id="logo-size-val">18%</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Live Preview Canvas Card (Right Side) -->
+    <div class="preview-card">
+      <h3 style="font-family: var(--font-title); font-size: 16px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Live Preview</h3>
+      
+      <!-- Canvas frame holder -->
+      <div class="qr-container" id="qr-canvas-holder">
+        <!-- Will be filled by QRCodeStyling -->
+      </div>
+
+      <!-- Downloads panel -->
+      <div class="download-group">
+        <button class="btn btn-primary" onclick="triggerDownload('png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download PNG Image
+        </button>
+        <button class="btn btn-secondary" onclick="triggerDownload('svg')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Vector SVG
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FAQs Section -->
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Is my QR code data uploaded to any server?
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <p>No. Resyto is a privacy-first utility suite. All text inputs, password formats, and uploaded brand logos are read directly by your local browser's memory. The QR code generation process is 100% client-side. Zero bytes leave your device.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What is the difference between PNG and SVG downloads?
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <p>PNG is a raster graphic format perfect for digital use, social media, websites, or emails. SVG is a vector graphic format that does not pixelate when scaled. We highly recommend SVG if you plan to print your QR code on posters, flyers, business cards, or merchandise.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Will my custom styled QR code scan reliably?
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <p>Yes, but styling choices matter. Make sure there is high contrast between your foreground color and background color (e.g., dark colors on a white background). If you add a center logo, keep the scaling slider under 20% to prevent covering too much data.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Can I make Wi-Fi or UPI codes?
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">
+        <p>Absolutely. Selecting the Wi-Fi tab generates a standard WPA/WEP connection string that users can scan to join your network automatically. Selecting the UPI tab generates standard payment protocols that work with popular merchant and banking apps instantly.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Resyto</h3>
+      <p class="footer-tagline">Free, privacy-first browser tools. No uploads, no ads.</p>
+      <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
+    </div>
+    <div class="footer-links" aria-label="Footer Navigation">
+      <a href="/">Home</a>
+      <a href="/dateconverter/">Date Converter</a>
+      <a href="/imagecompressor/">Image Compressor</a>
+      <a href="/about.html">About & Contact</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let activeTab = 'url';
+  let qrCode = null;
+  let logoDataUrl = null;
+
+  // Initialize form controls event listeners on window load
+  window.addEventListener('load', () => {
+    // Basic fields
+    const fields = [
+      'input-url', 'input-wifi-ssid', 'input-wifi-pass', 'input-wifi-type',
+      'input-card-fn', 'input-card-ln', 'input-card-tel', 'input-card-email', 'input-card-url',
+      'input-upi-id', 'input-upi-name', 'input-upi-amount', 'input-upi-note',
+      'color-dots-1', 'color-dots-2', 'color-bg',
+      'select-color-type', 'select-gradient-dir', 'select-dot-type', 'select-corner-type',
+      'logo-size-range'
+    ];
+
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', updateQrCode);
+        el.addEventListener('change', updateQrCode);
+      }
+    });
+
+    // Custom background hex labeling
+    document.getElementById('color-bg').addEventListener('input', (e) => {
+      document.getElementById('label-bg-hex').innerText = e.target.value.toUpperCase();
+    });
+
+    // Color Type toggle logic (Gradient vs Solid)
+    document.getElementById('select-color-type').addEventListener('change', (e) => {
+      const box = document.getElementById('gradient-color-box');
+      box.style.display = (e.target.value === 'gradient') ? 'flex' : 'none';
+      updateQrCode();
+    });
+
+    // Logo upload reader
+    document.getElementById('input-logo-file').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      const statusLabel = document.getElementById('upload-status-label');
+      const sliderBox = document.getElementById('logo-slider-box');
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          logoDataUrl = event.target.result;
+          statusLabel.innerText = file.name.substring(0, 16) + (file.name.length > 16 ? '...' : '');
+          sliderBox.style.display = 'flex';
+          updateQrCode();
+        };
+        reader.readAsDataURL(file);
+      } else {
+        logoDataUrl = null;
+        statusLabel.innerText = "Upload Image (PNG/JPG)";
+        sliderBox.style.display = 'none';
+        updateQrCode();
+      }
+    });
+
+    // Scale slider text updates
+    document.getElementById('logo-size-range').addEventListener('input', (e) => {
+      const percent = Math.round(parseFloat(e.target.value) * 100);
+      document.getElementById('logo-size-val').innerText = `${percent}%`;
+    });
+
+    // Draw initial empty QR Code
+    updateQrCode();
+  });
+
+  // Switch tabs
+  function switchTab(tabId) {
+    activeTab = tabId;
+    
+    // Toggle active buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-selected', 'false');
+    });
+    const activeBtn = document.getElementById(`tab-${tabId}`);
+    activeBtn.classList.add('active');
+    activeBtn.setAttribute('aria-selected', 'true');
+
+    // Toggle panes
+    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+    document.getElementById(`pane-${tabId}`).classList.add('active');
+
+    updateQrCode();
+  }
+
+  // Compile final content payload based on the active tab form inputs
+  function getPayload() {
+    if (activeTab === 'url') {
+      return document.getElementById('input-url').value.trim() || 'https://resyto.com';
+    } 
+    
+    if (activeTab === 'wifi') {
+      const ssid = document.getElementById('input-wifi-ssid').value.trim();
+      const pass = document.getElementById('input-wifi-pass').value.trim();
+      const type = document.getElementById('input-wifi-type').value;
+      if (!ssid) return 'https://resyto.com';
+      // Format: WIFI:S:MySSID;T:WPA;P:MyPassword;;
+      return `WIFI:S:${ssid};T:${type};P:${pass};;`;
+    }
+
+    if (activeTab === 'vcard') {
+      const fn = document.getElementById('input-card-fn').value.trim();
+      const ln = document.getElementById('input-card-ln').value.trim();
+      const tel = document.getElementById('input-card-tel').value.trim();
+      const email = document.getElementById('input-card-email').value.trim();
+      const url = document.getElementById('input-card-url').value.trim();
+
+      if (!fn && !ln) return 'https://resyto.com';
+
+      // Assemble standard vCard 3.0 format
+      return [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        `N:${ln};${fn};;;`,
+        `FN:${fn} ${ln}`.trim(),
+        tel ? `TEL;TYPE=CELL:${tel}` : '',
+        email ? `EMAIL;TYPE=PREF,INTERNET:${email}` : '',
+        url ? `URL:${url}` : '',
+        'END:VCARD'
+      ].filter(Boolean).join('\n');
+    }
+
+    if (activeTab === 'upi') {
+      const upiId = document.getElementById('input-upi-id').value.trim();
+      const name = document.getElementById('input-upi-name').value.trim();
+      const amount = document.getElementById('input-upi-amount').value.trim();
+      const note = document.getElementById('input-upi-note').value.trim();
+
+      if (!upiId) return 'https://resyto.com';
+
+      // Format: upi://pay?pa=payee@bank&pn=PayeeName&am=Amount&tn=Note
+      let upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}`;
+      if (name) upiUrl += `&pn=${encodeURIComponent(name)}`;
+      if (amount) upiUrl += `&am=${encodeURIComponent(amount)}`;
+      if (note) upiUrl += `&tn=${encodeURIComponent(note)}`;
+      return upiUrl;
+    }
+
+    return 'https://resyto.com';
+  }
+
+  // Draw or redraw the canvas via the qr-code-styling class
+  function updateQrCode() {
+    const dataString = getPayload();
+    
+    // Core parameters mapping
+    const dotType = document.getElementById('select-dot-type').value;
+    const cornerType = document.getElementById('select-corner-type').value;
+    const bgColor = document.getElementById('color-bg').value;
+    
+    const colorType = document.getElementById('select-color-type').value;
+    const color1 = document.getElementById('color-dots-1').value;
+    const color2 = document.getElementById('color-dots-2').value;
+    const gradDir = document.getElementById('select-gradient-dir').value;
+
+    const logoSize = parseFloat(document.getElementById('logo-size-range').value);
+
+    // Build the dots options payload (gradient vs solid)
+    let dotsOptions = {
+      type: dotType
+    };
+
+    if (colorType === 'gradient') {
+      dotsOptions.gradient = {
+        type: gradDir,
+        colorStops: [
+          { offset: 0, color: color1 },
+          { offset: 1, color: color2 }
+        ]
+      };
+    } else {
+      dotsOptions.color = color1;
+    }
+
+    // Build corners options payload (map general choice to both square and dot elements)
+    let cornersSquareOptions = {
+      type: cornerType
+    };
+    let cornersDotOptions = {
+      type: cornerType === 'dot' ? 'dot' : (cornerType === 'extra-rounded' ? 'dot' : 'square')
+    };
+
+    if (colorType === 'gradient') {
+      const cornerGrad = {
+        type: gradDir,
+        colorStops: [
+          { offset: 0, color: color1 },
+          { offset: 1, color: color2 }
+        ]
+      };
+      cornersSquareOptions.gradient = cornerGrad;
+      cornersDotOptions.gradient = cornerGrad;
+    } else {
+      cornersSquareOptions.color = color1;
+      cornersDotOptions.color = color1;
+    }
+
+    // Assembly options
+    const options = {
+      width: 300,
+      height: 300,
+      type: 'canvas',
+      data: dataString,
+      image: logoDataUrl || '',
+      dotsOptions: dotsOptions,
+      backgroundOptions: {
+        color: bgColor
+      },
+      cornersSquareOptions: cornersSquareOptions,
+      cornersDotOptions: cornersDotOptions,
+      imageOptions: {
+        crossOrigin: 'anonymous',
+        margin: 6,
+        imageSizeFactor: logoSize
+      }
+    };
+
+    const canvasHolder = document.getElementById('qr-canvas-holder');
+
+    if (!qrCode) {
+      // First initialization
+      qrCode = new QRCodeStyling(options);
+      canvasHolder.innerHTML = '';
+      qrCode.append(canvasHolder);
+    } else {
+      // Redraw update
+      qrCode.update(options);
+    }
+  }
+
+  // Trigger download action
+  function triggerDownload(ext) {
+    if (!qrCode) return;
+    qrCode.download({
+      name: 'resyto-qr',
+      extension: ext
+    });
+  }
+
+  // FAQ Accordion click toggles
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+
+    // Close all FAQs first
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = '0';
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      const a = item.querySelector('.faq-a');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  }
+</script>
+
+</body>
+</html>
