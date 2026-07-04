@@ -633,6 +633,65 @@
       border-color: #FFFFFF;
     }
 
+    /* Preset design tags */
+    .presets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .preset-card-btn {
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+    }
+
+    .preset-card-btn:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
+    }
+
+    .preset-card-btn.active {
+      background-color: rgba(255, 255, 255, 0.06);
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
+    }
+
+    .preset-color-strip {
+      height: 40px;
+      width: 100%;
+      position: relative;
+    }
+
+    .preset-info {
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .preset-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .preset-tag {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
     /* Logo file upload section styling */
     .logo-uploader {
       display: flex;
