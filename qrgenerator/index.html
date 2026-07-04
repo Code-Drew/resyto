@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free Custom QR Code Generator with Logo — Privacy-First | Resyto</title>
-  <meta name="description" content="Generate custom QR codes for links, text, emails, SMS, phone, Wi-Fi, contacts, locations, and payments. Customize colors, gradients, shapes, and brand logos. 100% local.">
+  <meta name="description" content="Generate custom QR codes with linear/radial gradients, shapes, and center logos. Free, permanent, zero-tracking. Includes live contrast checker and design presets.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#07080F">
   <meta name="color-scheme" content="dark">
@@ -130,7 +130,7 @@
       align-items: center;
       padding: 16px 0;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
 
     .nav-breadcrumb a.back-link {
@@ -162,7 +162,7 @@
     /* Header Section */
     header.hero {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     header.hero .eyebrow {
@@ -181,14 +181,14 @@
     header.hero h1 {
       font-family: var(--font-title);
       font-weight: 900;
-      font-size: clamp(32px, 5vw, 46px);
+      font-size: clamp(34px, 5vw, 48px);
       line-height: 1.15;
       margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
 
     header.hero h1 span.gradient {
-      background: linear-gradient(135deg, #FFF 40%, var(--text-muted) 100%);
+      background: linear-gradient(135deg, #FFF 40%, var(--primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -200,32 +200,52 @@
       margin: 0 auto;
     }
 
-    /* Type tabs selection (Horizontal list) */
+    /* Type tabs selection (Horizontal Grid with Icons) */
     .data-tabs {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
       background-color: var(--bg-surface);
       border: 1px solid var(--border);
       padding: 6px;
-      border-radius: 12px;
-      margin-bottom: 24px;
+      border-radius: 14px;
+      margin-bottom: 32px;
       gap: 4px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       overflow-x: auto;
       scrollbar-width: none;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
     .data-tabs::-webkit-scrollbar { display: none; }
+
+    @media (max-width: 950px) {
+      .data-tabs {
+        display: flex;
+      }
+    }
 
     .tab-btn {
       background: none;
       border: none;
       color: var(--text-muted);
-      padding: 10px 18px;
-      font-size: 13.5px;
-      font-weight: 600;
+      padding: 12px 10px;
+      font-size: 12px;
+      font-weight: 700;
       cursor: pointer;
       border-radius: 8px;
-      transition: all 0.15s ease;
-      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      min-width: 76px;
+    }
+
+    .tab-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+      transition: transform 0.2s;
     }
 
     .tab-btn:hover {
@@ -233,10 +253,14 @@
       background-color: rgba(255, 255, 255, 0.02);
     }
 
+    .tab-btn:hover svg {
+      transform: translateY(-1px);
+    }
+
     .tab-btn.active {
       color: #07080F;
       background-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+      box-shadow: 0 6px 16px rgba(255, 91, 38, 0.3);
     }
 
     /* Split Screen Dashboard */
@@ -251,7 +275,7 @@
     @media (max-width: 850px) {
       .dashboard {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 32px;
       }
     }
 
@@ -268,11 +292,13 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(10px);
     }
 
     .accordion-card.open {
-      border-color: rgba(255, 91, 38, 0.25);
+      border-color: rgba(255, 91, 38, 0.2);
+      box-shadow: 0 6px 36px rgba(0, 0, 0, 0.5);
     }
 
     .accordion-header {
@@ -280,9 +306,9 @@
       background: rgba(255, 255, 255, 0.01);
       border: none;
       color: var(--text);
-      padding: 18px 24px;
+      padding: 20px 24px;
       font-family: var(--font-title);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       text-align: left;
       cursor: pointer;
@@ -290,6 +316,7 @@
       justify-content: space-between;
       align-items: center;
       transition: background-color 0.15s;
+      letter-spacing: 0.05em;
     }
 
     .accordion-header:hover {
@@ -300,11 +327,12 @@
       font-family: var(--font-mono);
       font-size: 20px;
       color: var(--text-muted);
-      transition: color 0.2s;
+      transition: color 0.2s, transform 0.2s;
     }
 
     .accordion-card.open .accordion-header .indicator {
       color: var(--primary);
+      transform: rotate(90deg);
     }
 
     .accordion-body {
@@ -314,7 +342,7 @@
     }
 
     .accordion-card.open .accordion-body {
-      max-height: 1000px; /* Large enough buffer */
+      max-height: 1000px;
     }
 
     .accordion-inner {
@@ -444,6 +472,50 @@
       background: none;
     }
 
+    /* Preset design tags (STANDOUT FEATURE!) */
+    .presets-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .preset-btn {
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .preset-btn:hover {
+      background-color: rgba(255, 255, 255, 0.06);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .preset-preview {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .preset-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
     /* Logo file upload section styling */
     .logo-uploader {
       display: flex;
@@ -512,10 +584,6 @@
       transition: transform 0.1s;
     }
 
-    .slider-wrapper input[type="range"]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-    }
-
     .slider-val {
       font-family: var(--font-mono);
       font-size: 12px;
@@ -523,7 +591,7 @@
       width: 32px;
     }
 
-    /* Preview Panel Card (Right Side) */
+    /* Preview Panel Card (Right Side) - Sticky and glowing */
     .preview-card {
       background-color: var(--bg-surface);
       border: 1px solid var(--border);
@@ -535,8 +603,10 @@
       justify-content: center;
       height: fit-content;
       position: sticky;
-      top: 96px;
+      top: 32px;
       box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.6);
+      border-image: linear-gradient(135deg, rgba(255, 91, 38, 0.2) 0%, transparent 60%) 1;
+      border: 1px solid var(--border);
     }
 
     /* QR output container canvas holder */
@@ -545,7 +615,7 @@
       padding: 16px;
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -559,6 +629,42 @@
       width: 100% !important;
       height: 100% !important;
       display: block;
+    }
+
+    /* Live Scanning Safety Check Bar (STANDOUT FEATURE!) */
+    .contrast-checker {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .contrast-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .contrast-status {
+      flex-grow: 1;
+      color: var(--text-muted);
+    }
+
+    .contrast-score {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text);
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 2px 6px;
+      border-radius: 4px;
     }
 
     /* Download controls layout */
@@ -611,7 +717,6 @@
       stroke-width: 2.5;
     }
 
-    /* Action button inside tabs */
     .geo-btn {
       display: inline-flex;
       align-items: center;
@@ -827,17 +932,44 @@
     <p class="sub">Create fully customized QR codes with colors, gradients, custom shapes, and logos. Built locally in your browser—no tracking, no uploads, and no registrations.</p>
   </header>
 
-  <!-- Content Type Tabs Selection Bar -->
+  <!-- Content Type Tabs Selection Bar (Icon grid) -->
   <div class="data-tabs" role="tablist" aria-label="QR Code Content Types">
-    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="pane-url" id="tab-url" onclick="switchTab('url')">URL</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-text" id="tab-text" onclick="switchTab('text')">Text</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-email" id="tab-email" onclick="switchTab('email')">Email</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-phone" id="tab-phone" onclick="switchTab('phone')">Phone</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-sms" id="tab-sms" onclick="switchTab('sms')">SMS</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-wifi" id="tab-wifi" onclick="switchTab('wifi')">Wi-Fi</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-vcard" id="tab-vcard" onclick="switchTab('vcard')">vCard Contact</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-location" id="tab-location" onclick="switchTab('location')">Location</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-upi" id="tab-upi" onclick="switchTab('upi')">UPI Payment</button>
+    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="pane-url" id="tab-url" onclick="switchTab('url')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      URL
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-text" id="tab-text" onclick="switchTab('text')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Text
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-email" id="tab-email" onclick="switchTab('email')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-phone" id="tab-phone" onclick="switchTab('phone')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Phone
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-sms" id="tab-sms" onclick="switchTab('sms')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      SMS
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-wifi" id="tab-wifi" onclick="switchTab('wifi')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+      Wi-Fi
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-vcard" id="tab-vcard" onclick="switchTab('vcard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Contact
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-location" id="tab-location" onclick="switchTab('location')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Location
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-upi" id="tab-upi" onclick="switchTab('upi')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      UPI Pay
+    </button>
   </div>
 
   <!-- Interactive Dashboard -->
@@ -850,7 +982,7 @@
       <div class="accordion-card open" id="card-content">
         <button class="accordion-header" onclick="toggleAccordion('card-content')">
           <span>1. ENTER CONTENT</span>
-          <span class="indicator">&#8722;</span>
+          <span class="indicator">&#9656;</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-inner">
@@ -985,7 +1117,7 @@
               </div>
               <button class="geo-btn" onclick="fetchLocation(event)">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
-                Detect My Current Location
+                Detect My Location
               </button>
             </div>
 
@@ -1020,14 +1152,38 @@
       <!-- Accordion Section 2: SET COLORS -->
       <div class="accordion-card" id="card-colors">
         <button class="accordion-header" onclick="toggleAccordion('card-colors')">
-          <span>2. SET COLORS</span>
-          <span class="indicator">&#43;</span>
+          <span>2. SET COLORS &amp; DESIGN PRESETS</span>
+          <span class="indicator">&#9656;</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-inner">
             
+            <!-- STANDOUT FEATURE: Aesthetic Preset Selectors -->
+            <label style="display:block; font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em;">Aesthetic Color Presets</label>
+            <div class="presets-container">
+              <button class="preset-btn" onclick="applyPreset('resyto')">
+                <div class="preset-preview" style="background: linear-gradient(135deg, #FF5B26 0%, #4AB299 100%); color: #07080F;">RS</div>
+                <span class="preset-title">Resyto Neon</span>
+              </button>
+              <button class="preset-btn" onclick="applyPreset('cyberpunk')">
+                <div class="preset-preview" style="background: linear-gradient(135deg, #FF007F 0%, #00F0FF 100%); color: #07080F;">CP</div>
+                <span class="preset-title">Cyberpunk</span>
+              </button>
+              <button class="preset-btn" onclick="applyPreset('forest')">
+                <div class="preset-preview" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: #07080F;">FT</div>
+                <span class="preset-title">Forest Moss</span>
+              </button>
+              <button class="preset-btn" onclick="applyPreset('midnight')">
+                <div class="preset-preview" style="background: linear-gradient(135deg, #8A2387 0%, #E94057 50%, #F27121 100%); color: #FFF;">MD</div>
+                <span class="preset-title">Midnight Glow</span>
+              </button>
+              <button class="preset-btn" onclick="applyPreset('monochrome')">
+                <div class="preset-preview" style="background: linear-gradient(135deg, #2C3E50 0%, #000000 100%); color: #FFF; border: 1px solid var(--border);">MC</div>
+                <span class="preset-title">Sleek Dark</span>
+              </button>
+            </div>
+            
             <div class="options-grid">
-              <!-- Colors Customize -->
               <div class="customizer-item">
                 <label for="color-dots-1">Foreground Color</label>
                 <div class="color-row">
@@ -1041,7 +1197,6 @@
                 </div>
               </div>
 
-              <!-- Secondary gradient color picker (conditional) -->
               <div class="customizer-item" id="gradient-color-box" style="display: none;">
                 <label for="color-dots-2">Gradient End Color</label>
                 <div class="color-row">
@@ -1055,7 +1210,6 @@
                 </div>
               </div>
 
-              <!-- Background Color -->
               <div class="customizer-item">
                 <label for="color-bg">Background Color</label>
                 <div class="color-row">
@@ -1075,13 +1229,12 @@
       <div class="accordion-card" id="card-logo">
         <button class="accordion-header" onclick="toggleAccordion('card-logo')">
           <span>3. ADD LOGO IMAGE</span>
-          <span class="indicator">&#43;</span>
+          <span class="indicator">&#9656;</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-inner">
             
             <div class="options-grid">
-              <!-- Logo upload area -->
               <div class="customizer-item logo-uploader">
                 <label>Brand Logo (Center)</label>
                 <div class="upload-btn-wrapper">
@@ -1090,7 +1243,6 @@
                 </div>
               </div>
 
-              <!-- Logo size slider -->
               <div class="customizer-item" id="logo-slider-box" style="display: none;">
                 <label for="logo-size-range">Logo Scale</label>
                 <div class="slider-wrapper">
@@ -1108,13 +1260,12 @@
       <div class="accordion-card" id="card-design">
         <button class="accordion-header" onclick="toggleAccordion('card-design')">
           <span>4. CUSTOMIZE DESIGN</span>
-          <span class="indicator">&#43;</span>
+          <span class="indicator">&#9656;</span>
         </button>
         <div class="accordion-body">
           <div class="accordion-inner">
             
             <div class="options-grid">
-              <!-- Dot Style Shapes -->
               <div class="customizer-item">
                 <label for="select-dot-type">Dot Shapes</label>
                 <select id="select-dot-type" class="form-control">
@@ -1127,7 +1278,6 @@
                 </select>
               </div>
 
-              <!-- Corner Squares style options -->
               <div class="customizer-item">
                 <label for="select-corner-type">Corner Rings</label>
                 <select id="select-corner-type" class="form-control">
@@ -1151,6 +1301,13 @@
       <!-- Canvas frame holder -->
       <div class="qr-container" id="qr-canvas-holder">
         <!-- Will be filled by QRCodeStyling -->
+      </div>
+
+      <!-- STANDOUT FEATURE: Real-time Scanability contrast check -->
+      <div class="contrast-checker" id="contrast-checker-box">
+        <div class="contrast-indicator" id="contrast-ind" style="background-color: var(--green);"></div>
+        <div class="contrast-status" id="contrast-status-txt">Analyzing Scanability...</div>
+        <div class="contrast-score" id="contrast-val">10.0:1</div>
       </div>
 
       <!-- Downloads panel -->
@@ -1182,7 +1339,7 @@
       <div class="step-card">
         <div class="step-num">2</div>
         <h3>Customize Styling</h3>
-        <p>Style the dots, choose linear/radial gradients, select custom colors, and merge a center brand logo into the matrix.</p>
+        <p>Style the dots, choose linear/radial gradients, select custom colors, or apply our 1-click aesthetic design presets.</p>
       </div>
       <div class="step-card">
         <div class="step-num">3</div>
@@ -1398,11 +1555,11 @@
     if (isOpen) {
       card.classList.remove('open');
       body.style.maxHeight = '0';
-      indicator.innerHTML = '&#43;'; // Plus sign
+      indicator.innerHTML = '&#9656;'; // Triangle pointing right
     } else {
       card.classList.add('open');
       body.style.maxHeight = inner.scrollHeight + 48 + 'px'; // add buffer for padding
-      indicator.innerHTML = '&#8722;'; // Minus sign
+      indicator.innerHTML = '&#9662;'; // Triangle pointing down
     }
   }
 
@@ -1420,6 +1577,118 @@
     } else {
       alert("Geolocation is not supported by your browser.");
     }
+  }
+
+  // 1-Click Aesthetic Presets (STANDOUT FEATURE!)
+  function applyPreset(presetName) {
+    const colorTypeEl = document.getElementById('select-color-type');
+    const color1El = document.getElementById('color-dots-1');
+    const color2El = document.getElementById('color-dots-2');
+    const gradDirEl = document.getElementById('select-gradient-dir');
+    const dotTypeEl = document.getElementById('select-dot-type');
+    const cornerTypeEl = document.getElementById('select-corner-type');
+    const bgColorEl = document.getElementById('color-bg');
+
+    if (presetName === 'resyto') {
+      colorTypeEl.value = 'gradient';
+      color1El.value = '#FF5B26';
+      color2El.value = '#4AB299';
+      gradDirEl.value = 'linear';
+      dotTypeEl.value = 'rounded';
+      cornerTypeEl.value = 'extra-rounded';
+    } 
+    else if (presetName === 'cyberpunk') {
+      colorTypeEl.value = 'gradient';
+      color1El.value = '#FF007F';
+      color2El.value = '#00F0FF';
+      gradDirEl.value = 'linear';
+      dotTypeEl.value = 'dots';
+      cornerTypeEl.value = 'dot';
+    } 
+    else if (presetName === 'forest') {
+      colorTypeEl.value = 'gradient';
+      color1El.value = '#11998e';
+      color2El.value = '#38ef7d';
+      gradDirEl.value = 'linear';
+      dotTypeEl.value = 'classy';
+      cornerTypeEl.value = 'square';
+    } 
+    else if (presetName === 'midnight') {
+      colorTypeEl.value = 'gradient';
+      color1El.value = '#8A2387';
+      color2El.value = '#F27121';
+      gradDirEl.value = 'radial';
+      dotTypeEl.value = 'classy-rounded';
+      cornerTypeEl.value = 'extra-rounded';
+    } 
+    else if (presetName === 'monochrome') {
+      colorTypeEl.value = 'single';
+      color1El.value = '#0E101A';
+      dotTypeEl.value = 'square';
+      cornerTypeEl.value = 'square';
+    }
+
+    // Toggle gradient colors display block
+    const box = document.getElementById('gradient-color-box');
+    box.style.display = (colorTypeEl.value === 'gradient') ? 'flex' : 'none';
+
+    updateQrCode();
+  }
+
+  // Real-time Contrast Ratio & Scan safety checker (STANDOUT FEATURE!)
+  function verifyScanability(fg1, fg2, isGrad, bg) {
+    const checkBg = hexToRgb(bg);
+    const checkFg1 = hexToRgb(fg1);
+    const checkFg2 = isGrad ? hexToRgb(fg2) : checkFg1;
+
+    // Luminance calculation
+    const lBg = getLuminance(checkBg.r, checkBg.g, checkBg.b);
+    const lFg1 = getLuminance(checkFg1.r, checkFg1.g, checkFg1.b);
+    const lFg2 = getLuminance(checkFg2.r, checkFg2.g, checkFg2.b);
+
+    const contrast1 = getContrastRatio(lFg1, lBg);
+    const contrast2 = getContrastRatio(lFg2, lBg);
+    const minContrast = Math.min(contrast1, contrast2);
+
+    const indicator = document.getElementById('contrast-ind');
+    const statusTxt = document.getElementById('contrast-status-txt');
+    const valBox = document.getElementById('contrast-val');
+
+    valBox.innerText = `${minContrast.toFixed(1)}:1`;
+
+    if (minContrast >= 4.5) {
+      indicator.style.backgroundColor = 'var(--green)';
+      statusTxt.innerHTML = '<span style="color: var(--green);">✓ Excellent Contrast</span> — Quick scan guaranteed';
+    } else if (minContrast >= 2.5) {
+      indicator.style.backgroundColor = '#FFB000';
+      statusTxt.innerHTML = '<span style="color: #FFB000;">⚠ Moderate Contrast</span> — Works on modern cameras';
+    } else {
+      indicator.style.backgroundColor = 'var(--primary)';
+      statusTxt.innerHTML = '<span style="color: var(--primary);">✗ Critical Low Contrast</span> — May not scan';
+    }
+  }
+
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : { r: 255, g: 255, b: 255 };
+  }
+
+  function getLuminance(r, g, b) {
+    const a = [r, g, b].map(function (v) {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+  }
+
+  function getContrastRatio(lum1, lum2) {
+    const l1 = Math.max(lum1, lum2);
+    const l2 = Math.min(lum1, lum2);
+    return (l1 + 0.05) / (l2 + 0.05);
   }
 
   // Compile final content payload based on the active tab form inputs
@@ -1528,6 +1797,9 @@
     const gradDir = document.getElementById('select-gradient-dir').value;
 
     const logoSize = parseFloat(document.getElementById('logo-size-range').value);
+
+    // Call Real-time Scanability contrast check
+    verifyScanability(color1, color2, colorType === 'gradient', bgColor);
 
     // Build the dots options payload (gradient vs solid)
     let dotsOptions = {
