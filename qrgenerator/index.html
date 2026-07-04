@@ -1079,7 +1079,7 @@
             <div class="tab-pane active" id="pane-url" role="tabpanel" aria-labelledby="tab-url">
               <div class="form-group">
                 <label for="input-url">Your URL</label>
-                <input type="url" id="input-url" class="form-control" placeholder="https://www.qrcode-monkey.com">
+                <input type="url" id="input-url" class="form-control" placeholder="https://resyto.com">
               </div>
             </div>
 
@@ -1782,7 +1782,7 @@
   // Compile final content payload based on the active tab form inputs
   function getPayload() {
     if (activeTab === 'url') {
-      return document.getElementById('input-url').value.trim() || 'https://www.qrcode-monkey.com';
+      return document.getElementById('input-url').value.trim() || 'https://resyto.com';
     }
 
     if (activeTab === 'text') {
