@@ -472,47 +472,68 @@
     }
 
     /* Preset design tags (STANDOUT FEATURE!) */
-    .presets-container {
+    .presets-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
       margin-bottom: 24px;
     }
 
-    .preset-btn {
+    .preset-card-btn {
       background-color: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px;
+      border-radius: 12px;
+      overflow: hidden;
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
+      text-align: left;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
     }
 
-    .preset-btn:hover {
-      background-color: rgba(255, 255, 255, 0.06);
-      border-color: var(--border-hover);
+    .preset-card-btn:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--primary);
       transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(255, 91, 38, 0.15);
     }
 
-    .preset-preview {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
+    .preset-color-strip {
+      height: 40px;
+      width: 100%;
+      position: relative;
+    }
+
+    .preset-info {
+      padding: 10px 12px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 800;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .preset-title {
-      font-size: 11px;
-      font-weight: 700;
+    .preset-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .preset-tag {
+      font-size: 9.5px;
+      font-weight: 600;
       color: var(--text-muted);
+    }
+
+    .color-hex-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 6px;
+      min-width: 80px;
+      text-align: center;
     }
 
     /* Logo file upload section styling */
@@ -1248,26 +1269,41 @@
             
             <!-- STANDOUT FEATURE: Aesthetic Preset Selectors -->
             <label style="display:block; font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em;">Aesthetic Color Presets</label>
-            <div class="presets-container">
-              <button class="preset-btn" onclick="applyPreset('resyto')">
-                <div class="preset-preview" style="background: linear-gradient(135deg, #FF5B26 0%, #4AB299 100%); color: #07080F;">RS</div>
-                <span class="preset-title">Resyto Neon</span>
+            <div class="presets-grid">
+              <button type="button" class="preset-card-btn" onclick="applyPreset('resyto')" aria-label="Resyto Neon Preset">
+                <div class="preset-color-strip" style="background: linear-gradient(135deg, #FF5B26, #4AB299);"></div>
+                <div class="preset-info">
+                  <span class="preset-name">Resyto Neon</span>
+                  <span class="preset-tag">Rounded • Gradient</span>
+                </div>
               </button>
-              <button class="preset-btn" onclick="applyPreset('cyberpunk')">
-                <div class="preset-preview" style="background: linear-gradient(135deg, #FF007F 0%, #00F0FF 100%); color: #07080F;">CP</div>
-                <span class="preset-title">Cyberpunk</span>
+              <button type="button" class="preset-card-btn" onclick="applyPreset('cyberpunk')" aria-label="Cyberpunk Preset">
+                <div class="preset-color-strip" style="background: linear-gradient(135deg, #FF007F, #00F0FF);"></div>
+                <div class="preset-info">
+                  <span class="preset-name">Cyberpunk</span>
+                  <span class="preset-tag">Circles • Cyber Glow</span>
+                </div>
               </button>
-              <button class="preset-btn" onclick="applyPreset('forest')">
-                <div class="preset-preview" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: #07080F;">FT</div>
-                <span class="preset-title">Forest Moss</span>
+              <button type="button" class="preset-card-btn" onclick="applyPreset('forest')" aria-label="Forest Moss Preset">
+                <div class="preset-color-strip" style="background: linear-gradient(135deg, #11998e, #38ef7d);"></div>
+                <div class="preset-info">
+                  <span class="preset-name">Forest Moss</span>
+                  <span class="preset-tag">Classy • Organic</span>
+                </div>
               </button>
-              <button class="preset-btn" onclick="applyPreset('midnight')">
-                <div class="preset-preview" style="background: linear-gradient(135deg, #8A2387 0%, #E94057 50%, #F27121 100%); color: #FFF;">MD</div>
-                <span class="preset-title">Midnight Glow</span>
+              <button type="button" class="preset-card-btn" onclick="applyPreset('midnight')" aria-label="Midnight Glow Preset">
+                <div class="preset-color-strip" style="background: linear-gradient(135deg, #8A2387, #E94057, #F27121);"></div>
+                <div class="preset-info">
+                  <span class="preset-name">Midnight Glow</span>
+                  <span class="preset-tag">Radial Gradient</span>
+                </div>
               </button>
-              <button class="preset-btn" onclick="applyPreset('monochrome')">
-                <div class="preset-preview" style="background: linear-gradient(135deg, #2C3E50 0%, #000000 100%); color: #FFF; border: 1px solid var(--border);">MC</div>
-                <span class="preset-title">Sleek Dark</span>
+              <button type="button" class="preset-card-btn" onclick="applyPreset('monochrome')" aria-label="Sleek Dark Preset">
+                <div class="preset-color-strip" style="background: #0E101A; border-bottom: 1px solid var(--border);"></div>
+                <div class="preset-info">
+                  <span class="preset-name">Sleek Dark</span>
+                  <span class="preset-tag">Classic • Solid</span>
+                </div>
               </button>
             </div>
             
@@ -1278,6 +1314,7 @@
                   <div class="color-picker-wrapper">
                     <input type="color" id="color-dots-1" value="#FF5B26">
                   </div>
+                  <span id="label-dots-1-hex" class="color-hex-label">#FF5B26</span>
                   <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px;">
                     <option value="single">Solid Color</option>
                     <option value="gradient">Gradient Fill</option>
@@ -1291,6 +1328,7 @@
                   <div class="color-picker-wrapper">
                     <input type="color" id="color-dots-2" value="#4AB299">
                   </div>
+                  <span id="label-dots-2-hex" class="color-hex-label">#4AB299</span>
                   <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px;">
                     <option value="linear">Linear</option>
                     <option value="radial">Radial</option>
@@ -1304,7 +1342,7 @@
                   <div class="color-picker-wrapper">
                     <input type="color" id="color-bg" value="#FFFFFF">
                   </div>
-                  <span id="label-bg-hex" style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">#FFFFFF</span>
+                  <span id="label-bg-hex" class="color-hex-label">#FFFFFF</span>
                 </div>
               </div>
             </div>
@@ -1563,6 +1601,12 @@
     document.getElementById('color-bg').addEventListener('input', (e) => {
       document.getElementById('label-bg-hex').innerText = e.target.value.toUpperCase();
     });
+    document.getElementById('color-dots-1').addEventListener('input', (e) => {
+      document.getElementById('label-dots-1-hex').innerText = e.target.value.toUpperCase();
+    });
+    document.getElementById('color-dots-2').addEventListener('input', (e) => {
+      document.getElementById('label-dots-2-hex').innerText = e.target.value.toUpperCase();
+    });
 
     // Color Type toggle logic (Gradient vs Solid)
     document.getElementById('select-color-type').addEventListener('change', (e) => {
@@ -1715,6 +1759,11 @@
       dotTypeEl.value = 'square';
       cornerTypeEl.value = 'square';
     }
+
+    // Update hex label text values
+    document.getElementById('label-dots-1-hex').innerText = color1El.value.toUpperCase();
+    document.getElementById('label-dots-2-hex').innerText = color2El.value.toUpperCase();
+    document.getElementById('label-bg-hex').innerText = bgColorEl.value.toUpperCase();
 
     // Toggle gradient colors display block
     const box = document.getElementById('gradient-color-box');
