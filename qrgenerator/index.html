@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Free Custom QR Code Generator with Logo — Privacy-First | Resyto</title>
-  <meta name="description" content="Create fully customized QR codes with colors, gradients, custom shapes, and logos. 100% free, permanent, client-side generation. Download high-resolution PNG & vector SVG.">
+  <meta name="description" content="Generate custom QR codes for links, text, emails, SMS, phone, Wi-Fi, contacts, locations, and payments. Customize colors, gradients, shapes, and brand logos. 100% local.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#07080F">
   <meta name="color-scheme" content="dark">
@@ -112,7 +112,7 @@
 
     .wrap {
       width: 100%;
-      max-width: 1080px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
@@ -162,7 +162,7 @@
     /* Header Section */
     header.hero {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
 
     header.hero .eyebrow {
@@ -181,7 +181,7 @@
     header.hero h1 {
       font-family: var(--font-title);
       font-weight: 900;
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(32px, 5vw, 46px);
       line-height: 1.15;
       margin-bottom: 12px;
       letter-spacing: -0.02em;
@@ -200,12 +200,52 @@
       margin: 0 auto;
     }
 
+    /* Type tabs selection (Horizontal list) */
+    .data-tabs {
+      display: flex;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 6px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .data-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .tab-btn.active {
+      color: #07080F;
+      background-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+    }
+
     /* Split Screen Dashboard */
     .dashboard {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.25fr 0.75fr;
       gap: 32px;
       margin-bottom: 64px;
+      align-items: start;
     }
 
     @media (max-width: 850px) {
@@ -215,48 +255,71 @@
       }
     }
 
-    /* Control Panel Card (Left Side) */
-    .panel-card {
+    /* Interactive Accordion Customizer Group (Left Side) */
+    .accordion-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .accordion-card {
       background-color: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.6);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.2s;
     }
 
-    @media (max-width: 480px) {
-      .panel-card {
-        padding: 20px;
-      }
+    .accordion-card.open {
+      border-color: rgba(255, 91, 38, 0.25);
     }
 
-    /* Custom Data Tabs */
-    .data-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
-      gap: 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .data-tabs::-webkit-scrollbar { display: none; }
-
-    .tab-btn {
-      background: none;
+    .accordion-header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.01);
       border: none;
-      color: var(--text-muted);
-      padding: 10px 16px;
-      font-size: 13.5px;
-      font-weight: 600;
+      color: var(--text);
+      padding: 18px 24px;
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 800;
+      text-align: left;
       cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
-      white-space: nowrap;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.15s;
     }
 
-    .tab-btn.active {
+    .accordion-header:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .accordion-header .indicator {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .accordion-card.open .accordion-header .indicator {
       color: var(--primary);
-      border-bottom-color: var(--primary);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .accordion-card.open .accordion-body {
+      max-height: 1000px; /* Large enough buffer */
+    }
+
+    .accordion-inner {
+      padding: 24px;
+      border-top: 1px solid var(--border);
     }
 
     /* Tab Content Boxes */
@@ -281,7 +344,7 @@
 
     .form-group label {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-muted);
       margin-bottom: 8px;
@@ -325,21 +388,7 @@
       min-height: 80px;
     }
 
-    /* Section divider inside Sidebar */
-    .section-divider {
-      border-top: 1px dashed var(--border);
-      margin: 28px 0 24px;
-      padding-top: 24px;
-    }
-
-    .section-divider h3 {
-      font-family: var(--font-title);
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    /* Design customization elements */
+    /* Design customization options layout */
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -360,7 +409,7 @@
     }
 
     .customizer-item label {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
@@ -562,6 +611,27 @@
       stroke-width: 2.5;
     }
 
+    /* Action button inside tabs */
+    .geo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(74, 178, 153, 0.08);
+      border: 1px solid rgba(74, 178, 153, 0.2);
+      color: var(--green);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .geo-btn:hover {
+      background-color: rgba(74, 178, 153, 0.15);
+    }
+
     /* --- SEO & MARKETING CONTENT SECTIONS --- */
 
     /* Section Styles */
@@ -736,166 +806,6 @@
       color: var(--text-muted);
       line-height: 1.6;
     }
-
-    /* FAQs Section */
-    .faq-section {
-      width: 100%;
-      max-width: 880px;
-      margin: 32px auto 80px;
-    }
-
-    .faq-section h2 {
-      font-family: var(--font-title);
-      font-size: 26px;
-      font-weight: 800;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .faq-item {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-
-    .faq-q {
-      width: 100%;
-      background: none;
-      border: none;
-      color: var(--text);
-      padding: 20px 24px;
-      font-size: 15.5px;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-q:hover {
-      background-color: rgba(255, 255, 255, 0.01);
-    }
-
-    .faq-q .chev {
-      width: 18px;
-      height: 18px;
-      color: var(--text-muted);
-      transition: transform 0.2s;
-    }
-
-    .faq-item.open .faq-q .chev {
-      transform: rotate(180deg);
-      color: var(--primary);
-    }
-
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.25s ease-out;
-    }
-
-    .faq-item.open .faq-a {
-      max-height: 200px;
-    }
-
-    .faq-a p {
-      padding: 0 24px 20px;
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Footer styling */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 48px 0;
-      background-color: #04050a;
-      margin-top: auto;
-      width: 100%;
-    }
-
-    .footer-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 32px;
-      padding: 0 24px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      text-align: left;
-    }
-
-    .footer-brand h3 {
-      font-family: var(--font-title);
-      font-weight: 800;
-      font-size: 18px;
-      margin: 0;
-      color: #F1F3FA;
-      letter-spacing: -0.01em;
-    }
-
-    .footer-tagline {
-      font-size: 12.5px;
-      color: rgba(241, 243, 250, 0.55);
-      margin: 0;
-      max-width: 320px;
-      line-height: 1.5;
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      color: rgba(241, 243, 250, 0.35);
-      margin-top: 8px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      font-size: 13.5px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: rgba(241, 243, 250, 0.7);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .footer-links a:hover {
-      color: #F1F3FA;
-    }
-
-    @media (max-width: 600px) {
-      .footer-inner {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 24px;
-      }
-      .footer-brand {
-        align-items: center;
-        text-align: center;
-      }
-      .footer-links {
-        justify-content: center;
-        gap: 12px 20px;
-      }
-      .footer-copy {
-        margin-top: 4px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -917,190 +827,319 @@
     <p class="sub">Create fully customized QR codes with colors, gradients, custom shapes, and logos. Built locally in your browser—no tracking, no uploads, and no registrations.</p>
   </header>
 
+  <!-- Content Type Tabs Selection Bar -->
+  <div class="data-tabs" role="tablist" aria-label="QR Code Content Types">
+    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="pane-url" id="tab-url" onclick="switchTab('url')">URL</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-text" id="tab-text" onclick="switchTab('text')">Text</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-email" id="tab-email" onclick="switchTab('email')">Email</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-phone" id="tab-phone" onclick="switchTab('phone')">Phone</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-sms" id="tab-sms" onclick="switchTab('sms')">SMS</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-wifi" id="tab-wifi" onclick="switchTab('wifi')">Wi-Fi</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-vcard" id="tab-vcard" onclick="switchTab('vcard')">vCard Contact</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-location" id="tab-location" onclick="switchTab('location')">Location</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-upi" id="tab-upi" onclick="switchTab('upi')">UPI Payment</button>
+  </div>
+
   <!-- Interactive Dashboard -->
   <div class="dashboard">
     
-    <!-- Controls (Left Card) -->
-    <div class="panel-card">
+    <!-- Controls (Left Accordion Group) -->
+    <div class="accordion-group">
       
-      <!-- Type tabs -->
-      <div class="data-tabs" role="tablist" aria-label="QR Code Content Types">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="pane-url" id="tab-url" onclick="switchTab('url')">Link / Text</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-wifi" id="tab-wifi" onclick="switchTab('wifi')">Wi-Fi</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-vcard" id="tab-vcard" onclick="switchTab('vcard')">Contact (vCard)</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="pane-upi" id="tab-upi" onclick="switchTab('upi')">UPI Payment</button>
-      </div>
-
-      <!-- Tab Content: URL/Text -->
-      <div class="tab-pane active" id="pane-url" role="tabpanel" aria-labelledby="tab-url">
-        <div class="form-group">
-          <label for="input-url">Website URL or Text</label>
-          <textarea id="input-url" class="form-control" placeholder="https://example.com or message details..."></textarea>
-        </div>
-      </div>
-
-      <!-- Tab Content: Wi-Fi -->
-      <div class="tab-pane" id="pane-wifi" role="tabpanel" aria-labelledby="tab-wifi">
-        <div class="form-group">
-          <label for="input-wifi-ssid">Network Name (SSID)</label>
-          <input type="text" id="input-wifi-ssid" class="form-control" placeholder="My Home Wi-Fi">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="input-wifi-pass">Password</label>
-            <input type="password" id="input-wifi-pass" class="form-control" placeholder="••••••••">
-          </div>
-          <div class="form-group">
-            <label for="input-wifi-type">Security Type</label>
-            <select id="input-wifi-type" class="form-control">
-              <option value="WPA">WPA/WPA2</option>
-              <option value="WEP">WEP</option>
-              <option value="nopass">Unsecured (No Password)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Content: vCard -->
-      <div class="tab-pane" id="pane-vcard" role="tabpanel" aria-labelledby="tab-vcard">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="input-card-fn">First Name</label>
-            <input type="text" id="input-card-fn" class="form-control" placeholder="Sagar">
-          </div>
-          <div class="form-group">
-            <label for="input-card-ln">Last Name</label>
-            <input type="text" id="input-card-ln" class="form-control" placeholder="Poudel">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="input-card-tel">Phone Number</label>
-            <input type="tel" id="input-card-tel" class="form-control" placeholder="+977 9800000000">
-          </div>
-          <div class="form-group">
-            <label for="input-card-email">Email Address</label>
-            <input type="email" id="input-card-email" class="form-control" placeholder="sagar@example.com">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="input-card-url">Website</label>
-          <input type="url" id="input-card-url" class="form-control" placeholder="https://resyto.com">
-        </div>
-      </div>
-
-      <!-- Tab Content: UPI Payment -->
-      <div class="tab-pane" id="pane-upi" role="tabpanel" aria-labelledby="tab-upi">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="input-upi-id">UPI ID / VPA</label>
-            <input type="text" id="input-upi-id" class="form-control" placeholder="payee@bank">
-          </div>
-          <div class="form-group">
-            <label for="input-upi-name">Payee Name</label>
-            <input type="text" id="input-upi-name" class="form-control" placeholder="Sagar Poudel">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="input-upi-amount">Amount (Optional)</label>
-            <input type="number" id="input-upi-amount" class="form-control" placeholder="e.g. 500">
-          </div>
-          <div class="form-group">
-            <label for="input-upi-note">Transaction Note (Optional)</label>
-            <input type="text" id="input-upi-note" class="form-control" placeholder="Resyto Payment">
-          </div>
-        </div>
-      </div>
-
-      <!-- Customization Divider Section -->
-      <div class="section-divider">
-        <h3>Styling Customizations</h3>
-        
-        <div class="options-grid">
-          
-          <!-- Colors Customize -->
-          <div class="customizer-item">
-            <label for="color-dots-1">Foreground Color</label>
-            <div class="color-row">
-              <div class="color-picker-wrapper">
-                <input type="color" id="color-dots-1" value="#FF5B26">
+      <!-- Accordion Section 1: ENTER CONTENT -->
+      <div class="accordion-card open" id="card-content">
+        <button class="accordion-header" onclick="toggleAccordion('card-content')">
+          <span>1. ENTER CONTENT</span>
+          <span class="indicator">&#8722;</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-inner">
+            
+            <!-- Tab Content: URL -->
+            <div class="tab-pane active" id="pane-url" role="tabpanel" aria-labelledby="tab-url">
+              <div class="form-group">
+                <label for="input-url">Your URL</label>
+                <input type="url" id="input-url" class="form-control" placeholder="https://www.qrcode-monkey.com">
               </div>
-              <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px;">
-                <option value="single">Solid Color</option>
-                <option value="gradient">Gradient Fill</option>
-              </select>
             </div>
-          </div>
 
-          <!-- Secondary gradient color picker (conditional) -->
-          <div class="customizer-item" id="gradient-color-box" style="display: none;">
-            <label for="color-dots-2">Gradient End Color</label>
-            <div class="color-row">
-              <div class="color-picker-wrapper">
-                <input type="color" id="color-dots-2" value="#4AB299">
+            <!-- Tab Content: Text -->
+            <div class="tab-pane" id="pane-text" role="tabpanel" aria-labelledby="tab-text">
+              <div class="form-group">
+                <label for="input-text">Your Text</label>
+                <textarea id="input-text" class="form-control" placeholder="Write your text details or raw messages..."></textarea>
               </div>
-              <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px;">
-                <option value="linear">Linear</option>
-                <option value="radial">Radial</option>
-              </select>
             </div>
-          </div>
 
-          <!-- Background Color -->
-          <div class="customizer-item">
-            <label for="color-bg">Background Color</label>
-            <div class="color-row">
-              <div class="color-picker-wrapper">
-                <input type="color" id="color-bg" value="#FFFFFF">
+            <!-- Tab Content: Email -->
+            <div class="tab-pane" id="pane-email" role="tabpanel" aria-labelledby="tab-email">
+              <div class="form-group">
+                <label for="input-email-address">Email Address</label>
+                <input type="email" id="input-email-address" class="form-control" placeholder="yourname@domain.com">
               </div>
-              <span id="label-bg-hex" style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">#FFFFFF</span>
+              <div class="form-group">
+                <label for="input-email-subject">Subject</label>
+                <input type="text" id="input-email-subject" class="form-control" placeholder="Inquiry about services">
+              </div>
+              <div class="form-group">
+                <label for="input-email-body">Message Body</label>
+                <textarea id="input-email-body" class="form-control" placeholder="Hi Resyto, ..."></textarea>
+              </div>
             </div>
-          </div>
 
-          <!-- Dot Style Shapes -->
-          <div class="customizer-item">
-            <label for="select-dot-type">Dot Shapes</label>
-            <select id="select-dot-type" class="form-control">
-              <option value="square">Square (Default)</option>
-              <option value="rounded">Rounded</option>
-              <option value="extra-rounded">Extra Rounded</option>
-              <option value="dots">Circles</option>
-              <option value="classy">Classy Cut</option>
-              <option value="classy-rounded">Classy Rounded</option>
-            </select>
-          </div>
-
-          <!-- Corner Squares style options -->
-          <div class="customizer-item">
-            <label for="select-corner-type">Corner Rings</label>
-            <select id="select-corner-type" class="form-control">
-              <option value="square">Square Ring</option>
-              <option value="dot">Circle Ring</option>
-              <option value="extra-rounded">Rounded Corners</option>
-            </select>
-          </div>
-
-          <!-- Logo upload area -->
-          <div class="customizer-item logo-uploader">
-            <label>Brand Logo (Center)</label>
-            <div class="upload-btn-wrapper">
-              <span class="upload-btn" id="upload-status-label">Upload Image (PNG/JPG)</span>
-              <input type="file" id="input-logo-file" accept="image/*">
+            <!-- Tab Content: Phone -->
+            <div class="tab-pane" id="pane-phone" role="tabpanel" aria-labelledby="tab-phone">
+              <div class="form-group">
+                <label for="input-phone-number">Phone Number</label>
+                <input type="tel" id="input-phone-number" class="form-control" placeholder="+977 9801234567">
+              </div>
             </div>
-          </div>
 
-          <!-- Logo size slider -->
-          <div class="customizer-item" id="logo-slider-box" style="display: none;">
-            <label for="logo-size-range">Logo Scale</label>
-            <div class="slider-wrapper">
-              <input type="range" id="logo-size-range" min="0.05" max="0.35" step="0.01" value="0.18">
-              <span class="slider-val" id="logo-size-val">18%</span>
+            <!-- Tab Content: SMS -->
+            <div class="tab-pane" id="pane-sms" role="tabpanel" aria-labelledby="tab-sms">
+              <div class="form-group">
+                <label for="input-sms-number">Recipient Phone Number</label>
+                <input type="tel" id="input-sms-number" class="form-control" placeholder="+977 9801234567">
+              </div>
+              <div class="form-group">
+                <label for="input-sms-message">SMS Text Message</label>
+                <textarea id="input-sms-message" class="form-control" placeholder="Hello there! Please reach back."></textarea>
+              </div>
             </div>
-          </div>
 
+            <!-- Tab Content: Wi-Fi -->
+            <div class="tab-pane" id="pane-wifi" role="tabpanel" aria-labelledby="tab-wifi">
+              <div class="form-group">
+                <label for="input-wifi-ssid">Network Name (SSID)</label>
+                <input type="text" id="input-wifi-ssid" class="form-control" placeholder="HomeNetwork_5G">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-wifi-pass">Password</label>
+                  <input type="password" id="input-wifi-pass" class="form-control" placeholder="SSID_Password">
+                </div>
+                <div class="form-group">
+                  <label for="input-wifi-type">Security Type</label>
+                  <select id="input-wifi-type" class="form-control">
+                    <option value="WPA">WPA/WPA2</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">Unsecured (No Password)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Content: vCard -->
+            <div class="tab-pane" id="pane-vcard" role="tabpanel" aria-labelledby="tab-vcard">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-card-fn">First Name</label>
+                  <input type="text" id="input-card-fn" class="form-control" placeholder="Sagar">
+                </div>
+                <div class="form-group">
+                  <label for="input-card-ln">Last Name</label>
+                  <input type="text" id="input-card-ln" class="form-control" placeholder="Poudel">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-card-org">Organization</label>
+                  <input type="text" id="input-card-org" class="form-control" placeholder="Resyto Tech">
+                </div>
+                <div class="form-group">
+                  <label for="input-card-title">Job Title</label>
+                  <input type="text" id="input-card-title" class="form-control" placeholder="Founder &amp; Indie Hacker">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-card-tel">Phone Number</label>
+                  <input type="tel" id="input-card-tel" class="form-control" placeholder="+977 9801234567">
+                </div>
+                <div class="form-group">
+                  <label for="input-card-email">Email Address</label>
+                  <input type="email" id="input-card-email" class="form-control" placeholder="sagar@resyto.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="input-card-url">Website</label>
+                <input type="url" id="input-card-url" class="form-control" placeholder="https://resyto.com">
+              </div>
+              <div class="form-group">
+                <label for="input-card-address">Address (Street, City, Zip)</label>
+                <input type="text" id="input-card-address" class="form-control" placeholder="Kathmandu, Nepal 44600">
+              </div>
+            </div>
+
+            <!-- Tab Content: Location -->
+            <div class="tab-pane" id="pane-location" role="tabpanel" aria-labelledby="tab-location">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-geo-lat">Latitude</label>
+                  <input type="number" id="input-geo-lat" class="form-control" step="0.000001" placeholder="27.7172">
+                </div>
+                <div class="form-group">
+                  <label for="input-geo-lon">Longitude</label>
+                  <input type="number" id="input-geo-lon" class="form-control" step="0.000001" placeholder="85.3240">
+                </div>
+              </div>
+              <button class="geo-btn" onclick="fetchLocation(event)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                Detect My Current Location
+              </button>
+            </div>
+
+            <!-- Tab Content: UPI Payment -->
+            <div class="tab-pane" id="pane-upi" role="tabpanel" aria-labelledby="tab-upi">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-upi-id">UPI ID / VPA</label>
+                  <input type="text" id="input-upi-id" class="form-control" placeholder="payee@bank">
+                </div>
+                <div class="form-group">
+                  <label for="input-upi-name">Payee Name</label>
+                  <input type="text" id="input-upi-name" class="form-control" placeholder="Sagar Poudel">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-upi-amount">Amount (Optional)</label>
+                  <input type="number" id="input-upi-amount" class="form-control" placeholder="500">
+                </div>
+                <div class="form-group">
+                  <label for="input-upi-note">Transaction Note (Optional)</label>
+                  <input type="text" id="input-upi-note" class="form-control" placeholder="Resyto Invoice">
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div>
 
+      <!-- Accordion Section 2: SET COLORS -->
+      <div class="accordion-card" id="card-colors">
+        <button class="accordion-header" onclick="toggleAccordion('card-colors')">
+          <span>2. SET COLORS</span>
+          <span class="indicator">&#43;</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-inner">
+            
+            <div class="options-grid">
+              <!-- Colors Customize -->
+              <div class="customizer-item">
+                <label for="color-dots-1">Foreground Color</label>
+                <div class="color-row">
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="color-dots-1" value="#FF5B26">
+                  </div>
+                  <select id="select-color-type" class="form-control" style="padding: 8px 10px; font-size: 13px;">
+                    <option value="single">Solid Color</option>
+                    <option value="gradient">Gradient Fill</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Secondary gradient color picker (conditional) -->
+              <div class="customizer-item" id="gradient-color-box" style="display: none;">
+                <label for="color-dots-2">Gradient End Color</label>
+                <div class="color-row">
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="color-dots-2" value="#4AB299">
+                  </div>
+                  <select id="select-gradient-dir" class="form-control" style="padding: 8px 10px; font-size: 13px;">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Background Color -->
+              <div class="customizer-item">
+                <label for="color-bg">Background Color</label>
+                <div class="color-row">
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="color-bg" value="#FFFFFF">
+                  </div>
+                  <span id="label-bg-hex" style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">#FFFFFF</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion Section 3: ADD LOGO IMAGE -->
+      <div class="accordion-card" id="card-logo">
+        <button class="accordion-header" onclick="toggleAccordion('card-logo')">
+          <span>3. ADD LOGO IMAGE</span>
+          <span class="indicator">&#43;</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-inner">
+            
+            <div class="options-grid">
+              <!-- Logo upload area -->
+              <div class="customizer-item logo-uploader">
+                <label>Brand Logo (Center)</label>
+                <div class="upload-btn-wrapper">
+                  <span class="upload-btn" id="upload-status-label">Upload Image (PNG/JPG)</span>
+                  <input type="file" id="input-logo-file" accept="image/*">
+                </div>
+              </div>
+
+              <!-- Logo size slider -->
+              <div class="customizer-item" id="logo-slider-box" style="display: none;">
+                <label for="logo-size-range">Logo Scale</label>
+                <div class="slider-wrapper">
+                  <input type="range" id="logo-size-range" min="0.05" max="0.35" step="0.01" value="0.18">
+                  <span class="slider-val" id="logo-size-val">18%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion Section 4: CUSTOMIZE DESIGN -->
+      <div class="accordion-card" id="card-design">
+        <button class="accordion-header" onclick="toggleAccordion('card-design')">
+          <span>4. CUSTOMIZE DESIGN</span>
+          <span class="indicator">&#43;</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-inner">
+            
+            <div class="options-grid">
+              <!-- Dot Style Shapes -->
+              <div class="customizer-item">
+                <label for="select-dot-type">Dot Shapes</label>
+                <select id="select-dot-type" class="form-control">
+                  <option value="square">Square (Default)</option>
+                  <option value="rounded">Rounded</option>
+                  <option value="extra-rounded">Extra Rounded</option>
+                  <option value="dots">Circles</option>
+                  <option value="classy">Classy Cut</option>
+                  <option value="classy-rounded">Classy Rounded</option>
+                </select>
+              </div>
+
+              <!-- Corner Squares style options -->
+              <div class="customizer-item">
+                <label for="select-corner-type">Corner Rings</label>
+                <select id="select-corner-type" class="form-control">
+                  <option value="square">Square Ring</option>
+                  <option value="dot">Circle Ring</option>
+                  <option value="extra-rounded">Rounded Corners</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1138,17 +1177,17 @@
       <div class="step-card">
         <div class="step-num">1</div>
         <h3>Select Content Type</h3>
-        <p>Choose between Link/Text, Wi-Fi configuration, vCard Contact details, or UPI payment formats using the tabs in the dashboard.</p>
+        <p>Choose between Link, Email, SMS, Location coordinates, or UPI banking configurations using the horizontal tab selector.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
         <h3>Customize Styling</h3>
-        <p>Pick custom shapes, select colors or linear/radial gradients, and upload your brand logo to render in the center of the canvas.</p>
+        <p>Style the dots, choose linear/radial gradients, select custom colors, and merge a center brand logo into the matrix.</p>
       </div>
       <div class="step-card">
         <div class="step-num">3</div>
         <h3>Download Assets</h3>
-        <p>Download a high-resolution PNG for digital use, or export a vector SVG file that maintains crisp lines at any physical print size.</p>
+        <p>Export in high-resolution PNG for websites and apps, or download print-ready vector SVG files that scale infinitely.</p>
       </div>
     </div>
   </section>
@@ -1226,61 +1265,6 @@
     </div>
   </section>
 
-  <!-- FAQs Section -->
-  <section class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-    
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Is my QR code data uploaded to any server?
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <p>No. Resyto is a privacy-first utility suite. All text inputs, password formats, and uploaded brand logos are read directly by your local browser's memory. The QR code generation process is 100% client-side. Zero bytes leave your device.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        What is the difference between PNG and SVG downloads?
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <p>PNG is a raster graphic format perfect for digital use, social media, websites, or emails. SVG is a vector graphic format that does not pixelate when scaled. We highly recommend SVG if you plan to print your QR code on posters, flyers, business cards, or merchandise.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Will my custom styled QR code scan reliably?
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <p>Yes, but styling choices matter. Make sure there is high contrast between your foreground color and background color (e.g., dark colors on a white background). If you add a center logo, keep the scaling slider under 20% to prevent covering too much data.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Can I make Wi-Fi or UPI codes?
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <p>Absolutely. Selecting the Wi-Fi tab generates a standard WPA/WEP connection string that users can scan to join your network automatically. Selecting the UPI tab generates standard payment protocols that work with popular merchant and banking apps instantly.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Why are static QR codes safer?
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a">
-        <p>Static QR codes embed the actual destination URL directly in the pattern. There is no middle-man server involved. Paid dynamic QR generators route the user through a redirect URL on their own servers to collect logs, meaning if their server goes down or their company goes out of business, your QR code stops working. Static codes work forever.</p>
-      </div>
-    </div>
-  </section>
-
 </div>
 
 <!-- Footer -->
@@ -1310,8 +1294,12 @@
   window.addEventListener('load', () => {
     // Basic fields
     const fields = [
-      'input-url', 'input-wifi-ssid', 'input-wifi-pass', 'input-wifi-type',
-      'input-card-fn', 'input-card-ln', 'input-card-tel', 'input-card-email', 'input-card-url',
+      'input-url', 'input-text', 'input-email-address', 'input-email-subject', 'input-email-body',
+      'input-phone-number', 'input-sms-number', 'input-sms-message',
+      'input-wifi-ssid', 'input-wifi-pass', 'input-wifi-type',
+      'input-card-fn', 'input-card-ln', 'input-card-org', 'input-card-title',
+      'input-card-tel', 'input-card-email', 'input-card-url', 'input-card-address',
+      'input-geo-lat', 'input-geo-lon',
       'input-upi-id', 'input-upi-name', 'input-upi-amount', 'input-upi-note',
       'color-dots-1', 'color-dots-2', 'color-bg',
       'select-color-type', 'select-gradient-dir', 'select-dot-type', 'select-corner-type',
@@ -1367,7 +1355,7 @@
       document.getElementById('logo-size-val').innerText = `${percent}%`;
     });
 
-    // Draw initial empty QR Code
+    // Draw initial QR Code
     updateQrCode();
   });
 
@@ -1388,44 +1376,123 @@
     document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
     document.getElementById(`pane-${tabId}`).classList.add('active');
 
+    // Ensure enter content section is open when tab is changed
+    const card = document.getElementById('card-content');
+    if (!card.classList.contains('open')) {
+      toggleAccordion('card-content');
+    }
+
     updateQrCode();
+  }
+
+  // Accordion toggle handler
+  function toggleAccordion(cardId) {
+    const card = document.getElementById(cardId);
+    const header = card.querySelector('.accordion-header');
+    const indicator = header.querySelector('.indicator');
+    const body = card.querySelector('.accordion-body');
+    const inner = card.querySelector('.accordion-inner');
+
+    const isOpen = card.classList.contains('open');
+
+    if (isOpen) {
+      card.classList.remove('open');
+      body.style.maxHeight = '0';
+      indicator.innerHTML = '&#43;'; // Plus sign
+    } else {
+      card.classList.add('open');
+      body.style.maxHeight = inner.scrollHeight + 48 + 'px'; // add buffer for padding
+      indicator.innerHTML = '&#8722;'; // Minus sign
+    }
+  }
+
+  // Geolocation API helper
+  function fetchLocation(e) {
+    e.preventDefault();
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        document.getElementById('input-geo-lat').value = position.coords.latitude.toFixed(6);
+        document.getElementById('input-geo-lon').value = position.coords.longitude.toFixed(6);
+        updateQrCode();
+      }, (error) => {
+        alert("Unable to fetch location: " + error.message);
+      });
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
   }
 
   // Compile final content payload based on the active tab form inputs
   function getPayload() {
     if (activeTab === 'url') {
-      return document.getElementById('input-url').value.trim() || 'https://resyto.com';
-    } 
+      return document.getElementById('input-url').value.trim() || 'https://www.qrcode-monkey.com';
+    }
+
+    if (activeTab === 'text') {
+      return document.getElementById('input-text').value.trim() || 'Resyto Utility Suit';
+    }
+
+    if (activeTab === 'email') {
+      const email = document.getElementById('input-email-address').value.trim();
+      const subject = document.getElementById('input-email-subject').value.trim();
+      const body = document.getElementById('input-email-body').value.trim();
+      if (!email) return 'https://resyto.com';
+      return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    if (activeTab === 'phone') {
+      const phone = document.getElementById('input-phone-number').value.trim();
+      if (!phone) return 'https://resyto.com';
+      return `tel:${phone}`;
+    }
+
+    if (activeTab === 'sms') {
+      const smsNum = document.getElementById('input-sms-number').value.trim();
+      const smsMsg = document.getElementById('input-sms-message').value.trim();
+      if (!smsNum) return 'https://resyto.com';
+      return `smsto:${smsNum}:${smsMsg}`;
+    }
     
     if (activeTab === 'wifi') {
       const ssid = document.getElementById('input-wifi-ssid').value.trim();
       const pass = document.getElementById('input-wifi-pass').value.trim();
       const type = document.getElementById('input-wifi-type').value;
       if (!ssid) return 'https://resyto.com';
-      // Format: WIFI:S:MySSID;T:WPA;P:MyPassword;;
       return `WIFI:S:${ssid};T:${type};P:${pass};;`;
     }
 
     if (activeTab === 'vcard') {
       const fn = document.getElementById('input-card-fn').value.trim();
       const ln = document.getElementById('input-card-ln').value.trim();
+      const org = document.getElementById('input-card-org').value.trim();
+      const title = document.getElementById('input-card-title').value.trim();
       const tel = document.getElementById('input-card-tel').value.trim();
       const email = document.getElementById('input-card-email').value.trim();
       const url = document.getElementById('input-card-url').value.trim();
+      const addr = document.getElementById('input-card-address').value.trim();
 
       if (!fn && !ln) return 'https://resyto.com';
 
-      // Assemble standard vCard 3.0 format
       return [
         'BEGIN:VCARD',
         'VERSION:3.0',
         `N:${ln};${fn};;;`,
         `FN:${fn} ${ln}`.trim(),
+        org ? `ORG:${org}` : '',
+        title ? `TITLE:${title}` : '',
         tel ? `TEL;TYPE=CELL:${tel}` : '',
         email ? `EMAIL;TYPE=PREF,INTERNET:${email}` : '',
         url ? `URL:${url}` : '',
+        addr ? `ADR;TYPE=WORK:;;${addr};;;` : '',
         'END:VCARD'
       ].filter(Boolean).join('\n');
+    }
+
+    if (activeTab === 'location') {
+      const lat = document.getElementById('input-geo-lat').value.trim();
+      const lon = document.getElementById('input-geo-lon').value.trim();
+      if (!lat || !lon) return 'https://resyto.com';
+      return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
     }
 
     if (activeTab === 'upi') {
@@ -1436,7 +1503,6 @@
 
       if (!upiId) return 'https://resyto.com';
 
-      // Format: upi://pay?pa=payee@bank&pn=PayeeName&am=Amount&tn=Note
       let upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}`;
       if (name) upiUrl += `&pn=${encodeURIComponent(name)}`;
       if (amount) upiUrl += `&am=${encodeURIComponent(amount)}`;
