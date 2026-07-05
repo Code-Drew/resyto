@@ -1,0 +1,18 @@
+{
+  "name": "Resyto — Free Client-Side Web Tools",
+  "short_name": "Resyto",
+  "description": "A curated suite of free, private, and client-side web tools, including a Nepali Date Converter and a Free Image Compressor.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07080F",
+  "theme_color": "#07080F",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
