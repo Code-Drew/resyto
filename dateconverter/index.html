@@ -753,28 +753,127 @@
 
   @media (prefers-reduced-motion: reduce) {
     .result.visible { animation: none; }
+  /* Responsive Header Navigation */
+  header.site-nav-header {
+    width: 100%;
+    background-color: rgba(7, 8, 15, 0.7);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 18px 0;
+    margin-bottom: 40px;
+  }
+  .header-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .header-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #F1F3FA;
+  }
+  .header-brand-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+  }
+  .header-brand-logo svg {
+    width: 16px;
+    height: 16px;
+  }
+  .header-brand-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+  .header-nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  .header-nav-links a {
+    color: #8E9AB0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: color 0.2s;
+  }
+  .header-nav-links a:hover {
+    color: #F1F3FA;
+  }
+  .header-nav-links a.active {
+    color: #F1F3FA;
+  }
+
+  @media (max-width: 650px) {
+    header.site-nav-header {
+      padding: 14px 0;
+    }
+    .header-nav-container {
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      padding: 0 16px;
+    }
+    .header-nav-links {
+      width: 100%;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 4px 16px 8px;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+    .header-nav-links a {
+      white-space: nowrap;
+      scroll-snap-align: start;
+      font-size: 13.5px;
+    }
+    .header-nav-links::-webkit-scrollbar {
+      display: none;
+    }
+    .header-nav-links {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   }
 </style>
 </head>
 <body>
 
-<header style="width: 100%; background-color: rgba(7, 8, 15, 0.7); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 100; padding: 18px 0; margin-bottom: 40px;">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; width: 100%;">
-    <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F1F3FA;">
-      <div style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;">
+<header class="site-nav-header">
+  <div class="header-nav-container">
+    <a href="/" class="header-brand-link">
+      <div class="header-brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
           <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em;">Resyto</span>
+      <span class="header-brand-name">Resyto</span>
     </a>
-    <nav style="display: flex; gap: 24px;" aria-label="Main Navigation">
-      <a href="/resume-cv-builder/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">Resume &amp; CV Builder</a>
-      <a href="/dateconverter/" style="color: #F1F3FA; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;">Date Converter</a>
-      <a href="/imagecompressor/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">Image Compressor</a>
-      <a href="/qrgenerator/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">QR Code Generator</a>
+    <nav class="header-nav-links" aria-label="Main Navigation">
+      <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
+      <a href="/dateconverter/" class="active">Date Converter</a>
+      <a href="/imagecompressor/">Image Compressor</a>
+      <a href="/qrgenerator/">QR Code Generator</a>
     </nav>
   </div>
 </header>
