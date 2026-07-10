@@ -288,76 +288,128 @@
     /* Builder Card Visual Mockup */
     .mock-builder {
       width: 100%;
-      height: 120px;
-      background-color: var(--bg-surface-raised);
-      border-radius: 12px;
-      border: 1px dashed var(--border-hover);
+      height: 150px;
+      background: radial-gradient(circle at 50% 120%, rgba(255, 91, 38, 0.15), transparent 70%), var(--bg-surface-raised);
+      border-radius: 16px;
+      border: 1px solid var(--border);
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      gap: 20px;
+      padding: 20px;
       overflow: hidden;
       position: relative;
     }
     .mock-sheet {
-      width: 120px;
-      height: 150px;
+      width: 125px;
+      height: 165px;
       background: #FFF;
-      border-radius: 4px;
+      border-radius: 6px;
       padding: 12px 10px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-      transform: translateY(28px);
-      transition: transform 0.3s ease;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute;
     }
-    .bento-card:hover .mock-sheet {
-      transform: translateY(18px);
+    .mock-sheet.resume-sheet {
+      left: calc(50% - 115px);
+      transform: translateY(22px) rotate(-6deg);
+      z-index: 2;
     }
-    .mock-sheet-header {
+    .mock-sheet.letter-sheet {
+      left: calc(50% - 10px);
+      transform: translateY(30px) rotate(4deg);
+      z-index: 1;
+    }
+    .bento-card:hover .resume-sheet {
+      transform: translateY(10px) rotate(-3deg);
+    }
+    .bento-card:hover .letter-sheet {
+      transform: translateY(14px) rotate(8deg);
+    }
+    .mock-resume-layout {
       display: flex;
-      align-items: center;
       gap: 6px;
+      height: 100%;
+      width: 100%;
     }
-    .mock-avatar {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
-    .mock-title-block {
-      flex: 1;
+    .mock-resume-sidebar {
+      width: 32%;
+      border-right: 1px solid #f1f5f9;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 5px;
+      padding-right: 4px;
     }
-    .mock-title-block .line {
-      height: 3px;
-      background: #e2e8f0;
-      border-radius: 2px;
-    }
-    .mock-title-block .line.name {
-      width: 35px;
-      background: #0f172a;
-    }
-    .mock-title-block .line.headline {
-      width: 20px;
-      background: var(--primary);
-    }
-    .mock-sheet-body {
+    .mock-resume-main {
+      width: 68%;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
-    .mock-sheet-body .line {
+    .mock-avatar {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .mock-line {
       height: 2px;
-      background: #cbd5e1;
+      background: #e2e8f0;
       border-radius: 1px;
       width: 100%;
     }
-    .mock-sheet-body .line.short {
+    .mock-line.accent {
+      background: var(--primary);
+    }
+    .mock-line.dark {
+      background: #1e293b;
+      height: 3px;
+    }
+    .mock-line.short {
       width: 60%;
+    }
+    .mock-line.xs {
+      width: 40%;
+    }
+    .mock-letter-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Privacy Card Visual Mockup */
+    .mock-privacy {
+      width: 100%;
+      height: 150px;
+      background-color: var(--bg-surface-raised);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .mock-privacy-circle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(255, 91, 38, 0.04);
+      border: 1px solid rgba(255, 91, 38, 0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 20px rgba(255, 91, 38, 0.03);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .bento-card:hover .mock-privacy-circle {
+      transform: scale(1.1);
+      border-color: rgba(255, 91, 38, 0.35);
+      box-shadow: 0 0 30px rgba(255, 91, 38, 0.18);
     }
 
     /* Card background glows on hover */
@@ -595,31 +647,10 @@
       text-decoration: none;
       transition: all 0.2s ease;
       cursor: pointer;
-    }
-
-    .date-card .card-button {
       background-color: var(--primary);
       color: #07080F;
     }
-    .date-card .card-button:hover {
-      background-color: #FF7547;
-      box-shadow: 0 6px 20px -6px rgba(255, 91, 38, 0.4);
-    }
-
-    .compress-card .card-button {
-      background-color: var(--primary);
-      color: #07080F;
-    }
-    .compress-card .card-button:hover {
-      background-color: #FF7547;
-      box-shadow: 0 6px 20px -6px rgba(255, 91, 38, 0.4);
-    }
-
-    .qr-card .card-button {
-      background-color: var(--primary);
-      color: #07080F;
-    }
-    .qr-card .card-button:hover {
+    .card-button:hover {
       background-color: #FF7547;
       box-shadow: 0 6px 20px -6px rgba(255, 91, 38, 0.4);
     }
@@ -1110,18 +1141,43 @@
         <div class="card-content">
           <div class="card-visual">
             <div class="mock-builder">
-              <div class="mock-sheet">
-                <div class="mock-sheet-header">
-                  <div class="mock-avatar"></div>
-                  <div class="mock-title-block">
-                    <div class="line name"></div>
-                    <div class="line headline"></div>
+              <!-- Left Overlapping Sheet: Resume with Sidebar -->
+              <div class="mock-sheet resume-sheet">
+                <div class="mock-resume-layout">
+                  <div class="mock-resume-sidebar">
+                    <div class="mock-avatar" style="width: 14px; height: 14px; margin-bottom: 2px;"></div>
+                    <div class="mock-line xs accent"></div>
+                    <div class="mock-line short"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-line short"></div>
+                  </div>
+                  <div class="mock-resume-main">
+                    <div class="mock-line dark"></div>
+                    <div class="mock-line short accent"></div>
+                    <div style="height: 4px;"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-line short"></div>
+                    <div style="height: 2px;"></div>
+                    <div class="mock-line"></div>
+                    <div class="mock-line short"></div>
                   </div>
                 </div>
-                <div class="mock-sheet-body">
-                  <div class="line"></div>
-                  <div class="line"></div>
-                  <div class="line short"></div>
+              </div>
+              <!-- Right Overlapping Sheet: Cover Letter -->
+              <div class="mock-sheet letter-sheet">
+                <div class="mock-letter-layout">
+                  <div class="mock-line dark" style="width: 40px;"></div>
+                  <div class="mock-line xs" style="margin-bottom: 6px;"></div>
+                  <div class="mock-line accent" style="width: 70px; height: 3px;"></div>
+                  <div style="height: 4px;"></div>
+                  <div class="mock-line"></div>
+                  <div class="mock-line"></div>
+                  <div class="mock-line"></div>
+                  <div class="mock-line short"></div>
+                  <div style="height: 4px;"></div>
+                  <div class="mock-line xs"></div>
+                  <div class="mock-line xs accent"></div>
                 </div>
               </div>
             </div>
@@ -1140,12 +1196,16 @@
       <!-- Sponsor & About Bento Card -->
       <article class="bento-card about-card">
         <div class="card-content">
-          <div class="card-visual" style="background: radial-gradient(circle at 50% 50%, rgba(255, 91, 38, 0.04) 0%, transparent 80%);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 40px; height: 40px; margin: auto;">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="M12 8v4"/>
-              <path d="M12 16h.01"/>
-            </svg>
+          <div class="card-visual">
+            <div class="mock-privacy">
+              <div class="mock-privacy-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M12 8v4"/>
+                  <path d="M12 16h.01"/>
+                </svg>
+              </div>
+            </div>
           </div>
           <h2 class="card-title">Privacy &amp; Support</h2>
           <p class="card-desc">Resyto is committed to keeping the web open, fast, and completely private. Support our mission by sponsoring, advertising, or sharing our tools with colleagues.</p>
