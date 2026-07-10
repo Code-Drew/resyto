@@ -738,35 +738,28 @@
 </head>
 <body>
 
-<div class="wrap">
-  <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); margin-bottom: 24px;">
-    <a href="/" style="color: var(--orange); text-decoration: none; font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; font-family: 'Plus Jakarta Sans', sans-serif;">Resyto</a>
-    <div style="display: flex; gap: 18px;">
-      <a href="/dateconverter/" style="color: var(--paper-dim); text-decoration: none; font-size: 13px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif;">Date Converter</a>
-      <a href="/qrgenerator/" style="color: var(--paper-dim); text-decoration: none; font-size: 13px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif;">QR Code Generator</a>
-      <a href="/resume-cv-builder/" style="color: var(--paper-dim); text-decoration: none; font-size: 13px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif;">Resume &amp; CV Builder</a>
-    </div>
-  </div>
-
-  <nav class="nav">
-    <a href="/" class="brand" style="text-decoration: none; color: inherit;">
-      <span class="brand-mark">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 15px; height: 15px;">
-          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#0A0B0E"/>
-          <path d="M2 17L12 22L22 17" stroke="#0A0B0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 12L12 17L22 12" stroke="#0A0B0E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<header style="width: 100%; background-color: rgba(7, 8, 15, 0.7); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); position: sticky; top: 0; z-index: 100; padding: 18px 0; margin-bottom: 40px;">
+  <div style="max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F1F3FA;">
+      <div style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
+          <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </span>
-      Resyto Compress
+      </div>
+      <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em;">Resyto</span>
     </a>
-    <div class="nav-links">
-      <a href="/dateconverter/">Date Converter</a>
-      <a href="/qrgenerator/">QR Code Generator</a>
-      <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
-      <a href="#how">How it works</a>
-      <a href="#faq">FAQ</a>
-    </div>
-  </nav>
+    <nav style="display: flex; gap: 24px;" aria-label="Main Navigation">
+      <a href="/resume-cv-builder/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">Resume &amp; CV Builder</a>
+      <a href="/dateconverter/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">Date Converter</a>
+      <a href="/imagecompressor/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">Image Compressor</a>
+      <a href="/qrgenerator/" style="color: #8E9AB0; text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s;" onmouseover="this.style.color='#F1F3FA'" onmouseout="this.style.color='#8E9AB0'">QR Code Generator</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
 
   <header class="hero">
     <div class="eyebrow">DRAG · DIAL · DOWNLOAD</div>
