@@ -243,14 +243,15 @@
     /* Bento Grid */
     .bento-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
       margin-bottom: 80px;
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 1100px) {
       .bento-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
       }
     }
 
@@ -279,58 +280,48 @@
       border-color: var(--border-hover);
     }
 
-    @media (min-width: 951px) {
-      .builder-card {
-        grid-column: span 2;
-      }
-    }
-
     /* Builder Card Visual Mockup */
     .mock-builder {
       width: 100%;
-      height: 150px;
-      background: radial-gradient(circle at 50% 120%, rgba(255, 91, 38, 0.15), transparent 70%), var(--bg-surface-raised);
-      border-radius: 16px;
-      border: 1px solid var(--border);
+      height: 100%;
+      background: radial-gradient(circle at 50% 120%, rgba(255, 91, 38, 0.15), transparent 70%);
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      padding: 20px;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
     }
     .mock-sheet {
-      width: 125px;
-      height: 165px;
+      width: 78px;
+      height: 105px;
       background: #FFF;
-      border-radius: 6px;
-      padding: 12px 10px;
+      border-radius: 4px;
+      padding: 8px 6px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: absolute;
     }
     .mock-sheet.resume-sheet {
-      left: calc(50% - 115px);
+      left: calc(50% - 72px);
       transform: translateY(22px) rotate(-6deg);
       z-index: 2;
     }
     .mock-sheet.letter-sheet {
-      left: calc(50% - 10px);
-      transform: translateY(30px) rotate(4deg);
+      left: calc(50% - 8px);
+      transform: translateY(28px) rotate(4deg);
       z-index: 1;
     }
     .bento-card:hover .resume-sheet {
-      transform: translateY(10px) rotate(-3deg);
+      transform: translateY(12px) rotate(-3deg);
     }
     .bento-card:hover .letter-sheet {
-      transform: translateY(14px) rotate(8deg);
+      transform: translateY(16px) rotate(8deg);
     }
     .mock-resume-layout {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       height: 100%;
       width: 100%;
     }
@@ -339,23 +330,23 @@
       border-right: 1px solid #f1f5f9;
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      padding-right: 4px;
+      gap: 3px;
+      padding-right: 2px;
     }
     .mock-resume-main {
       width: 68%;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
     .mock-avatar {
-      width: 14px;
-      height: 14px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--primary);
     }
     .mock-line {
-      height: 2px;
+      height: 1.5px;
       background: #e2e8f0;
       border-radius: 1px;
       width: 100%;
@@ -365,7 +356,7 @@
     }
     .mock-line.dark {
       background: #1e293b;
-      height: 3px;
+      height: 2px;
     }
     .mock-line.short {
       width: 60%;
@@ -376,7 +367,7 @@
     .mock-letter-layout {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
       height: 100%;
       width: 100%;
     }
