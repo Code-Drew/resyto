@@ -289,11 +289,16 @@
         justify-content: flex-start;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
+        -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
+        mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
       }
       .nav-links a {
         white-space: nowrap;
         scroll-snap-align: start;
         font-size: 13.5px;
+      }
+      .nav-links a:last-child {
+        padding-right: 24px;
       }
       .nav-links::-webkit-scrollbar {
         display: none;
