@@ -1,0 +1,15 @@
+{
+  "short_name": "Resyto",
+  "name": "Resyto Resume & CV Builder",
+  "icons": [
+    {
+      "src": "/resume-cv-builder/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/resume-cv-builder/",
+  "background_color": "#07080F",
+  "theme_color": "#07080F",
+  "display": "standalone"
+}

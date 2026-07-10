@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resyto — Free Web Tools (Nepali Date Converter, Image Compressor & QR Code Generator)</title>
-  <meta name="description" content="A curated suite of free, private, client-side web tools. Convert Nepali date (BS ⇄ AD), compress images (JPG/PNG/WebP) to exact size, and generate custom QR codes.">
+  <title>Resyto — Free Web Tools (Resume Builder, Date Converter &amp; QR)</title>
+  <meta name="description" content="A suite of free, private web tools. Build ATS-compliant resumes, convert Nepali dates (BS ⇄ AD), compress images, and generate custom QR codes locally.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#07080F">
   <meta name="color-scheme" content="dark">
@@ -46,7 +46,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://resyto.com/">
   <meta property="og:title" content="Resyto — Privacy-First Web Utilities">
-  <meta property="og:description" content="Smarter web tools running 100% locally in your browser. Nepali Date Converter, Image Compressor, Custom QR Generator, and more. Fast, secure, and offline-ready.">
+  <meta property="og:description" content="Smarter web tools running 100% locally. Build ATS resumes, convert Nepali dates, compress images, and generate custom QR codes. Fast, offline-ready & secure.">
   <meta property="og:image" content="https://resyto.com/og-image.png">
   <meta property="og:image:secure_url" content="https://resyto.com/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -60,7 +60,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://resyto.com/">
   <meta name="twitter:title" content="Resyto — Privacy-First Web Utilities">
-  <meta name="twitter:description" content="Smarter web tools running 100% locally in your browser. Nepali Date Converter, Image Compressor, Custom QR Generator, and more. Fast, secure, and offline-ready.">
+  <meta name="twitter:description" content="Smarter web tools running 100% locally. Build ATS resumes, convert Nepali dates, compress images, and generate custom QR codes. Fast, offline-ready & secure.">
   <meta name="twitter:image" content="https://resyto.com/og-image.png">
   <meta name="twitter:image:alt" content="Resyto — Free Web Tools & Utilities">
 
@@ -277,6 +277,87 @@
     .bento-card:hover {
       transform: translateY(-4px);
       border-color: var(--border-hover);
+    }
+
+    @media (min-width: 951px) {
+      .builder-card {
+        grid-column: span 2;
+      }
+    }
+
+    /* Builder Card Visual Mockup */
+    .mock-builder {
+      width: 100%;
+      height: 120px;
+      background-color: var(--bg-surface-raised);
+      border-radius: 12px;
+      border: 1px dashed var(--border-hover);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .mock-sheet {
+      width: 120px;
+      height: 150px;
+      background: #FFF;
+      border-radius: 4px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transform: translateY(28px);
+      transition: transform 0.3s ease;
+    }
+    .bento-card:hover .mock-sheet {
+      transform: translateY(18px);
+    }
+    .mock-sheet-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mock-avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .mock-title-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .mock-title-block .line {
+      height: 3px;
+      background: #e2e8f0;
+      border-radius: 2px;
+    }
+    .mock-title-block .line.name {
+      width: 35px;
+      background: #0f172a;
+    }
+    .mock-title-block .line.headline {
+      width: 20px;
+      background: var(--primary);
+    }
+    .mock-sheet-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mock-sheet-body .line {
+      height: 2px;
+      background: #cbd5e1;
+      border-radius: 1px;
+      width: 100%;
+    }
+    .mock-sheet-body .line.short {
+      width: 60%;
     }
 
     /* Card background glows on hover */
@@ -924,6 +1005,7 @@
         <span class="brand-name">Resyto</span>
       </a>
       <nav class="nav-links" aria-label="Main Navigation">
+        <a href="/resume-cv-builder/">Resume Builder</a>
         <a href="/dateconverter/">Converter</a>
         <a href="/imagecompressor/">Compressor</a>
         <a href="/qrgenerator/">QR Generator</a>
@@ -1023,6 +1105,59 @@
         </div>
       </article>
 
+      <!-- Resume & CV Builder Card -->
+      <article class="bento-card builder-card">
+        <div class="card-content">
+          <div class="card-visual">
+            <div class="mock-builder">
+              <div class="mock-sheet">
+                <div class="mock-sheet-header">
+                  <div class="mock-avatar"></div>
+                  <div class="mock-title-block">
+                    <div class="line name"></div>
+                    <div class="line headline"></div>
+                  </div>
+                </div>
+                <div class="mock-sheet-body">
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 class="card-title">Resume &amp; CV Builder</h2>
+          <p class="card-desc">Write professional, ATS-compliant resumes, academic CVs, and matching cover letters. Choose templates (Modern, Classic, Creative, Executive), fonts, and accent colors. 100% free, watermark-free, and runs entirely in your local browser.</p>
+          <div class="card-badges">
+            <span class="badge-item">ATS Friendly</span>
+            <span class="badge-item">Resume &amp; CV &amp; Cover Letter</span>
+            <span class="badge-item">Client-Side PDF</span>
+          </div>
+          <a href="/resume-cv-builder/" class="card-button" id="launch-resumebuilder">Launch Resume &amp; CV Builder</a>
+        </div>
+      </article>
+
+      <!-- Sponsor & About Bento Card -->
+      <article class="bento-card about-card">
+        <div class="card-content">
+          <div class="card-visual" style="background: radial-gradient(circle at 50% 50%, rgba(255, 91, 38, 0.04) 0%, transparent 80%);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 40px; height: 40px; margin: auto;">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M12 8v4"/>
+              <path d="M12 16h.01"/>
+            </svg>
+          </div>
+          <h2 class="card-title">Privacy &amp; Support</h2>
+          <p class="card-desc">Resyto is committed to keeping the web open, fast, and completely private. Support our mission by sponsoring, advertising, or sharing our tools with colleagues.</p>
+          <div class="card-badges">
+            <span class="badge-item">Zero Server Cost</span>
+            <span class="badge-item">Open Source</span>
+            <span class="badge-item">Sponsor Us</span>
+          </div>
+          <a href="/about.html" class="card-button" id="launch-about">Learn More &amp; Support</a>
+        </div>
+      </article>
+
     </section>
 
   </main>
@@ -1100,11 +1235,13 @@
           <a href="/dateconverter/">Date Converter</a>
           <a href="/imagecompressor/">Image Compressor</a>
           <a href="/qrgenerator/">QR Code Generator</a>
+          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
         </div>
         <div class="footer-col">
           <h4>Resyto</h4>
           <a href="/">Home</a>
           <a href="/about.html">About &amp; Contact</a>
+          <a href="/about.html#sponsor">Sponsor &amp; Advertise</a>
           <a href="/privacy.html">Privacy Policy</a>
         </div>
       </nav>
