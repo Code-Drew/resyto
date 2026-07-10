@@ -150,13 +150,56 @@
       z-index: 100;
       background-color: rgba(7, 9, 19, 0.8);
     }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; }
-    .brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; text-decoration: none; color: var(--text); }
-    .brand-logo { width: 28px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, var(--primary) 0%, #FF5B26 100%); display: flex; align-items: center; justify-content: center; }
-    .brand-logo svg { width: 15px; height: 15px; color: #FFF; }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14.5px; font-weight: 600; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary) 0%, #FF5B26 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.2);
+    }
+    .brand-logo svg {
+      width: 16px;
+      height: 16px;
+      color: #FFF;
+    }
+    .brand-name {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
     /* Content */
     main { padding: 56px 0 80px; }
@@ -324,23 +367,23 @@
 <body>
 
   <header>
-    <div class="container nav-container">
+    <div class="nav-container">
       <a href="/" class="brand">
         <div class="brand-logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 15px; height: 15px;">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
             <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <span>Resyto</span>
+        <span class="brand-name">Resyto</span>
       </a>
       <nav class="nav-links" aria-label="Main Navigation">
-        <a href="/">Home</a>
+        <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
         <a href="/dateconverter/">Date Converter</a>
         <a href="/imagecompressor/">Image Compressor</a>
         <a href="/qrgenerator/">QR Code Generator</a>
-        <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
+        <a href="/about.html" style="color: #F1F3FA;">About</a>
       </nav>
     </div>
   </header>
