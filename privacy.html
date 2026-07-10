@@ -279,6 +279,12 @@
         align-items: center;
         padding: 0 16px;
       }
+      @keyframes navWiggle {
+        0%, 100% { transform: translateX(0); }
+        30% { transform: translateX(-20px); }
+        60% { transform: translateX(4px); }
+        80% { transform: translateX(0); }
+      }
       .nav-links {
         width: 100%;
         display: flex;
@@ -291,6 +297,7 @@
         scroll-snap-type: x mandatory;
         -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
         mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
+        animation: navWiggle 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s;
       }
       .nav-links a {
         white-space: nowrap;
