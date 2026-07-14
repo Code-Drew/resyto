@@ -846,6 +846,43 @@
       scrollbar-width: none;
     }
   }
+
+  /* Global Ad Placement styles */
+  .resyto-ad-container-wrapper {
+    max-width: 800px;
+    margin: 24px auto 32px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .resyto-ad-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 91, 38, 0.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 90px;
+    box-sizing: border-box;
+  }
+  .resyto-ad-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.25);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .resyto-ad-placeholder-text {
+    font-size: 12px;
+    color: rgba(241, 243, 250, 0.4);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.5;
+  }
 </style>
 </head>
 <body>
@@ -990,6 +1027,16 @@
       <span><strong>Your photo never leaves your device.</strong> Resyto Compress compresses entirely in your browser using the Canvas API — no server, no upload, no storage. Close the tab and it's gone.</span>
     </div>
   </section>
+
+  <!-- Resyto Ad Placement Slot -->
+  <div class="resyto-ad-container-wrapper">
+    <div class="resyto-ad-container">
+      <div class="resyto-ad-label">ADVERTISEMENT</div>
+      <div class="resyto-ad-content">
+        <span class="resyto-ad-placeholder-text">Support Resyto by keeping this ad slot visible. Ads will load here once approved.</span>
+      </div>
+    </div>
+  </div>
 
   <section class="section">
     <div class="section-head">

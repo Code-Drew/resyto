@@ -1011,6 +1011,43 @@
         margin-top: 4px;
       }
     }
+
+    /* Global Ad Placement styles */
+    .resyto-ad-container-wrapper {
+      max-width: 800px;
+      margin: 24px auto 32px;
+      padding: 0 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .resyto-ad-container {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 91, 38, 0.15);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 90px;
+      box-sizing: border-box;
+    }
+    .resyto-ad-label {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.25);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .resyto-ad-placeholder-text {
+      font-size: 12px;
+      color: rgba(241, 243, 250, 0.4);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -1223,11 +1260,21 @@
     </div>
   </section>
 
+  <!-- Resyto Ad Placement Slot -->
+  <div class="resyto-ad-container-wrapper">
+    <div class="resyto-ad-container">
+      <div class="resyto-ad-label">ADVERTISEMENT</div>
+      <div class="resyto-ad-content">
+        <span class="resyto-ad-placeholder-text">Support Resyto by keeping this ad slot visible. Ads will load here once approved.</span>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <h3>Resyto</h3>
-        <p class="footer-tagline">Free, privacy-first browser tools. No uploads, no ads.</p>
+        <p class="footer-tagline">Free, privacy-first browser tools. No server uploads, zero tracking.</p>
         <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
       </div>
       <nav class="footer-links-container" aria-label="Footer Navigation">
