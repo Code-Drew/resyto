@@ -1219,6 +1219,46 @@
       border-radius: 16px;
       background-color: var(--bg-surface);
       margin-bottom: 24px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Custom, permanently visible scrollbar for table horizontal scrolling */
+    .table-wrapper::-webkit-scrollbar {
+      height: 6px;
+      display: block !important;
+    }
+    .table-wrapper::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 3px;
+    }
+    .table-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(255, 91, 38, 0.35); /* Subtle orange thumb matching Resyto brand */
+      border-radius: 3px;
+    }
+    .table-wrapper::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 91, 38, 0.55);
+    }
+
+    .table-scroll-hint {
+      display: none;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: right;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .table-scroll-hint {
+        display: block;
+        animation: pulseHint 2s infinite ease-in-out;
+      }
+      @keyframes pulseHint {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
     }
 
     table.comparison-table {
@@ -2108,6 +2148,7 @@
     <h2>Static vs. Dynamic QR Codes: Which is better?</h2>
     <p class="lead">Resyto generates permanent, zero-tracking Static QR codes. Here is how they compare.</p>
     
+    <div class="table-scroll-hint" aria-hidden="true">↔ Swipe horizontally to view full table</div>
     <div class="table-wrapper">
       <table class="comparison-table" aria-label="Comparison of Static vs Dynamic QR Codes">
         <caption class="visually-hidden">Comparison of Static vs Dynamic QR Codes</caption>
