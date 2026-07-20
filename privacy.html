@@ -200,22 +200,19 @@
     .highlight-box p { margin-bottom: 0; color: var(--text); font-weight: 500; }
 
     /* Footer */
-    /* Footer */
     footer {
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 48px 0;
-      background-color: #04050a;
-      margin-top: 64px;
+      padding: 56px 0;
+      background-color: #04050A;
+      margin-top: 48px;
       width: 100%;
     }
     .footer-inner {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 32px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 64px;
       padding: 0 24px;
       width: 100%;
       box-sizing: border-box;
@@ -223,32 +220,52 @@
     .footer-brand {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
       text-align: left;
     }
-    .footer-brand h3 {
-      font-family: var(--font-sans);
+    .footer-brand-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+    }
+    .footer-logo svg {
+      width: 15px;
+      height: 15px;
+    }
+    .footer-brand-title span {
+      font-family: var(--font-title);
       font-weight: 800;
-      font-size: 18px;
-      margin: 0;
+      font-size: 20px;
       color: #F1F3FA;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
     .footer-tagline {
-      font-size: 12.5px;
+      font-size: 13.5px;
       color: rgba(241, 243, 250, 0.55);
       margin: 0;
-      max-width: 320px;
-      line-height: 1.5;
+      max-width: 420px;
+      line-height: 1.6;
     }
     .footer-copy {
-      font-size: 12px;
+      font-size: 12.5px;
       color: rgba(241, 243, 250, 0.35);
-      margin-top: 8px;
+      margin-top: 4px;
     }
     .footer-links-container {
       display: flex;
-      gap: 64px;
+      gap: 140px;
+      justify-content: flex-start;
     }
     .footer-col {
       display: flex;
@@ -257,11 +274,11 @@
     }
     .footer-col h4 {
       font-family: var(--font-title);
-      font-size: 12.5px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       color: #F1F3FA;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       margin: 0 0 4px 0;
     }
     .footer-col a {
@@ -271,7 +288,7 @@
       transition: color 0.15s ease;
     }
     .footer-col a:hover {
-      color: #F1F3FA;
+      color: #FF5B26;
     }
 
     @media (max-width: 768px) {
@@ -320,10 +337,12 @@
         padding: 32px 0;
       }
       .footer-inner {
+        display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
         gap: 24px;
+        padding: 0 16px;
       }
       .footer-brand {
         align-items: center;
@@ -340,6 +359,13 @@
       }
       .footer-copy {
         margin-top: 4px;
+      }
+      main {
+        padding: 32px 0 48px;
+      }
+      h1 {
+        font-size: 26px;
+        line-height: 1.25;
       }
     }
   </style>
@@ -359,11 +385,11 @@
         <span class="brand-name">Resyto</span>
       </a>
       <nav class="nav-links" aria-label="Main Navigation">
+        <a href="/fontgenerator/">Fancy Font Generator</a>
         <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
-        <a href="/dateconverter/">Date Converter</a>
         <a href="/imagecompressor/">Image Compressor</a>
         <a href="/qrgenerator/">QR Code Generator</a>
-        <a href="/about.html">About</a>
+        <a href="/dateconverter/">Date Converter</a>
       </nav>
     </div>
   </header>
@@ -425,8 +451,17 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <h3>Resyto</h3>
-        <p class="footer-tagline">Free, privacy-first browser tools. No uploads, no ads.</p>
+        <a href="/" class="footer-brand-title">
+          <div class="footer-logo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
+              <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span>Resyto</span>
+        </a>
+        <p class="footer-tagline">Free, privacy-first web utilities. Built for zero tracking, instant performance, and no registration requirements.</p>
         <div class="footer-copy">&copy; 2026 Resyto. All rights reserved.</div>
       </div>
       <nav class="footer-links-container" aria-label="Footer Navigation">
@@ -436,13 +471,15 @@
           <a href="/imagecompressor/">Image Compressor</a>
           <a href="/qrgenerator/">QR Code Generator</a>
           <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
+          <a href="/fontgenerator/">Fancy Font Generator</a>
         </div>
         <div class="footer-col">
-          <h4>Resyto</h4>
-          <a href="/">Home</a>
-          <a href="/about.html">About &amp; Contact</a>
-          <a href="/about.html#sponsor">Sponsor &amp; Advertise</a>
+          <h4>Platform</h4>
+          <a href="/">Homepage</a>
+          <a href="/about.html">About Us</a>
           <a href="/privacy.html">Privacy Policy</a>
+          <a href="/about.html#contact">Contact &amp; Support</a>
+          <a href="/about.html#sponsor">Sponsor &amp; Advertise</a>
         </div>
       </nav>
     </div>

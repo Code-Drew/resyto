@@ -1,0 +1,43 @@
+=== Double Struck ===
+Length of normal: 62, Length of map: 62
+Result: 𝕋𝕪𝕡𝕖 𝕪𝕠𝕦𝕣 𝕥𝕖𝕩𝕥 𝕙𝕖𝕣𝕖... 𝟘𝟙𝟚𝟛
+
+=== Cursive Script ===
+Length of normal: 62, Length of map: 62
+Result: 𝒯𝓎𝓅𝑒 𝓎𝑜𝓊𝓇 𝓉𝑒𝓍𝓉 𝒽𝑒𝓇𝑒... 0123
+
+=== Bold Cursive ===
+Length of normal: 62, Length of map: 62
+Result: 𝓣𝔂𝓹𝓮 𝔂𝓸𝓾𝓻 𝓽𝓮𝔁𝓽 𝓱𝓮𝓻𝓮... 0123
+
+=== Gothic Fraktur ===
+Length of normal: 62, Length of map: 62
+Result: 𝔗𝔶𝔭𝔢 𝔶𝔬𝔲𝔯 𝔱𝔢𝔵𝔱 𝔥𝔢𝔯𝔢... 0123
+
+=== Bold Gothic Fraktur ===
+Length of normal: 62, Length of map: 62
+Result: 𝕿𝖞𝖕𝖊 𝖞𝖔𝖚𝖗 𝖙𝖊𝖝𝖙 𝖍𝖊𝖗𝖊... 0123
+
+=== Small Caps ===
+Length of normal: 62, Length of map: 62
+Result: Tʏᴘᴇ ʏᴏᴜʀ ᴛᴇxᴛ ʜᴇʀᴇ... 0123
+
+=== Sans-Serif Bold ===
+Length of normal: 62, Length of map: 62
+Result: 𝗧𝘆𝗽𝗲 𝘆𝗼𝘂𝗿 𝘁𝗲𝘅𝘁 𝗵𝗲𝗿𝗲... 𝟬𝟭𝟮𝟯
+
+=== Sans-Serif Regular ===
+Length of normal: 62, Length of map: 62
+Result: 𝖳𝗒𝗉𝖾 𝗒𝗈𝗎𝗋 𝗍𝖾𝗑𝗍 𝗁𝖾𝗋𝖾... 0123
+
+=== Sans-Serif Italic ===
+Length of normal: 62, Length of map: 62
+Result: 𝘛𝘺𝘱𝘦 𝘺𝘰𝘶𝘳 𝘵𝘦𝘹𝘵 𝘩𝘦𝘳𝘦... 0123
+
+=== Serif Bold Italic ===
+Length of normal: 62, Length of map: 62
+Result: 𝑻𝒚𝒑𝒆 𝒚𝒐𝒖𝒓 𝒕𝒆𝒙𝒕 𝒉𝒆𝒓𝒆... 0123
+
+=== Serif Bold ===
+Length of normal: 62, Length of map: 62
+Result: 𝐓𝐲𝐩𝐞 𝐲𝐨𝐮𝐫 𝐭𝐞𝐱𝐭 𝐡𝐞𝐫𝐞... 𝟎𝟏𝟐𝟑
