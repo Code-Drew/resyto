@@ -134,70 +134,115 @@
       width: 100%;
     }
 
-    /* Navbar */
-    header {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
+    /* ===== Navbar — matches all other pages ===== */
+    header.site-nav-header {
+      width: 100%;
       background-color: rgba(7, 8, 15, 0.7);
       backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
       z-index: 100;
+      padding: 18px 0;
+      margin-bottom: 0;
     }
-
-    .nav-container {
+    .header-nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
     }
-
-    .brand {
+    .header-brand-link {
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      color: var(--text);
+      color: #F1F3FA;
     }
-
-    .brand-logo {
+    .header-brand-logo {
       width: 30px;
       height: 30px;
       border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--green) 100%);
+      background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.2);
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
     }
-
-    .brand-logo svg {
+    .header-brand-logo svg {
       width: 16px;
       height: 16px;
-      color: #FFF;
     }
-
-    .brand-name {
-      font-family: var(--font-title);
+    .header-brand-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
       font-size: 20px;
       letter-spacing: -0.02em;
     }
-
-    .nav-links {
+    .header-nav-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
+      align-items: center;
     }
-
-    .nav-links a {
-      color: var(--text-muted);
+    .header-nav-links a {
+      color: #8E9AB0;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-      transition: color 0.2s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: color 0.2s;
     }
-
-    .nav-links a:hover {
-      color: var(--text);
+    .header-nav-links a:hover {
+      color: #F1F3FA;
+    }
+    .header-nav-links a.active {
+      color: #F1F3FA;
+    }
+    @media (max-width: 768px) {
+      header.site-nav-header {
+        padding: 14px 0;
+      }
+      .header-nav-container {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        padding: 0 16px;
+      }
+      @keyframes navWiggle {
+        0%, 100% { transform: translateX(0); }
+        30% { transform: translateX(-20px); }
+        60% { transform: translateX(4px); }
+        80% { transform: translateX(0); }
+      }
+      .header-nav-links {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 4px 16px 8px;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
+        mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
+        animation: navWiggle 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s;
+      }
+      .header-nav-links a {
+        white-space: nowrap;
+        font-size: 13.5px;
+      }
+      .header-nav-links a:last-child {
+        padding-right: 24px;
+      }
+      .header-nav-links::-webkit-scrollbar {
+        display: none;
+      }
+      .header-nav-links {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     }
 
     /* Hero Section */
@@ -590,6 +635,124 @@
     .date-card { --glow-color: rgba(74, 178, 153, 0.08); }
     .compress-card { --glow-color: rgba(255, 91, 38, 0.08); }
     .qr-card { --glow-color: rgba(255, 91, 38, 0.08); }
+    .screen-card { --glow-color: rgba(139, 92, 246, 0.10); }
+
+    /* Screen Recorder Card Mockup */
+    .mock-screen-visual {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .mock-screen-frame {
+      width: 88%;
+      background: rgba(139, 92, 246, 0.07);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .mock-screen-titlebar {
+      background: rgba(139, 92, 246, 0.15);
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    .mock-screen-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .mock-screen-dot.red   { background: #ff5f57; }
+    .mock-screen-dot.amber { background: #febc2e; }
+    .mock-screen-dot.green { background: #28c840; }
+    .mock-screen-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: rgba(139, 92, 246, 0.8);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: 0.08em;
+      margin-left: 4px;
+    }
+    .mock-screen-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mock-screen-line {
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(139, 92, 246, 0.18);
+    }
+    .mock-screen-line.w80 { width: 80%; }
+    .mock-screen-line.w60 { width: 60%; }
+    .mock-screen-line.w70 { width: 70%; }
+    .mock-screen-controls {
+      width: 88%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      background: rgba(139, 92, 246, 0.07);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 8px;
+    }
+    .mock-rec-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ef4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+      animation: recPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes recPulse {
+      0%, 100% { box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+      50% { box-shadow: 0 0 14px rgba(239,68,68,0.9); }
+    }
+    .mock-rec-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .mock-rec-timer {
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.05em;
+    }
+    .mock-waveform {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: auto;
+    }
+    .mock-wave-bar {
+      width: 3px;
+      border-radius: 2px;
+      background: rgba(139, 92, 246, 0.7);
+      animation: waveBounce 0.8s ease-in-out infinite alternate;
+    }
+    .mock-wave-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+    .mock-wave-bar:nth-child(2) { height: 12px; animation-delay: 0.1s; }
+    .mock-wave-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
+    .mock-wave-bar:nth-child(4) { height: 14px; animation-delay: 0.15s; }
+    .mock-wave-bar:nth-child(5) { height: 6px; animation-delay: 0.05s; }
+    .mock-wave-bar:nth-child(6) { height: 10px; animation-delay: 0.25s; }
+    @keyframes waveBounce {
+      from { transform: scaleY(0.5); }
+      to   { transform: scaleY(1.4); }
+    }
 
     .card-content {
       position: relative;
@@ -1025,51 +1188,7 @@
       .container {
         padding: 0 16px;
       }
-      header {
-        padding: 14px 0;
-      }
-      .nav-container {
-        flex-direction: column;
-        gap: 12px;
-        align-items: center;
-        padding: 0 16px;
-      }
-      @keyframes navWiggle {
-        0%, 100% { transform: translateX(0); }
-        30% { transform: translateX(-20px); }
-        60% { transform: translateX(4px); }
-        80% { transform: translateX(0); }
-      }
-      .nav-links {
-        width: 100%;
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 20px;
-        padding: 4px 16px 8px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
-        mask-image: linear-gradient(to right, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 98%);
-        animation: navWiggle 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s;
-      }
-      .nav-links a {
-        white-space: nowrap;
-        scroll-snap-align: start;
-        font-size: 13.5px;
-      }
-      .nav-links a:last-child {
-        padding-right: 24px;
-      }
-      .nav-links::-webkit-scrollbar {
-        display: none;
-      }
-      .nav-links {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      
+
       .hero {
         padding: 32px 0 24px;
       }
@@ -1272,32 +1391,151 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.5;
     }
+  
+    /* ===== Sleek Modern Footer ===== */
+    footer {
+      position: relative;
+      background-color: #04050A;
+      padding: 56px 0 40px;
+      margin-top: 64px;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 64px;
+      padding: 0 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .footer-brand-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+    }
+    .footer-logo svg {
+      width: 15px;
+      height: 15px;
+    }
+    .footer-brand-title span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #F1F3FA;
+      letter-spacing: -0.02em;
+    }
+    .footer-tagline {
+      font-size: 13.5px;
+      color: rgba(241, 243, 250, 0.55);
+      margin: 0;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+    .footer-copy {
+      font-size: 12.5px;
+      color: rgba(241, 243, 250, 0.35);
+      margin-top: 4px;
+    }
+    .footer-links-container {
+      display: flex;
+      gap: 140px;
+      justify-content: flex-start;
+    }
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: #F1F3FA;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 4px 0;
+    }
+    .footer-col a {
+      color: rgba(241, 243, 250, 0.6);
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.2s ease;
+      display: inline-block;
+    }
+    .footer-col a:hover {
+      color: #FF5B26;
+    }
+    @media (max-width: 768px) {
+      footer { padding: 40px 0 32px; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 0 20px;
+      }
+      .footer-brand { align-items: flex-start; }
+      .footer-links-container {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+      .carousel-arrow { display: none; }
+    }
+    @media (max-width: 480px) {
+      .footer-links-container {
+        flex-direction: column;
+        gap: 28px;
+      }
+      .footer-col { align-items: flex-start; }
+    }
   </style>
+
+    
+
 </head>
 <body>
 
-  <header>
-    <div class="container nav-container">
-      <a href="/" class="brand">
-        <div class="brand-logo" aria-hidden="true" style="width: 30px; height: 30px; border-radius: 9px; background: var(--primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;">
-            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
-            <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <span class="brand-name">Resyto</span>
-      </a>
-      <nav class="nav-links" aria-label="Main Navigation">
-        <a href="/fontgenerator/">Fancy Font Generator</a>
-        <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
-        <a href="/imagecompressor/">Image Compressor</a>
-        <a href="/qrgenerator/">QR Code Generator</a>
-        <a href="/dateconverter/">Date Converter</a>
-        <a href="/about.html">About</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-nav-header">
+  <div class="header-nav-container">
+    <a href="/" class="header-brand-link">
+      <div class="header-brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#07080F"/>
+          <path d="M2 17L12 22L22 17" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="#07080F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="header-brand-name">Resyto</span>
+    </a>
+    <nav class="header-nav-links" aria-label="Main Navigation">
+      <a href="/fontgenerator/">Fancy Font Generator</a>
+      <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
+      <a href="/imagecompressor/">Image Compressor</a>
+      <a href="/qrgenerator/">QR Code Generator</a>
+      <a href="/screenrecorder/">Screen Recorder</a>
+      <a href="/dateconverter/">Date Converter</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
 
   <main class="container">
     
@@ -1453,7 +1691,49 @@
         </article>
 
 
-        <!-- 5. Nepalese Date Converter Card (Secondary Regional Niche) -->
+        <article class="bento-card screen-card">
+          <div class="card-content">
+            <div class="card-visual">
+              <div class="mock-screen-visual">
+                <div class="mock-screen-frame">
+                  <div class="mock-screen-titlebar">
+                    <span class="mock-screen-dot red"></span>
+                    <span class="mock-screen-dot amber"></span>
+                    <span class="mock-screen-dot green"></span>
+                    <span class="mock-screen-label">● SCREEN RECORDING</span>
+                  </div>
+                  <div class="mock-screen-body">
+                    <div class="mock-screen-line w80"></div>
+                    <div class="mock-screen-line w60"></div>
+                    <div class="mock-screen-line w70"></div>
+                  </div>
+                </div>
+                <div class="mock-screen-controls">
+                  <div class="mock-rec-btn"><div class="mock-rec-dot"></div></div>
+                  <span class="mock-rec-timer">00:42</span>
+                  <div class="mock-waveform">
+                    <div class="mock-wave-bar"></div>
+                    <div class="mock-wave-bar"></div>
+                    <div class="mock-wave-bar"></div>
+                    <div class="mock-wave-bar"></div>
+                    <div class="mock-wave-bar"></div>
+                    <div class="mock-wave-bar"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="card-title">Screen &amp; Webcam Recorder</h2>
+            <p class="card-desc">Record your screen, webcam, or both at once — with mic and system audio support. No installs, no uploads. Everything stays in your browser.</p>
+            <div class="card-badges">
+              <span class="badge-item">Screen + Webcam PiP</span>
+              <span class="badge-item">Mic &amp; System Audio</span>
+              <span class="badge-item">Browser-Only</span>
+            </div>
+            <a href="/screenrecorder/" class="card-button" id="launch-screenrecorder">Launch Screen Recorder</a>
+          </div>
+        </article>
+
+        <!-- 6. Nepalese Date Converter Card (always last) -->
         <article class="bento-card date-card">
           <div class="card-content">
             <div class="card-visual">
@@ -1487,6 +1767,7 @@
         <div class="dot" data-index="2"></div>
         <div class="dot" data-index="3"></div>
         <div class="dot" data-index="4"></div>
+        <div class="dot" data-index="5"></div>
       </div>
     </div>
 
@@ -1562,7 +1843,7 @@
     </div>
   </div>
 
-  <footer>
+                  <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="/" class="footer-brand-title">
@@ -1581,17 +1862,19 @@
       <nav class="footer-links-container" aria-label="Footer Navigation">
         <div class="footer-col">
           <h4>Tools</h4>
-          <a href="/dateconverter/">Date Converter</a>
+          <a href="/fontgenerator/">Fancy Font Generator</a>
+          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
           <a href="/imagecompressor/">Image Compressor</a>
           <a href="/qrgenerator/">QR Code Generator</a>
-          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
-          <a href="/fontgenerator/">Fancy Font Generator</a>
+          <a href="/screenrecorder/">Screen Recorder</a>
+          <a href="/dateconverter/">Date Converter</a>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="/">Homepage</a>
           <a href="/about.html">About Us</a>
           <a href="/privacy.html">Privacy Policy</a>
+          <a href="/about.html#request-tool">Request a Tool</a>
           <a href="/about.html#contact">Contact &amp; Support</a>
           <a href="/about.html#sponsor">Sponsor &amp; Advertise</a>
         </div>

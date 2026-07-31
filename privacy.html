@@ -198,6 +198,7 @@
       margin: 28px 0;
     }
     .highlight-box p { margin-bottom: 0; color: var(--text); font-weight: 500; }
+    h2 { scroll-margin-top: 100px; }
 
     /* Footer */
     footer {
@@ -368,7 +369,125 @@
         line-height: 1.25;
       }
     }
+  
+    /* ===== Sleek Modern Footer ===== */
+    footer {
+      position: relative;
+      background-color: #04050A;
+      padding: 56px 0 40px;
+      margin-top: 64px;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 64px;
+      padding: 0 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .footer-brand-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+    }
+    .footer-logo svg {
+      width: 15px;
+      height: 15px;
+    }
+    .footer-brand-title span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #F1F3FA;
+      letter-spacing: -0.02em;
+    }
+    .footer-tagline {
+      font-size: 13.5px;
+      color: rgba(241, 243, 250, 0.55);
+      margin: 0;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+    .footer-copy {
+      font-size: 12.5px;
+      color: rgba(241, 243, 250, 0.35);
+      margin-top: 4px;
+    }
+    .footer-links-container {
+      display: flex;
+      gap: 140px;
+      justify-content: flex-start;
+    }
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: #F1F3FA;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 4px 0;
+    }
+    .footer-col a {
+      color: rgba(241, 243, 250, 0.6);
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.2s ease;
+      display: inline-block;
+    }
+    .footer-col a:hover {
+      color: #FF5B26;
+    }
+    @media (max-width: 768px) {
+      footer { padding: 40px 0 32px; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 0 20px;
+      }
+      .footer-brand { align-items: flex-start; }
+      .footer-links-container {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+    }
+    @media (max-width: 480px) {
+      .footer-links-container {
+        flex-direction: column;
+        gap: 28px;
+      }
+      .footer-col { align-items: flex-start; }
+      .privacy-content { padding: 0 16px; }
+    }
   </style>
+
+    
+
 </head>
 <body>
 
@@ -389,6 +508,7 @@
         <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
         <a href="/imagecompressor/">Image Compressor</a>
         <a href="/qrgenerator/">QR Code Generator</a>
+        <a href="/screenrecorder/">Screen Recorder</a>
         <a href="/dateconverter/">Date Converter</a>
       </nav>
     </div>
@@ -446,9 +566,12 @@
 
     <h2>7. Consent</h2>
     <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+
+    <h2 id="terms">8. Terms of Service</h2>
+    <p>All utilities provided on Resyto are free for personal and commercial use. Because all file processing and document generation execute entirely client-side inside your browser, Resyto assumes no liability for generated outputs. By using Resyto, you agree to use our tools responsibly and in compliance with local laws.</p>
   </main>
 
-  <footer>
+                  <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="/" class="footer-brand-title">
@@ -467,17 +590,19 @@
       <nav class="footer-links-container" aria-label="Footer Navigation">
         <div class="footer-col">
           <h4>Tools</h4>
-          <a href="/dateconverter/">Date Converter</a>
+          <a href="/fontgenerator/">Fancy Font Generator</a>
+          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
           <a href="/imagecompressor/">Image Compressor</a>
           <a href="/qrgenerator/">QR Code Generator</a>
-          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
-          <a href="/fontgenerator/">Fancy Font Generator</a>
+          <a href="/screenrecorder/">Screen Recorder</a>
+          <a href="/dateconverter/">Date Converter</a>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="/">Homepage</a>
           <a href="/about.html">About Us</a>
           <a href="/privacy.html">Privacy Policy</a>
+          <a href="/about.html#request-tool">Request a Tool</a>
           <a href="/about.html#contact">Contact &amp; Support</a>
           <a href="/about.html#sponsor">Sponsor &amp; Advertise</a>
         </div>
@@ -485,5 +610,5 @@
     </div>
   </footer>
 
-</body>
+  </body>
 </html>

@@ -232,6 +232,7 @@
       border-radius: 16px;
       padding: 32px;
       margin-top: 40px;
+      scroll-margin-top: 100px;
     }
     .contact-details h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
     .contact-item { font-family: var(--font-mono); font-size: 15px; margin-bottom: 8px; color: var(--text); }
@@ -413,7 +414,126 @@
         padding: 20px;
         margin-top: 28px;
     }
+  
+    /* ===== Sleek Modern Footer ===== */
+    footer {
+      position: relative;
+      background-color: #04050A;
+      padding: 56px 0 40px;
+      margin-top: 64px;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 64px;
+      padding: 0 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .footer-brand-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .footer-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #FF5B26 0%, #FF8A3D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 91, 38, 0.25);
+    }
+    .footer-logo svg {
+      width: 15px;
+      height: 15px;
+    }
+    .footer-brand-title span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #F1F3FA;
+      letter-spacing: -0.02em;
+    }
+    .footer-tagline {
+      font-size: 13.5px;
+      color: rgba(241, 243, 250, 0.55);
+      margin: 0;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+    .footer-copy {
+      font-size: 12.5px;
+      color: rgba(241, 243, 250, 0.35);
+      margin-top: 4px;
+    }
+    .footer-links-container {
+      display: flex;
+      gap: 140px;
+      justify-content: flex-start;
+    }
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: #F1F3FA;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 4px 0;
+    }
+    .footer-col a {
+      color: rgba(241, 243, 250, 0.6);
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.2s ease;
+      display: inline-block;
+    }
+    .footer-col a:hover {
+      color: #FF5B26;
+    }
+    @media (max-width: 768px) {
+      footer { padding: 40px 0 32px; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 0 20px;
+      }
+      .footer-brand { align-items: flex-start; }
+      .footer-links-container {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+    }
+    @media (max-width: 480px) {
+      .footer-links-container {
+        flex-direction: column;
+        gap: 28px;
+      }
+      .footer-col { align-items: flex-start; }
+      .about-hero h1 { font-size: 24px; }
+      .request-tool-card, .contact-details, .sponsor-card { padding: 20px; }
+    }
   </style>
+
+    
+
 </head>
 <body>
 
@@ -434,6 +554,7 @@
         <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
         <a href="/imagecompressor/">Image Compressor</a>
         <a href="/qrgenerator/">QR Code Generator</a>
+        <a href="/screenrecorder/">Screen Recorder</a>
         <a href="/dateconverter/">Date Converter</a>
         <a href="#" style="color: #F1F3FA;">About</a>
       </nav>
@@ -474,7 +595,24 @@
     <h2>Technology Stack</h2>
     <p>Resyto tools are built using standard web languages (vanilla HTML5, CSS3, and JavaScript) to ensure compatibility across all devices, including desktop systems, tablets, and smartphones. By leveraging advanced APIs like the browser Canvas API, UTC timestamps, and asynchronous callbacks, we achieve professional desktop-grade performance directly inside standard web browser containers.</p>
 
-    <div id="sponsor" class="contact-details" style="border-left: 4px solid var(--primary); background: rgba(255, 91, 38, 0.02); padding: 32px; border-radius: 12px; margin-top: 40px; margin-bottom: 40px;">
+    <div class="contact-details" id="request-tool" style="border-left: 4px solid #FF5B26; background: rgba(255, 91, 38, 0.04); margin-top: 40px; margin-bottom: 24px;">
+      <h3 style="color: #FF5B26; display: flex; align-items: center; gap: 8px;">💡 Request a Web Utility</h3>
+      <p>Have an idea for a new browser tool or feature request? We build free, privacy-first client-side web tools based on user demand! Email your tool requests directly to:</p>
+      <div class="contact-item" style="font-size: 15px; font-weight: 700; color: #FF5B26;">
+        <span>📧 Submit Request:</span> <a href="mailto:resyto.07@gmail.com?subject=Tool%20Request%20-%20Resyto" style="color: inherit; text-decoration: underline;">resyto.07@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="contact-details" id="contact" style="border-left: 4px solid #FF5B26; background: rgba(255, 91, 38, 0.04); margin-bottom: 40px;">
+      <h3 style="color: #FF5B26; display: flex; align-items: center; gap: 8px;">📬 Contact Information</h3>
+      <p>Have questions, general feedback, or bug reports? We'd love to hear from you. Get in touch with the author directly:</p>
+      <div class="contact-item" style="font-size: 15px; font-weight: 700; color: #FF5B26;">
+        <span>📧 Email:</span> <a href="mailto:resyto.07@gmail.com" style="color: inherit; text-decoration: underline;">resyto.07@gmail.com</a>
+      </div>
+      <div class="contact-item"><span>📍 Location:</span> Nepal</div>
+    </div>
+
+    <div id="sponsor" class="contact-details" style="border-left: 4px solid var(--primary); background: rgba(255, 91, 38, 0.02); padding: 32px; border-radius: 12px; margin-bottom: 40px;">
       <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 12px; color: var(--text);">
         🤝 Sponsor &amp; Advertise
       </h2>
@@ -500,16 +638,9 @@
         <span>📧 Business Inquiry:</span> <a href="mailto:resyto.07@gmail.com" style="color: inherit; text-decoration: underline;">resyto.07@gmail.com</a>
       </div>
     </div>
-
-    <div class="contact-details" id="contact">
-      <h3>Contact Information</h3>
-      <p>Have questions, feature suggestions, or bug reports? We'd love to hear from you. Get in touch with the author directly:</p>
-      <div class="contact-item"><span>Email:</span> resyto.07@gmail.com</div>
-      <div class="contact-item"><span>Location:</span> Nepal</div>
-    </div>
   </main>
 
-  <footer>
+                  <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="/" class="footer-brand-title">
@@ -528,23 +659,25 @@
       <nav class="footer-links-container" aria-label="Footer Navigation">
         <div class="footer-col">
           <h4>Tools</h4>
-          <a href="/dateconverter/">Date Converter</a>
+          <a href="/fontgenerator/">Fancy Font Generator</a>
+          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
           <a href="/imagecompressor/">Image Compressor</a>
           <a href="/qrgenerator/">QR Code Generator</a>
-          <a href="/resume-cv-builder/">Resume &amp; CV Builder</a>
-          <a href="/fontgenerator/">Fancy Font Generator</a>
+          <a href="/screenrecorder/">Screen Recorder</a>
+          <a href="/dateconverter/">Date Converter</a>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="/">Homepage</a>
-          <a href="#">About Us</a>
+          <a href="/about.html">About Us</a>
           <a href="/privacy.html">Privacy Policy</a>
-          <a href="#contact">Contact &amp; Support</a>
-          <a href="#sponsor">Sponsor &amp; Advertise</a>
+          <a href="/about.html#request-tool">Request a Tool</a>
+          <a href="/about.html#contact">Contact &amp; Support</a>
+          <a href="/about.html#sponsor">Sponsor &amp; Advertise</a>
         </div>
       </nav>
     </div>
   </footer>
 
-</body>
+  </body>
 </html>
