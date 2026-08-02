@@ -634,93 +634,6 @@
       line-height: 1.5;
     }
 
-    /* Footer styling */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 48px 0;
-      background-color: #04050a;
-      margin-top: auto;
-      width: 100%;
-    }
-
-    .footer-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 32px;
-      padding: 0 24px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      text-align: left;
-    }
-
-    .footer-brand h3 {
-      font-family: var(--font-title);
-      font-weight: 800;
-      font-size: 18px;
-      margin: 0;
-      color: #F1F3FA;
-      letter-spacing: -0.01em;
-    }
-
-    .footer-tagline {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      margin: 0;
-      max-width: 320px;
-      line-height: 1.5;
-    }
-
-    .footer-links-container {
-      display: flex;
-      gap: 64px;
-    }
-
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-col h4 {
-      font-family: var(--font-title);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #FFF;
-      margin: 0;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .footer-links a {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-
     /* Modal dialog */
     .download-modal-overlay {
       position: fixed;
@@ -896,7 +809,7 @@
         scrollbar-width: none;
       }
     }
-  
+
     /* ===== Sleek Modern Footer ===== */
     footer {
       position: relative;
@@ -1601,6 +1514,11 @@
   </footer>
 
   <script>
+    // HTTPS Redirection to ensure secure context (needed for navigator.mediaDevices)
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.href = 'https://' + location.hostname + location.pathname + location.search;
+    }
+
     // Warm up the browser's WebRTC media subsystem on page load to eliminate OS-level hardware/audio driver initialization lag
     if (navigator.mediaDevices && typeof navigator.mediaDevices.enumerateDevices === 'function') {
       navigator.mediaDevices.enumerateDevices()
@@ -1713,6 +1631,33 @@
     async function startRecording() {
       recordedChunks = [];
       
+      // Secure Context check
+      if (!window.isSecureContext) {
+        alert("Recording failed: Secure Context (HTTPS) is required for screen/camera recording.");
+        btnStart.disabled = false;
+        btnStart.innerHTML = `<svg class="btn-icon-record" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="12" cy="12" r="5" fill="#EF4444"></circle></svg> Start Recording`;
+        if (location.protocol === 'http:') {
+          location.href = 'https://' + location.hostname + location.pathname + location.search;
+        }
+        return;
+      }
+
+      // Check if navigator.mediaDevices is supported
+      if (!navigator.mediaDevices) {
+        alert("Recording failed: WebRTC camera/screen access is not supported by your browser or in this context.");
+        btnStart.disabled = false;
+        btnStart.innerHTML = `<svg class="btn-icon-record" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="12" cy="12" r="5" fill="#EF4444"></circle></svg> Start Recording`;
+        return;
+      }
+
+      // Check if getDisplayMedia is supported when screen mode is selected
+      if ((selectedMode === 'screen' || selectedMode === 'pip') && !navigator.mediaDevices.getDisplayMedia) {
+        alert("Screen recording is not supported on mobile devices (iOS/Android) due to mobile operating system restrictions.\n\nPlease use a desktop browser to record your screen. You can still use 'Webcam Only' mode on mobile!");
+        btnStart.disabled = false;
+        btnStart.innerHTML = `<svg class="btn-icon-record" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="3"></circle><circle cx="12" cy="12" r="5" fill="#EF4444"></circle></svg> Start Recording`;
+        return;
+      }
+
       // Immediately disable the start button and show visual feedback to eliminate click lag feel
       btnStart.disabled = true;
       btnStart.innerHTML = '<span>⏳ Requesting permissions...</span>';
