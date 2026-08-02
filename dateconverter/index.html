@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.href = 'https://' + location.hostname + location.pathname + location.search;
+    }
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7777032142526382"
      crossorigin="anonymous"></script>
 <meta charset="UTF-8">
